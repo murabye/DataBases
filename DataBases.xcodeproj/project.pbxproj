@@ -7,14 +7,37 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		174D7ACE57F863F600724489 /* Pods_DataBases.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 909E4CEE398FD214D34C20FE /* Pods_DataBases.framework */; };
 		5DD22731218C55D700795D3B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD22730218C55D700795D3B /* AppDelegate.swift */; };
 		5DD22733218C55D700795D3B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD22732218C55D700795D3B /* ViewController.swift */; };
 		5DD22736218C55D700795D3B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DD22734218C55D700795D3B /* Main.storyboard */; };
 		5DD22738218C55D800795D3B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5DD22737218C55D800795D3B /* Assets.xcassets */; };
 		5DD2273B218C55D800795D3B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DD22739218C55D800795D3B /* LaunchScreen.storyboard */; };
+		5DD2275E218CB29800795D3B /* ChooseDbScreenTableVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD22756218CB29800795D3B /* ChooseDbScreenTableVM.swift */; };
+		5DD22760218CB29800795D3B /* ChooseDbScreenModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD22758218CB29800795D3B /* ChooseDbScreenModule.swift */; };
+		5DD22761218CB29800795D3B /* ChooseDbScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD22759218CB29800795D3B /* ChooseDbScreenPresenter.swift */; };
+		5DD22762218CB29800795D3B /* ChooseDbScreenRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD2275A218CB29800795D3B /* ChooseDbScreenRouter.swift */; };
+		5DD22763218CB29800795D3B /* ChooseDbScreenModuleApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD2275B218CB29800795D3B /* ChooseDbScreenModuleApi.swift */; };
+		5DD22764218CB29800795D3B /* ChooseDbScreenInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD2275C218CB29800795D3B /* ChooseDbScreenInteractor.swift */; };
+		5DD22765218CB29800795D3B /* ChooseDbScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD2275D218CB29800795D3B /* ChooseDbScreenView.swift */; };
+		5DD22788218CB98D00795D3B /* AppModulesViper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD2277D218CB98C00795D3B /* AppModulesViper.swift */; };
+		5DD22789218CB98D00795D3B /* BaseTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD2277E218CB98C00795D3B /* BaseTableView.swift */; };
+		5DD2278A218CB98D00795D3B /* String + SafeString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD2277F218CB98C00795D3B /* String + SafeString.swift */; };
+		5DD2278B218CB98D00795D3B /* ViperComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD22780218CB98C00795D3B /* ViperComponent.swift */; };
+		5DD2278C218CB98D00795D3B /* BaseModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD22781218CB98C00795D3B /* BaseModule.swift */; };
+		5DD2278D218CB98D00795D3B /* BasePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD22782218CB98C00795D3B /* BasePresenter.swift */; };
+		5DD2278E218CB98D00795D3B /* BaseTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD22783218CB98C00795D3B /* BaseTableViewModel.swift */; };
+		5DD2278F218CB98D00795D3B /* ViperModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD22784218CB98D00795D3B /* ViperModule.swift */; };
+		5DD22790218CB98D00795D3B /* BaseInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD22785218CB98D00795D3B /* BaseInteractor.swift */; };
+		5DD22791218CB98D00795D3B /* BaseRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD22786218CB98D00795D3B /* BaseRouter.swift */; };
+		5DD22792218CB98D00795D3B /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD22787218CB98D00795D3B /* BaseView.swift */; };
+		5DD22795218E3E4400795D3B /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DD22794218E3E4400795D3B /* libsqlite3.tbd */; };
+		5DD2279D218E419B00795D3B /* db.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 5DD2279C218E418B00795D3B /* db.sqlite */; };
+		5DD2279F218E4D3300795D3B /* FMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DD2279E218E4D3300795D3B /* FMDB.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4B12A5C3B14F540EB23AC78F /* Pods-DataBases.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DataBases.release.xcconfig"; path = "Pods/Target Support Files/Pods-DataBases/Pods-DataBases.release.xcconfig"; sourceTree = "<group>"; };
 		5DD2272D218C55D700795D3B /* DataBases.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DataBases.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DD22730218C55D700795D3B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5DD22732218C55D700795D3B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +45,30 @@
 		5DD22737218C55D800795D3B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5DD2273A218C55D800795D3B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5DD2273C218C55D800795D3B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5DD22756218CB29800795D3B /* ChooseDbScreenTableVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseDbScreenTableVM.swift; sourceTree = "<group>"; };
+		5DD22758218CB29800795D3B /* ChooseDbScreenModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseDbScreenModule.swift; sourceTree = "<group>"; };
+		5DD22759218CB29800795D3B /* ChooseDbScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseDbScreenPresenter.swift; sourceTree = "<group>"; };
+		5DD2275A218CB29800795D3B /* ChooseDbScreenRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseDbScreenRouter.swift; sourceTree = "<group>"; };
+		5DD2275B218CB29800795D3B /* ChooseDbScreenModuleApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseDbScreenModuleApi.swift; sourceTree = "<group>"; };
+		5DD2275C218CB29800795D3B /* ChooseDbScreenInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseDbScreenInteractor.swift; sourceTree = "<group>"; };
+		5DD2275D218CB29800795D3B /* ChooseDbScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseDbScreenView.swift; sourceTree = "<group>"; };
+		5DD2277D218CB98C00795D3B /* AppModulesViper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppModulesViper.swift; sourceTree = "<group>"; };
+		5DD2277E218CB98C00795D3B /* BaseTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableView.swift; sourceTree = "<group>"; };
+		5DD2277F218CB98C00795D3B /* String + SafeString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String + SafeString.swift"; sourceTree = "<group>"; };
+		5DD22780218CB98C00795D3B /* ViperComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViperComponent.swift; sourceTree = "<group>"; };
+		5DD22781218CB98C00795D3B /* BaseModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseModule.swift; sourceTree = "<group>"; };
+		5DD22782218CB98C00795D3B /* BasePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasePresenter.swift; sourceTree = "<group>"; };
+		5DD22783218CB98C00795D3B /* BaseTableViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewModel.swift; sourceTree = "<group>"; };
+		5DD22784218CB98D00795D3B /* ViperModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViperModule.swift; sourceTree = "<group>"; };
+		5DD22785218CB98D00795D3B /* BaseInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseInteractor.swift; sourceTree = "<group>"; };
+		5DD22786218CB98D00795D3B /* BaseRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseRouter.swift; sourceTree = "<group>"; };
+		5DD22787218CB98D00795D3B /* BaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		5DD22794218E3E4400795D3B /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		5DD22797218E3E7400795D3B /* FMDB-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FMDB-Bridging-Header.h"; sourceTree = "<group>"; };
+		5DD2279C218E418B00795D3B /* db.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = db.sqlite; sourceTree = "<group>"; };
+		5DD2279E218E4D3300795D3B /* FMDB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FMDB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		909E4CEE398FD214D34C20FE /* Pods_DataBases.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DataBases.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F58C39E5BACC8873101C5BEF /* Pods-DataBases.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DataBases.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DataBases/Pods-DataBases.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +76,32 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5DD2279F218E4D3300795D3B /* FMDB.framework in Frameworks */,
+				5DD22795218E3E4400795D3B /* libsqlite3.tbd in Frameworks */,
+				174D7ACE57F863F600724489 /* Pods_DataBases.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		25EA918BECF5E649C46A01E1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5DD2279E218E4D3300795D3B /* FMDB.framework */,
+				5DD22794218E3E4400795D3B /* libsqlite3.tbd */,
+				909E4CEE398FD214D34C20FE /* Pods_DataBases.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		5DD22724218C55D700795D3B = {
 			isa = PBXGroup;
 			children = (
 				5DD2272F218C55D700795D3B /* DataBases */,
 				5DD2272E218C55D700795D3B /* Products */,
+				E32685F78C7E7118DB4B5B30 /* Pods */,
+				25EA918BECF5E649C46A01E1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,6 +116,11 @@
 		5DD2272F218C55D700795D3B /* DataBases */ = {
 			isa = PBXGroup;
 			children = (
+				5DD22796218E3E5B00795D3B /* Supporting Files */,
+				5DD22793218CC97500795D3B /* Managers */,
+				5DD22766218CB76300795D3B /* Viper */,
+				5DD22742218C5CE000795D3B /* Modules */,
+				5DD2277D218CB98C00795D3B /* AppModulesViper.swift */,
 				5DD22730218C55D700795D3B /* AppDelegate.swift */,
 				5DD22732218C55D700795D3B /* ViewController.swift */,
 				5DD22734218C55D700795D3B /* Main.storyboard */,
@@ -64,6 +131,70 @@
 			path = DataBases;
 			sourceTree = "<group>";
 		};
+		5DD22742218C5CE000795D3B /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				5DD22755218CB27400795D3B /* ChooseDbScreen */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		5DD22755218CB27400795D3B /* ChooseDbScreen */ = {
+			isa = PBXGroup;
+			children = (
+				5DD22756218CB29800795D3B /* ChooseDbScreenTableVM.swift */,
+				5DD22758218CB29800795D3B /* ChooseDbScreenModule.swift */,
+				5DD22759218CB29800795D3B /* ChooseDbScreenPresenter.swift */,
+				5DD2275A218CB29800795D3B /* ChooseDbScreenRouter.swift */,
+				5DD2275B218CB29800795D3B /* ChooseDbScreenModuleApi.swift */,
+				5DD2275C218CB29800795D3B /* ChooseDbScreenInteractor.swift */,
+				5DD2275D218CB29800795D3B /* ChooseDbScreenView.swift */,
+			);
+			path = ChooseDbScreen;
+			sourceTree = "<group>";
+		};
+		5DD22766218CB76300795D3B /* Viper */ = {
+			isa = PBXGroup;
+			children = (
+				5DD22785218CB98D00795D3B /* BaseInteractor.swift */,
+				5DD22781218CB98C00795D3B /* BaseModule.swift */,
+				5DD22782218CB98C00795D3B /* BasePresenter.swift */,
+				5DD22786218CB98D00795D3B /* BaseRouter.swift */,
+				5DD2277E218CB98C00795D3B /* BaseTableView.swift */,
+				5DD22783218CB98C00795D3B /* BaseTableViewModel.swift */,
+				5DD22787218CB98D00795D3B /* BaseView.swift */,
+				5DD2277F218CB98C00795D3B /* String + SafeString.swift */,
+				5DD22780218CB98C00795D3B /* ViperComponent.swift */,
+				5DD22784218CB98D00795D3B /* ViperModule.swift */,
+			);
+			path = Viper;
+			sourceTree = "<group>";
+		};
+		5DD22793218CC97500795D3B /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				5DD2279C218E418B00795D3B /* db.sqlite */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		5DD22796218E3E5B00795D3B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				5DD22797218E3E7400795D3B /* FMDB-Bridging-Header.h */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E32685F78C7E7118DB4B5B30 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F58C39E5BACC8873101C5BEF /* Pods-DataBases.debug.xcconfig */,
+				4B12A5C3B14F540EB23AC78F /* Pods-DataBases.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -71,9 +202,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5DD2273F218C55D800795D3B /* Build configuration list for PBXNativeTarget "DataBases" */;
 			buildPhases = (
+				81C56D65E9297BECEA2D19D0 /* [CP] Check Pods Manifest.lock */,
 				5DD22729218C55D700795D3B /* Sources */,
 				5DD2272A218C55D700795D3B /* Frameworks */,
 				5DD2272B218C55D700795D3B /* Resources */,
+				ED19A1F05E57625372A927B1 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -96,6 +229,7 @@
 				TargetAttributes = {
 					5DD2272C218C55D700795D3B = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1000;
 					};
 				};
 			};
@@ -122,6 +256,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5DD2279D218E419B00795D3B /* db.sqlite in Resources */,
 				5DD2273B218C55D800795D3B /* LaunchScreen.storyboard in Resources */,
 				5DD22738218C55D800795D3B /* Assets.xcassets in Resources */,
 				5DD22736218C55D700795D3B /* Main.storyboard in Resources */,
@@ -130,13 +265,70 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		81C56D65E9297BECEA2D19D0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DataBases-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ED19A1F05E57625372A927B1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-DataBases/Pods-DataBases-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDB.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DataBases/Pods-DataBases-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		5DD22729218C55D700795D3B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5DD2278A218CB98D00795D3B /* String + SafeString.swift in Sources */,
+				5DD2278D218CB98D00795D3B /* BasePresenter.swift in Sources */,
+				5DD2278E218CB98D00795D3B /* BaseTableViewModel.swift in Sources */,
+				5DD2278F218CB98D00795D3B /* ViperModule.swift in Sources */,
+				5DD22760218CB29800795D3B /* ChooseDbScreenModule.swift in Sources */,
+				5DD2278C218CB98D00795D3B /* BaseModule.swift in Sources */,
 				5DD22733218C55D700795D3B /* ViewController.swift in Sources */,
+				5DD22792218CB98D00795D3B /* BaseView.swift in Sources */,
+				5DD22788218CB98D00795D3B /* AppModulesViper.swift in Sources */,
+				5DD22765218CB29800795D3B /* ChooseDbScreenView.swift in Sources */,
+				5DD2275E218CB29800795D3B /* ChooseDbScreenTableVM.swift in Sources */,
 				5DD22731218C55D700795D3B /* AppDelegate.swift in Sources */,
+				5DD22790218CB98D00795D3B /* BaseInteractor.swift in Sources */,
+				5DD22789218CB98D00795D3B /* BaseTableView.swift in Sources */,
+				5DD22791218CB98D00795D3B /* BaseRouter.swift in Sources */,
+				5DD22764218CB29800795D3B /* ChooseDbScreenInteractor.swift in Sources */,
+				5DD22762218CB29800795D3B /* ChooseDbScreenRouter.swift in Sources */,
+				5DD22763218CB29800795D3B /* ChooseDbScreenModuleApi.swift in Sources */,
+				5DD2278B218CB98D00795D3B /* ViperComponent.swift in Sources */,
+				5DD22761218CB29800795D3B /* ChooseDbScreenPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,8 +472,10 @@
 		};
 		5DD22740218C55D800795D3B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F58C39E5BACC8873101C5BEF /* Pods-DataBases.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4F39V7T93L;
 				INFOPLIST_FILE = DataBases/Info.plist;
@@ -291,6 +485,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = varya.DataBases;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "DataBases/Supporting Files/FMDB-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -298,8 +494,10 @@
 		};
 		5DD22741218C55D800795D3B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4B12A5C3B14F540EB23AC78F /* Pods-DataBases.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4F39V7T93L;
 				INFOPLIST_FILE = DataBases/Info.plist;
@@ -309,6 +507,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = varya.DataBases;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "DataBases/Supporting Files/FMDB-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

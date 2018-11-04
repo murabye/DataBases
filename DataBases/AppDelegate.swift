@@ -7,15 +7,20 @@
 //
 
 import UIKit
+import FMDB
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    var dbFilePath:NSString = NSString()
     var window: UIWindow?
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        if self.initializeDb() {
+            print("Succesful init db")
+        }
         return true
     }
 
@@ -39,6 +44,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+
+    let DATABASE_RESOURCE_NAME = "db"
+    let DATABASE_RESOURCE_TYPE = "sqlite"
+    let DATABASE_FILE_NAME = "db.sqlite"
+    
+    func initializeDb() -> Bool {
+        let documentFolderPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
+        
+        let dbfile = "/" + DATABASE_FILE_NAME;
+        
+        self.dbFilePath = documentFolderPath.appendingFormat(dbfile) as NSString
+        
+        let filemanager = FileManager.default
+        if (!filemanager.fileExists(atPath: dbFilePath as String) ) {
+            
+            let backupDbPath = Bundle.main.path(forResource: DATABASE_RESOURCE_NAME, ofType: DATABASE_RESOURCE_TYPE)
+            
+            if (backupDbPath == nil) {
+                return false
+            } else {
+                var error: NSError?
+                let copySuccessful = filemanager.copyItemAtPath(backupDbPath, toPath:dbFilePath, error: &error)
+                if !copySuccessful {
+                    print("copy failed: \(error?.localizedDescription)")
+                    return false
+                }
+                
+            }
+            
+        }
+        return true
+        
     }
 
 
