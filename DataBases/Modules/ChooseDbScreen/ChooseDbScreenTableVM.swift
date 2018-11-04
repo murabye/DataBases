@@ -30,7 +30,7 @@ final class ChooseDbScreenTableVM: BaseTableViewModel {
             return cell
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: "buttonCell")
-            return cell
+            return cell!
         }
     }
     override func number(ofSections tableView: UITableView) -> Int {

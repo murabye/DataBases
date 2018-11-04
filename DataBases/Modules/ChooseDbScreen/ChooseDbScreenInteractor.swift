@@ -14,6 +14,11 @@ final class ChooseDbScreenInteractor: BaseInteractor {
 
 // MARK: - ___VARIABLE_ViperitModuleName___Interactor API
 extension ChooseDbScreenInteractor: ChooseDbScreenInteractorApi {
+    func getDatabaseList() -> [String] {
+        // TODO:
+        return []
+    }
+    
 }
 
 // MARK: - Interactor Viper Components Api

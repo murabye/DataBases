@@ -10,18 +10,24 @@ import UIKit
 
 //MARK: ChooseDbScreenView Class
 final class ChooseDbScreenView: BaseTableView {
-    @IBOutlet var tableView: UITableView!
-    
     override func viewDidLoad() {
         let module = AppModules.ChooseDbScreen.build()
         self._module = module
         super.viewDidLoad()
         module.change(view: self)
     }
+    
+    @IBAction func addDbButtonAction(_ sender: Any) {
+        presenter.CreateDb()
+    }
 }
 
 //MARK: - ChooseDbScreenView API
 extension ChooseDbScreenView: ChooseDbScreenViewApi {
+    var table: UITableView {
+        return tableView
+    }
+    
 }
 
 // MARK: - ChooseDbScreenView Viper Components API

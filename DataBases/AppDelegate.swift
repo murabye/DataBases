@@ -65,11 +65,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if (backupDbPath == nil) {
                 return false
             } else {
-                var error: NSError?
-                let copySuccessful = filemanager.copyItemAtPath(backupDbPath, toPath:dbFilePath, error: &error)
-                if !copySuccessful {
-                    print("copy failed: \(error?.localizedDescription)")
-                    return false
+                do {
+                    try filemanager.copyItem(atPath: backupDbPath!, toPath: dbFilePath as String)
+                } catch  {
+                        print("copy failed")
+                        return false
                 }
                 
             }

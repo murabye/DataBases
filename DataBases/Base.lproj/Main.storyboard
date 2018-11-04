@@ -61,6 +61,9 @@
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9g9-Do-h1M">
                                             <rect key="frame" x="0.0" y="0.0" width="768" height="43.5"/>
                                             <state key="normal" title="Создать новое хранилище"/>
+                                            <connections>
+                                                <action selector="addDbButtonAction:" destination="AgS-5v-SI8" eventType="touchUpInside" id="iLJ-i5-0P8"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <constraints>

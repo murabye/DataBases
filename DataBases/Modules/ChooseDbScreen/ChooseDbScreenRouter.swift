@@ -14,6 +14,14 @@ final class ChooseDbScreenRouter: BaseRouter {
 
 // MARK: - ChooseDbScreenRouter API
 extension ChooseDbScreenRouter: ChooseDbScreenRouterApi {
+    func gotoSelectTableModule() -> ChooseDbScreenModule {
+        <#code#>
+    }
+    
+    func gotoCreateDbModule() -> ChooseDbScreenModule {
+        <#code#>
+    }
+    
 }
 
 // MARK: - ChooseDbScreen Viper Components

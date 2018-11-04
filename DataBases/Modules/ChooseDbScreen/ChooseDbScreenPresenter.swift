@@ -14,6 +14,14 @@ final class ChooseDbScreenPresenter: BasePresenter {
 
 // MARK: - ChooseDbScreenPresenter API
 extension ChooseDbScreenPresenter: ChooseDbScreenPresenterApi {
+    func CreateDb() {
+        _ = router.gotoCreateDbModule()
+    }
+    
+    func SelectTable(index: Int) {
+        _ = router.gotoSelectTableModule()
+    }
+    
 }
 
 // MARK: - ChooseDbScreen Viper Components

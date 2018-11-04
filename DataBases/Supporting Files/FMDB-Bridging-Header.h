@@ -6,4 +6,4 @@
 //  Copyright © 2018 варя. All rights reserved.
 //
 
-#import "FMDB.h"
+#import <FMDB/FMDB.h>
