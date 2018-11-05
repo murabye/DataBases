@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Create Db View-->
+        <scene sceneID="Y9B-3i-rWT">
+            <objects>
+                <viewController id="98p-yA-TyF" customClass="CreateDbView" customModule="DataBases" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jUU-YH-bcY">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lb2-c5-1eR">
+                                <rect key="frame" x="0.0" y="577" width="375" height="90"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="SCC-eT-n28">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Новое хранилище" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZpP-H5-LnG">
+                                            <rect key="frame" x="16" y="15" width="343" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Введите название" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kwL-h9-mRL">
+                                            <rect key="frame" x="16" y="44" width="343" height="30"/>
+                                            <nil key="textColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                            <connections>
+                                                <outlet property="delegate" destination="98p-yA-TyF" id="nG1-rZ-HHs"/>
+                                            </connections>
+                                        </textField>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="kwL-h9-mRL" firstAttribute="leading" secondItem="SCC-eT-n28" secondAttribute="leading" constant="16" id="1Vo-Ky-bPC"/>
+                                        <constraint firstItem="kwL-h9-mRL" firstAttribute="top" secondItem="ZpP-H5-LnG" secondAttribute="bottom" constant="8" id="Poq-DA-hzh"/>
+                                        <constraint firstItem="ZpP-H5-LnG" firstAttribute="leading" secondItem="SCC-eT-n28" secondAttribute="leading" constant="16" id="TXM-sr-0Us"/>
+                                        <constraint firstAttribute="trailing" secondItem="kwL-h9-mRL" secondAttribute="trailing" constant="16" id="aDF-oZ-zm6"/>
+                                        <constraint firstAttribute="bottom" secondItem="kwL-h9-mRL" secondAttribute="bottom" constant="16" id="cjW-Ya-d2J"/>
+                                        <constraint firstAttribute="trailing" secondItem="ZpP-H5-LnG" secondAttribute="trailing" constant="16" id="lh4-M1-cFn"/>
+                                    </constraints>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="90" id="pwL-Ch-Pj8"/>
+                                </constraints>
+                                <blurEffect style="extraLight"/>
+                            </visualEffectView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="lb2-c5-1eR" firstAttribute="trailing" secondItem="1wv-3R-4TV" secondAttribute="trailing" id="kRj-VJ-LoS"/>
+                            <constraint firstItem="lb2-c5-1eR" firstAttribute="leading" secondItem="1wv-3R-4TV" secondAttribute="leading" id="q0L-UX-DeX"/>
+                            <constraint firstItem="lb2-c5-1eR" firstAttribute="bottom" secondItem="1wv-3R-4TV" secondAttribute="bottom" id="qQX-Q7-cRV"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="1wv-3R-4TV"/>
+                    </view>
+                    <connections>
+                        <outlet property="heightConstraint" destination="pwL-Ch-Pj8" id="ETg-b1-5vf"/>
+                        <outlet property="nameField" destination="kwL-h9-mRL" id="JDr-QH-QPM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pt8-HE-tvp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-15.199999999999999" y="132.68365817091455"/>
+        </scene>
+    </scenes>
+</document>

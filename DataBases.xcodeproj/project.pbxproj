@@ -42,6 +42,8 @@
 		5DD22795218E3E4400795D3B /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DD22794218E3E4400795D3B /* libsqlite3.tbd */; };
 		5DD2279D218E419B00795D3B /* db.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 5DD2279C218E418B00795D3B /* db.sqlite */; };
 		5DD2279F218E4D3300795D3B /* FMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DD2279E218E4D3300795D3B /* FMDB.framework */; };
+		6BA0D7BB21906F86004B7A58 /* CreateDbView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA0D7BA21906F86004B7A58 /* CreateDbView.swift */; };
+		6BA0D7BD21906F9C004B7A58 /* CreateDbView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BA0D7BC21906F9C004B7A58 /* CreateDbView.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,6 +85,8 @@
 		5DD22797218E3E7400795D3B /* FMDB-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FMDB-Bridging-Header.h"; sourceTree = "<group>"; };
 		5DD2279C218E418B00795D3B /* db.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = db.sqlite; sourceTree = "<group>"; };
 		5DD2279E218E4D3300795D3B /* FMDB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FMDB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6BA0D7BA21906F86004B7A58 /* CreateDbView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateDbView.swift; sourceTree = "<group>"; };
+		6BA0D7BC21906F9C004B7A58 /* CreateDbView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateDbView.storyboard; sourceTree = "<group>"; };
 		909E4CEE398FD214D34C20FE /* Pods_DataBases.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DataBases.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F58C39E5BACC8873101C5BEF /* Pods-DataBases.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DataBases.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DataBases/Pods-DataBases.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -182,6 +186,7 @@
 		5DD22742218C5CE000795D3B /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				6BA0D7B921906F72004B7A58 /* CreateDbView */,
 				5DB67BD6219063E2007F6522 /* ChooseTableInDb */,
 				5DD22755218CB27400795D3B /* ChooseDbScreen */,
 			);
@@ -216,6 +221,15 @@
 				5DD22797218E3E7400795D3B /* FMDB-Bridging-Header.h */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6BA0D7B921906F72004B7A58 /* CreateDbView */ = {
+			isa = PBXGroup;
+			children = (
+				6BA0D7BA21906F86004B7A58 /* CreateDbView.swift */,
+				6BA0D7BC21906F9C004B7A58 /* CreateDbView.storyboard */,
+			);
+			path = CreateDbView;
 			sourceTree = "<group>";
 		};
 		E32685F78C7E7118DB4B5B30 /* Pods */ = {
@@ -291,6 +305,7 @@
 				5DD2279D218E419B00795D3B /* db.sqlite in Resources */,
 				5DD2273B218C55D800795D3B /* LaunchScreen.storyboard in Resources */,
 				5DB67C1F219067A6007F6522 /* ChooseTable.storyboard in Resources */,
+				6BA0D7BD21906F9C004B7A58 /* CreateDbView.storyboard in Resources */,
 				5DD22738218C55D800795D3B /* Assets.xcassets in Resources */,
 				5DD22736218C55D700795D3B /* Main.storyboard in Resources */,
 			);
@@ -352,6 +367,7 @@
 				5DD22765218CB29800795D3B /* ChooseDbScreenView.swift in Sources */,
 				5DD2275E218CB29800795D3B /* ChooseDbScreenTableVM.swift in Sources */,
 				5DB67BD521906181007F6522 /* BaseModule.swift in Sources */,
+				6BA0D7BB21906F86004B7A58 /* CreateDbView.swift in Sources */,
 				5DB67BD021906181007F6522 /* BaseRouter.swift in Sources */,
 				5DB67C24219067A6007F6522 /* ChooseTableInteractor.swift in Sources */,
 				5DB67C21219067A6007F6522 /* ChooseTableModule.swift in Sources */,

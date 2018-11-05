@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 // MARK: - ChooseDbScreenRouter class
 final class ChooseDbScreenRouter: BaseRouter {
@@ -18,8 +19,11 @@ extension ChooseDbScreenRouter: ChooseDbScreenRouterApi {
         return ChooseDbScreenModule()
     }
     
-    func gotoCreateDbModule() -> ChooseDbScreenModule {
-        return ChooseDbScreenModule()
+    func gotoCreateDbModule() -> CreateDbView {
+        let sb = UIStoryboard.init(name: "CreateDbView", bundle: .main)
+        let vc = sb.instantiateInitialViewController()
+        view.navigationController?.pushViewController(vc!, animated: true)
+        return vc as! CreateDbView
 
     }
     
