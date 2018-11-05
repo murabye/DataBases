@@ -8,6 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		174D7ACE57F863F600724489 /* Pods_DataBases.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 909E4CEE398FD214D34C20FE /* Pods_DataBases.framework */; };
+		5DB67BCB21906181007F6522 /* BasePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB67BC021906180007F6522 /* BasePresenter.swift */; };
+		5DB67BCC21906181007F6522 /* String + SafeString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB67BC121906180007F6522 /* String + SafeString.swift */; };
+		5DB67BCD21906181007F6522 /* ViperComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB67BC221906180007F6522 /* ViperComponent.swift */; };
+		5DB67BCE21906181007F6522 /* ViperModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB67BC321906180007F6522 /* ViperModule.swift */; };
+		5DB67BD021906181007F6522 /* BaseRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB67BC521906181007F6522 /* BaseRouter.swift */; };
+		5DB67BD121906181007F6522 /* BaseTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB67BC621906181007F6522 /* BaseTableViewModel.swift */; };
+		5DB67BD221906181007F6522 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB67BC721906181007F6522 /* BaseView.swift */; };
+		5DB67BD321906181007F6522 /* BaseInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB67BC821906181007F6522 /* BaseInteractor.swift */; };
+		5DB67BD421906181007F6522 /* BaseTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB67BC921906181007F6522 /* BaseTableView.swift */; };
+		5DB67BD521906181007F6522 /* BaseModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB67BCA21906181007F6522 /* BaseModule.swift */; };
+		5DB67C1F219067A6007F6522 /* ChooseTable.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DB67C17219067A6007F6522 /* ChooseTable.storyboard */; };
+		5DB67C20219067A6007F6522 /* ChooseTableModuleProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB67C18219067A6007F6522 /* ChooseTableModuleProtocols.swift */; };
+		5DB67C21219067A6007F6522 /* ChooseTableModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB67C19219067A6007F6522 /* ChooseTableModule.swift */; };
+		5DB67C22219067A6007F6522 /* ChooseTablePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB67C1A219067A6007F6522 /* ChooseTablePresenter.swift */; };
+		5DB67C23219067A6007F6522 /* ChooseTableRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB67C1B219067A6007F6522 /* ChooseTableRouter.swift */; };
+		5DB67C24219067A6007F6522 /* ChooseTableInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB67C1C219067A6007F6522 /* ChooseTableInteractor.swift */; };
+		5DB67C25219067A6007F6522 /* ChooseTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB67C1D219067A6007F6522 /* ChooseTableView.swift */; };
+		5DB67C26219067A6007F6522 /* ChooseTableTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB67C1E219067A6007F6522 /* ChooseTableTableViewModel.swift */; };
 		5DD22731218C55D700795D3B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD22730218C55D700795D3B /* AppDelegate.swift */; };
 		5DD22733218C55D700795D3B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD22732218C55D700795D3B /* ViewController.swift */; };
 		5DD22736218C55D700795D3B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DD22734218C55D700795D3B /* Main.storyboard */; };
@@ -21,16 +39,6 @@
 		5DD22764218CB29800795D3B /* ChooseDbScreenInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD2275C218CB29800795D3B /* ChooseDbScreenInteractor.swift */; };
 		5DD22765218CB29800795D3B /* ChooseDbScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD2275D218CB29800795D3B /* ChooseDbScreenView.swift */; };
 		5DD22788218CB98D00795D3B /* AppModulesViper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD2277D218CB98C00795D3B /* AppModulesViper.swift */; };
-		5DD22789218CB98D00795D3B /* BaseTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD2277E218CB98C00795D3B /* BaseTableView.swift */; };
-		5DD2278A218CB98D00795D3B /* String + SafeString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD2277F218CB98C00795D3B /* String + SafeString.swift */; };
-		5DD2278B218CB98D00795D3B /* ViperComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD22780218CB98C00795D3B /* ViperComponent.swift */; };
-		5DD2278C218CB98D00795D3B /* BaseModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD22781218CB98C00795D3B /* BaseModule.swift */; };
-		5DD2278D218CB98D00795D3B /* BasePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD22782218CB98C00795D3B /* BasePresenter.swift */; };
-		5DD2278E218CB98D00795D3B /* BaseTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD22783218CB98C00795D3B /* BaseTableViewModel.swift */; };
-		5DD2278F218CB98D00795D3B /* ViperModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD22784218CB98D00795D3B /* ViperModule.swift */; };
-		5DD22790218CB98D00795D3B /* BaseInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD22785218CB98D00795D3B /* BaseInteractor.swift */; };
-		5DD22791218CB98D00795D3B /* BaseRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD22786218CB98D00795D3B /* BaseRouter.swift */; };
-		5DD22792218CB98D00795D3B /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD22787218CB98D00795D3B /* BaseView.swift */; };
 		5DD22795218E3E4400795D3B /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DD22794218E3E4400795D3B /* libsqlite3.tbd */; };
 		5DD2279D218E419B00795D3B /* db.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 5DD2279C218E418B00795D3B /* db.sqlite */; };
 		5DD2279F218E4D3300795D3B /* FMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DD2279E218E4D3300795D3B /* FMDB.framework */; };
@@ -38,6 +46,24 @@
 
 /* Begin PBXFileReference section */
 		4B12A5C3B14F540EB23AC78F /* Pods-DataBases.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DataBases.release.xcconfig"; path = "Pods/Target Support Files/Pods-DataBases/Pods-DataBases.release.xcconfig"; sourceTree = "<group>"; };
+		5DB67BC021906180007F6522 /* BasePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasePresenter.swift; sourceTree = "<group>"; };
+		5DB67BC121906180007F6522 /* String + SafeString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String + SafeString.swift"; sourceTree = "<group>"; };
+		5DB67BC221906180007F6522 /* ViperComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViperComponent.swift; sourceTree = "<group>"; };
+		5DB67BC321906180007F6522 /* ViperModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViperModule.swift; sourceTree = "<group>"; };
+		5DB67BC521906181007F6522 /* BaseRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseRouter.swift; sourceTree = "<group>"; };
+		5DB67BC621906181007F6522 /* BaseTableViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewModel.swift; sourceTree = "<group>"; };
+		5DB67BC721906181007F6522 /* BaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		5DB67BC821906181007F6522 /* BaseInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseInteractor.swift; sourceTree = "<group>"; };
+		5DB67BC921906181007F6522 /* BaseTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableView.swift; sourceTree = "<group>"; };
+		5DB67BCA21906181007F6522 /* BaseModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseModule.swift; sourceTree = "<group>"; };
+		5DB67C17219067A6007F6522 /* ChooseTable.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChooseTable.storyboard; sourceTree = "<group>"; };
+		5DB67C18219067A6007F6522 /* ChooseTableModuleProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseTableModuleProtocols.swift; sourceTree = "<group>"; };
+		5DB67C19219067A6007F6522 /* ChooseTableModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseTableModule.swift; sourceTree = "<group>"; };
+		5DB67C1A219067A6007F6522 /* ChooseTablePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseTablePresenter.swift; sourceTree = "<group>"; };
+		5DB67C1B219067A6007F6522 /* ChooseTableRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseTableRouter.swift; sourceTree = "<group>"; };
+		5DB67C1C219067A6007F6522 /* ChooseTableInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseTableInteractor.swift; sourceTree = "<group>"; };
+		5DB67C1D219067A6007F6522 /* ChooseTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseTableView.swift; sourceTree = "<group>"; };
+		5DB67C1E219067A6007F6522 /* ChooseTableTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseTableTableViewModel.swift; sourceTree = "<group>"; };
 		5DD2272D218C55D700795D3B /* DataBases.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DataBases.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DD22730218C55D700795D3B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5DD22732218C55D700795D3B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -53,16 +79,6 @@
 		5DD2275C218CB29800795D3B /* ChooseDbScreenInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseDbScreenInteractor.swift; sourceTree = "<group>"; };
 		5DD2275D218CB29800795D3B /* ChooseDbScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseDbScreenView.swift; sourceTree = "<group>"; };
 		5DD2277D218CB98C00795D3B /* AppModulesViper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppModulesViper.swift; sourceTree = "<group>"; };
-		5DD2277E218CB98C00795D3B /* BaseTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableView.swift; sourceTree = "<group>"; };
-		5DD2277F218CB98C00795D3B /* String + SafeString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String + SafeString.swift"; sourceTree = "<group>"; };
-		5DD22780218CB98C00795D3B /* ViperComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViperComponent.swift; sourceTree = "<group>"; };
-		5DD22781218CB98C00795D3B /* BaseModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseModule.swift; sourceTree = "<group>"; };
-		5DD22782218CB98C00795D3B /* BasePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasePresenter.swift; sourceTree = "<group>"; };
-		5DD22783218CB98C00795D3B /* BaseTableViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewModel.swift; sourceTree = "<group>"; };
-		5DD22784218CB98D00795D3B /* ViperModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViperModule.swift; sourceTree = "<group>"; };
-		5DD22785218CB98D00795D3B /* BaseInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseInteractor.swift; sourceTree = "<group>"; };
-		5DD22786218CB98D00795D3B /* BaseRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseRouter.swift; sourceTree = "<group>"; };
-		5DD22787218CB98D00795D3B /* BaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		5DD22794218E3E4400795D3B /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		5DD22797218E3E7400795D3B /* FMDB-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FMDB-Bridging-Header.h"; sourceTree = "<group>"; };
 		5DD2279C218E418B00795D3B /* db.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = db.sqlite; sourceTree = "<group>"; };
@@ -95,6 +111,38 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		5DB67BBF21906173007F6522 /* Viper */ = {
+			isa = PBXGroup;
+			children = (
+				5DB67BC821906181007F6522 /* BaseInteractor.swift */,
+				5DB67BCA21906181007F6522 /* BaseModule.swift */,
+				5DB67BC021906180007F6522 /* BasePresenter.swift */,
+				5DB67BC521906181007F6522 /* BaseRouter.swift */,
+				5DB67BC921906181007F6522 /* BaseTableView.swift */,
+				5DB67BC621906181007F6522 /* BaseTableViewModel.swift */,
+				5DB67BC721906181007F6522 /* BaseView.swift */,
+				5DB67BC121906180007F6522 /* String + SafeString.swift */,
+				5DB67BC221906180007F6522 /* ViperComponent.swift */,
+				5DB67BC321906180007F6522 /* ViperModule.swift */,
+			);
+			path = Viper;
+			sourceTree = "<group>";
+		};
+		5DB67BD6219063E2007F6522 /* ChooseTableInDb */ = {
+			isa = PBXGroup;
+			children = (
+				5DB67C17219067A6007F6522 /* ChooseTable.storyboard */,
+				5DB67C18219067A6007F6522 /* ChooseTableModuleProtocols.swift */,
+				5DB67C19219067A6007F6522 /* ChooseTableModule.swift */,
+				5DB67C1A219067A6007F6522 /* ChooseTablePresenter.swift */,
+				5DB67C1B219067A6007F6522 /* ChooseTableRouter.swift */,
+				5DB67C1C219067A6007F6522 /* ChooseTableInteractor.swift */,
+				5DB67C1D219067A6007F6522 /* ChooseTableView.swift */,
+				5DB67C1E219067A6007F6522 /* ChooseTableTableViewModel.swift */,
+			);
+			path = ChooseTableInDb;
+			sourceTree = "<group>";
+		};
 		5DD22724218C55D700795D3B = {
 			isa = PBXGroup;
 			children = (
@@ -116,9 +164,9 @@
 		5DD2272F218C55D700795D3B /* DataBases */ = {
 			isa = PBXGroup;
 			children = (
+				5DB67BBF21906173007F6522 /* Viper */,
 				5DD22796218E3E5B00795D3B /* Supporting Files */,
 				5DD22793218CC97500795D3B /* Managers */,
-				5DD22766218CB76300795D3B /* Viper */,
 				5DD22742218C5CE000795D3B /* Modules */,
 				5DD2277D218CB98C00795D3B /* AppModulesViper.swift */,
 				5DD22730218C55D700795D3B /* AppDelegate.swift */,
@@ -134,6 +182,7 @@
 		5DD22742218C5CE000795D3B /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				5DB67BD6219063E2007F6522 /* ChooseTableInDb */,
 				5DD22755218CB27400795D3B /* ChooseDbScreen */,
 			);
 			path = Modules;
@@ -151,23 +200,6 @@
 				5DD2275D218CB29800795D3B /* ChooseDbScreenView.swift */,
 			);
 			path = ChooseDbScreen;
-			sourceTree = "<group>";
-		};
-		5DD22766218CB76300795D3B /* Viper */ = {
-			isa = PBXGroup;
-			children = (
-				5DD22785218CB98D00795D3B /* BaseInteractor.swift */,
-				5DD22781218CB98C00795D3B /* BaseModule.swift */,
-				5DD22782218CB98C00795D3B /* BasePresenter.swift */,
-				5DD22786218CB98D00795D3B /* BaseRouter.swift */,
-				5DD2277E218CB98C00795D3B /* BaseTableView.swift */,
-				5DD22783218CB98C00795D3B /* BaseTableViewModel.swift */,
-				5DD22787218CB98D00795D3B /* BaseView.swift */,
-				5DD2277F218CB98C00795D3B /* String + SafeString.swift */,
-				5DD22780218CB98C00795D3B /* ViperComponent.swift */,
-				5DD22784218CB98D00795D3B /* ViperModule.swift */,
-			);
-			path = Viper;
 			sourceTree = "<group>";
 		};
 		5DD22793218CC97500795D3B /* Managers */ = {
@@ -258,6 +290,7 @@
 			files = (
 				5DD2279D218E419B00795D3B /* db.sqlite in Resources */,
 				5DD2273B218C55D800795D3B /* LaunchScreen.storyboard in Resources */,
+				5DB67C1F219067A6007F6522 /* ChooseTable.storyboard in Resources */,
 				5DD22738218C55D800795D3B /* Assets.xcassets in Resources */,
 				5DD22736218C55D700795D3B /* Main.storyboard in Resources */,
 			);
@@ -309,26 +342,33 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5DD2278A218CB98D00795D3B /* String + SafeString.swift in Sources */,
-				5DD2278D218CB98D00795D3B /* BasePresenter.swift in Sources */,
-				5DD2278E218CB98D00795D3B /* BaseTableViewModel.swift in Sources */,
-				5DD2278F218CB98D00795D3B /* ViperModule.swift in Sources */,
+				5DB67BCE21906181007F6522 /* ViperModule.swift in Sources */,
+				5DB67BCC21906181007F6522 /* String + SafeString.swift in Sources */,
 				5DD22760218CB29800795D3B /* ChooseDbScreenModule.swift in Sources */,
-				5DD2278C218CB98D00795D3B /* BaseModule.swift in Sources */,
+				5DB67BD321906181007F6522 /* BaseInteractor.swift in Sources */,
+				5DB67BD421906181007F6522 /* BaseTableView.swift in Sources */,
 				5DD22733218C55D700795D3B /* ViewController.swift in Sources */,
-				5DD22792218CB98D00795D3B /* BaseView.swift in Sources */,
 				5DD22788218CB98D00795D3B /* AppModulesViper.swift in Sources */,
 				5DD22765218CB29800795D3B /* ChooseDbScreenView.swift in Sources */,
 				5DD2275E218CB29800795D3B /* ChooseDbScreenTableVM.swift in Sources */,
+				5DB67BD521906181007F6522 /* BaseModule.swift in Sources */,
+				5DB67BD021906181007F6522 /* BaseRouter.swift in Sources */,
+				5DB67C24219067A6007F6522 /* ChooseTableInteractor.swift in Sources */,
+				5DB67C21219067A6007F6522 /* ChooseTableModule.swift in Sources */,
+				5DB67C23219067A6007F6522 /* ChooseTableRouter.swift in Sources */,
+				5DB67C25219067A6007F6522 /* ChooseTableView.swift in Sources */,
 				5DD22731218C55D700795D3B /* AppDelegate.swift in Sources */,
-				5DD22790218CB98D00795D3B /* BaseInteractor.swift in Sources */,
-				5DD22789218CB98D00795D3B /* BaseTableView.swift in Sources */,
-				5DD22791218CB98D00795D3B /* BaseRouter.swift in Sources */,
 				5DD22764218CB29800795D3B /* ChooseDbScreenInteractor.swift in Sources */,
+				5DB67BD121906181007F6522 /* BaseTableViewModel.swift in Sources */,
+				5DB67C26219067A6007F6522 /* ChooseTableTableViewModel.swift in Sources */,
+				5DB67C22219067A6007F6522 /* ChooseTablePresenter.swift in Sources */,
 				5DD22762218CB29800795D3B /* ChooseDbScreenRouter.swift in Sources */,
 				5DD22763218CB29800795D3B /* ChooseDbScreenModuleApi.swift in Sources */,
-				5DD2278B218CB98D00795D3B /* ViperComponent.swift in Sources */,
 				5DD22761218CB29800795D3B /* ChooseDbScreenPresenter.swift in Sources */,
+				5DB67BD221906181007F6522 /* BaseView.swift in Sources */,
+				5DB67BCD21906181007F6522 /* ViperComponent.swift in Sources */,
+				5DB67C20219067A6007F6522 /* ChooseTableModuleProtocols.swift in Sources */,
+				5DB67BCB21906181007F6522 /* BasePresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

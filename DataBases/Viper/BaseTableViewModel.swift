@@ -1,5 +1,5 @@
 //
-//  BaseTableVM.swift
+//  BaseTableViewModel.swift
 //  VIPER
 //
 //  Created by Вова Петров on 01.10.2018.

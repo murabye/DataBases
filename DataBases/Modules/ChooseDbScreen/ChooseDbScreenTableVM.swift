@@ -24,7 +24,7 @@ final class ChooseDbScreenTableVM: BaseTableViewModel {
     override func cell(forRow row: Int, section: Int, tableView: UITableView) -> UITableViewCell {
         switch section {
         case 0:
-            let cell = UITableViewCell.init(style: .subtitle, reuseIdentifier: nil)
+            let cell = UITableViewCell.init(style: .default, reuseIdentifier: nil)
             cell.textLabel?.text = databaseList[row]
             cell.accessoryType = .disclosureIndicator
             return cell

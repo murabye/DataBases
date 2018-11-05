@@ -44,50 +44,50 @@ class BaseTableView: UITableViewController, BaseViewProtocol {
     
     //MARK: DataSource
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tableVM.number(ofRowsInSection: section, tableView: tableView)
+        return tableViewModel.number(ofRowsInSection: section, tableView: tableView)
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return tableVM.cell(forRow: indexPath.row, section: indexPath.section, tableView: tableView)
+        return tableViewModel.cell(forRow: indexPath.row, section: indexPath.section, tableView: tableView)
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return tableVM.number(ofSections: tableView)
+        return tableViewModel.number(ofSections: tableView)
     }
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return tableVM.titleForHeader(inSection: section)
+        return tableViewModel.titleForHeader(inSection: section)
     }
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        return tableVM.titleForFooter(inSection: section)
+        return tableViewModel.titleForFooter(inSection: section)
     }
     
     //MARK: Delegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableVM.did(selectRow: indexPath.row, section: indexPath.section, tableView: tableView)
+        tableViewModel.did(selectRow: indexPath.row, section: indexPath.section, tableView: tableView)
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return tableVM.height(forRow: indexPath.row, section: indexPath.section, tableView: tableView)
+        return tableViewModel.height(forRow: indexPath.row, section: indexPath.section, tableView: tableView)
     }
     
     override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        tableVM.did(deselectRow: indexPath.row, section: indexPath.section, tableView: tableView)
+        tableViewModel.did(deselectRow: indexPath.row, section: indexPath.section, tableView: tableView)
     }
     override func tableView(_ tableView: UITableView, willDeselectRowAt indexPath: IndexPath) -> IndexPath? {
-        tableVM.did(deselectRow: indexPath.row, section: indexPath.section, tableView: tableView)
+        tableViewModel.did(deselectRow: indexPath.row, section: indexPath.section, tableView: tableView)
         return indexPath
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return tableVM.can(editRow: indexPath.row, section: indexPath.section, tableView: tableView)
+        return tableViewModel.can(editRow: indexPath.row, section: indexPath.section, tableView: tableView)
     }
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        tableVM.commit(editing: editingStyle, row: indexPath.row, section: indexPath.section, tableView: tableView)
+        tableViewModel.commit(editing: editingStyle, row: indexPath.row, section: indexPath.section, tableView: tableView)
     }
 
     
-    var tableVM: BaseTableViewModelProtocol {
-        return _module._tableVM
+    var tableViewModel: BaseTableViewModelProtocol {
+        return _module._tableViewModel
     }
     
     open override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

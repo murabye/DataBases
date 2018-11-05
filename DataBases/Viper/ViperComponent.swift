@@ -13,7 +13,7 @@ internal enum ViperComponent: String {
     case interactor
     case presenter
     case router
-    case tableVM
+    case tableViewModel
     case module
 }
 

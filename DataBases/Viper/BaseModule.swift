@@ -15,7 +15,7 @@ public class BaseModule {
     private(set) var _interactor: BaseInteractor!
     private(set) var _presenter: BasePresenter!
     private(set) var _router: BaseRouter!
-    private(set) var _tableVM: BaseTableViewModelProtocol!
+    private(set) var _tableViewModel: BaseTableViewModelProtocol!
     
     required public init() { }
     
@@ -24,7 +24,7 @@ public class BaseModule {
     var routerClass: BaseRouter.Type?
     var storyboardName: String?
     var viewClass: UIViewController.Type?
-    var tableVMClass: BaseTableViewModel.Type?
+    var tableViewModelClass: BaseTableViewModel.Type?
     
 
     static func build<T: RawRepresentable & ViperModule>(_ module: T, bundle: Bundle = Bundle.main, deviceType: UIUserInterfaceIdiom? = nil) -> BaseModule where T.RawValue == String {
@@ -54,10 +54,10 @@ public class BaseModule {
         }
         
         var T: BaseTableViewModel?
-        if M.tableVMClass != nil {
-            T = M.tableVMClass!.init()
+        if M.tableViewModelClass != nil {
+            T = M.tableViewModelClass!.init()
         } else {
-            if let tableClass = module.classForViperComponent(.tableVM, bundle: bundle) as! BaseTableViewModel.Type?{
+            if let tableClass = module.classForViperComponent(.tableViewModel, bundle: bundle) as! BaseTableViewModel.Type?{
                 T = tableClass.init()
             }
         }
@@ -68,7 +68,7 @@ public class BaseModule {
         let P = presenterClass.init()
         let R = routerClass.init()
         
-        return build(module: M, view: V, interactor: I, presenter: P, router: R, tableVM: T)
+        return build(module: M, view: V, interactor: I, presenter: P, router: R, tableViewModel: T)
     }
 }
 
@@ -90,8 +90,8 @@ public extension BaseModule {
     public func change(router newRouter: BaseRouter) {
         _router = newRouter
     }
-    public func change(tableVM newTableVM: BaseTableViewModelProtocol){
-        _tableVM = newTableVM
+    public func change(tableViewModel newTableViewModel: BaseTableViewModelProtocol){
+        _tableViewModel = newTableViewModel
     }
     
     public static func loadView(fromStoryboard storyboardName: String, viewClass: UIViewController.Type, viewIdentifier: String) -> UIViewController {
@@ -131,13 +131,13 @@ private extension BaseModule {
         }
     }
     
-    static func build(module: BaseModule, view: BaseViewProtocol, interactor: BaseInteractor, presenter: BasePresenter, router: BaseRouter, tableVM: BaseTableViewModel?) -> BaseModule {
+    static func build(module: BaseModule, view: BaseViewProtocol, interactor: BaseInteractor, presenter: BasePresenter, router: BaseRouter, tableViewModel: BaseTableViewModel?) -> BaseModule {
         //Module connections
         module._interactor = interactor
         module._view = view
         module._presenter = presenter
         module._router = router
-        module._tableVM = tableVM
+        module._tableViewModel = tableViewModel
         
         //View connection
         view.setModule(module: module)
@@ -151,8 +151,8 @@ private extension BaseModule {
         //Router connection
         router._module = module
         
-        //TableVM connection
-        tableVM?._module = module
+        //TableViewModel connection
+        tableViewModel?._module = module
         
         return module
     }
