@@ -20,6 +20,9 @@ final class ChooseDbScreenView: BaseTableView {
     @IBAction func addDbButtonAction(_ sender: Any) {
         presenter.CreateDb()
     }
+    @IBAction func addDbAction(_ sender: Any) {
+        presenter.CreateDb()
+    }
 }
 
 //MARK: - ChooseDbScreenView API

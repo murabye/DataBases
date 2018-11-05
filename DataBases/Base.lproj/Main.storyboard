@@ -83,7 +83,11 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Выберите хранилище" id="77j-Zc-oke">
                         <barButtonItem key="backBarButtonItem" title="К выбору хранилища" id="p4i-AN-YHD"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="cAd-du-CLb"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="cAd-du-CLb">
+                            <connections>
+                                <action selector="addDbAction:" destination="AgS-5v-SI8" id="dbh-xi-umA"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="cmc-ei-OQA" id="REN-O3-vJy"/>
