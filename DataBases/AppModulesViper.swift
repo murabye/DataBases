@@ -11,6 +11,7 @@
 enum AppModules: String, ViperModule {
     case ChooseDbScreen
     case CreateDb
+    case ChooseTable
     //var viewType: ViperitViewType {
     //    switch self {
    //     case .DeviceDetailCardDisplay: return .storyboard

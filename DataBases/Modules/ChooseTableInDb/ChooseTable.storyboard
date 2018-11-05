@@ -11,7 +11,7 @@
         <!--Выберите тип-->
         <scene sceneID="4xv-jt-I25">
             <objects>
-                <tableViewController id="hp0-L1-DqO" sceneMemberID="viewController">
+                <tableViewController id="hp0-L1-DqO" customClass="ChooseTableView" customModule="DataBases" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="Sbg-HG-nDl">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -22,7 +22,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Выберите тип" id="1Wz-sJ-snf">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="wam-gi-5V5"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="aEe-nU-ntj">
+                            <connections>
+                                <action selector="AddTableAction:" destination="hp0-L1-DqO" id="kQa-yO-Y9N"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BYs-I3-Apl" userLabel="First Responder" sceneMemberID="firstResponder"/>
