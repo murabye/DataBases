@@ -10,8 +10,8 @@
 //MARK: - ChooseDbScreenRouter API
 protocol ChooseDbScreenRouterApi: BaseRouterProtocol {
     // TODO:
-    func gotoSelectTableModule() -> ChooseDbScreenModule
-    func gotoCreateDbModule() -> CreateDbView
+    func gotoSelectTableModule() -> ChooseTableModule
+    func gotoCreateDbModule() -> ChooseDbScreenModule
 }
 
 //MARK: - ChooseDbScreenView API

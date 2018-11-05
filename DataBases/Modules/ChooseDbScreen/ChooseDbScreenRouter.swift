@@ -15,8 +15,10 @@ final class ChooseDbScreenRouter: BaseRouter {
 
 // MARK: - ChooseDbScreenRouter API
 extension ChooseDbScreenRouter: ChooseDbScreenRouterApi {
-    func gotoSelectTableModule() -> ChooseDbScreenModule {
-        return ChooseDbScreenModule()
+    func gotoSelectTableModule() -> ChooseTableModule {
+        let module = AppModules.ChooseTable.build()
+        module._router.show(from: view)
+        return module as! ChooseTableModule
     }
     
     func gotoCreateDbModule() -> CreateDbView {

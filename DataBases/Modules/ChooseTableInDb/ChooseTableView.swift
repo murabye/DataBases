@@ -9,7 +9,10 @@
 import UIKit
 
 //MARK: ChooseTableView Class
-final class ChooseTableView: BaseView {
+final class ChooseTableView: BaseTableView {
+    @IBAction func AddTableAction(_ sender: Any) {
+        presenter.CreateTable()
+    }
 }
 
 //MARK: - ChooseTableView Protocol
@@ -17,7 +20,6 @@ extension ChooseTableView: ChooseTableViewProtocol {
     var table: UITableView {
         return tableView
     }
-    
 }
 
 // MARK: - ChooseTableView Viper Components Protocol
@@ -27,8 +29,5 @@ private extension ChooseTableView {
     }
     var presenter: ChooseTablePresenterProtocol {
         return module.presenter
-    }
-    var tableViewModel: BaseTableViewModelProtocol {
-        return module.tableViewModel
     }
 }
