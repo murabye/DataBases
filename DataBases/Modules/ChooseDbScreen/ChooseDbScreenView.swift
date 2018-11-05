@@ -18,10 +18,25 @@ final class ChooseDbScreenView: BaseTableView {
     }
     
     @IBAction func addDbButtonAction(_ sender: Any) {
-        presenter.CreateDb()
-    }
-    @IBAction func addDbAction(_ sender: Any) {
-        presenter.CreateDb()
+        let alert = UIAlertController(title: "Новое хранилище", message: "Введите название нового хранилища", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel) { (_) -> Void in
+        }
+        let saveAction = UIAlertAction(title: "Создать", style: .default) { (_) -> Void in
+            let nameField = alert.textFields?[0]
+            //TODO:
+            if let name = nameField?.text {
+                self.presenter.createNewDb(name: name)
+            }
+            
+        }
+        
+        alert.addTextField { (_) -> Void in }
+        alert.textFields![0].placeholder = "Название"
+        
+        alert.addAction(cancelAction)
+        alert.addAction(saveAction)
+        
+        self.present(alert, animated: true, completion: nil)
     }
 }
 

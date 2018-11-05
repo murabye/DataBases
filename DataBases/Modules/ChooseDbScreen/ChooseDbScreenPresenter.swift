@@ -14,8 +14,12 @@ final class ChooseDbScreenPresenter: BasePresenter {
 
 // MARK: - ChooseDbScreenPresenter API
 extension ChooseDbScreenPresenter: ChooseDbScreenPresenterApi {
+    func createNewDb(name: String) {
+        
+    }
+    
     func CreateDb() {
-        _ = router.gotoCreateDbModule()
+        
     }
     
     func SelectTable(index: Int) {
@@ -38,7 +42,7 @@ private extension ChooseDbScreenPresenter {
     var module: ChooseDbScreenModule {
         return _module as! ChooseDbScreenModule
     }
-    var tableVM: ChooseDbScreenTableVM {
+    var tableVM: ChooseDbScreenTableViewModel {
         return module.tableVM
     }
 }

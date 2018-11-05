@@ -26,7 +26,7 @@ final class ChooseDbScreenModule: BaseModule {
     var router: ChooseDbScreenRouterApi {
         return self._router as! ChooseDbScreenRouterApi
     }
-    var tableVM: ChooseDbScreenTableVM {
-        return self._tableViewModel as! ChooseDbScreenTableVM
+    var tableVM: ChooseDbScreenTableViewModel {
+        return self._tableViewModel as! ChooseDbScreenTableViewModel
     }
 }

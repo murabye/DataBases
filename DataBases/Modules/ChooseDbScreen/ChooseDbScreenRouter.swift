@@ -21,14 +21,6 @@ extension ChooseDbScreenRouter: ChooseDbScreenRouterApi {
         return module as! ChooseTableModule
     }
     
-    func gotoCreateDbModule() -> CreateDbView {
-        let sb = UIStoryboard.init(name: "CreateDbView", bundle: .main)
-        let vc = sb.instantiateInitialViewController()
-        view.navigationController?.pushViewController(vc!, animated: true)
-        return vc as! CreateDbView
-
-    }
-    
 }
 
 // MARK: - ChooseDbScreen Viper Components
