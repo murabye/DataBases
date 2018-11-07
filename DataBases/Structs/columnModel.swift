@@ -8,15 +8,15 @@
 
 import UIKit
 
+// TODO: узнать, как они называются в sqlite
+enum columnType:String {
+    case text
+    case integer
+    case Bool
+    case Double
+}
+
 struct columnModel {
-    
-    // TODO: узнать, как они называются в sqlite
-    enum columnType:String {
-        case text
-        case integer
-        case Bool
-        case Double
-    }
     
     let id_table:Int32 = 0
     let name:String = ""
