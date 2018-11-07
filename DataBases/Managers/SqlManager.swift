@@ -89,8 +89,8 @@ class SqlManager {
         return result
     }
     
-    // TODO: дописать
-    func addTable(_ name:String, toDb dbId:Int32, withColumns columns:[columnModel]) {
+    // TODO: дописать связи, вставку таблицы
+    func addTable(_ name:String, toDb dbId:Int32, withColumns columns:[columnModel], andRelations relations:[relationModel]) {
         let queue:FMDatabaseQueue? = FMDatabaseQueue(path: self.dbFilePath)
 
         queue?.inTransaction { db, rollback in
@@ -111,7 +111,28 @@ class SqlManager {
                     }
                     maskId = db.lastInsertRowId
                 }
-                query = "INSERT INTO colums (id_table, name, default_value, type, id_mask, unique, not_null, auto_increment, primary_key) VALUES (\(tableId), '\(column.name)', '\(column.default_value)', \(column.type), \(convertOpt(maskId)), \(column.unique), \(column.not_null), \(column.auto_increment), \(column.primary_key))"
+                query = "INSERT INTO colums (id_table, name, default_value, type, id_mask, unique, not_null, primary_key) VALUES (\(tableId), '\(column.name)', '\(column.default_value)', \(column.type), \(convertOpt(maskId)), \(column.unique), \(column.not_null), \(column.primary_key))"
+                if !db.executeUpdate(query, withArgumentsIn: []) {
+                    rollback.pointee = true
+                    return
+                }
+                for relation in relations {
+                    query = "INSERT INTO relations (id_table1, id_table2, relation_type) VALUES (\(relation.id_table1), \(relation.id_table2), \(relation.relation_type)"
+                    if !db.executeUpdate(query, withArgumentsIn: []) {
+                        rollback.pointee = true
+                        return
+                    }
+                    
+                }
+                
+                query = "CREATE TABLE \(name) ( id integer PRIMARY KEY";
+                for column in columns {
+                    query += ", "
+                    query += column.name + " "
+                    query += column.type + " "
+                    
+                }
+                
                 if !db.executeUpdate(query, withArgumentsIn: []) {
                     rollback.pointee = true
                     return

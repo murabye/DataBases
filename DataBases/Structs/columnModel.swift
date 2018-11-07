@@ -12,8 +12,8 @@ struct columnModel {
     
     // TODO: узнать, как они называются в sqlite
     enum columnType:String {
-        case String
-        case Int
+        case text
+        case integer
         case Bool
         case Double
     }
@@ -25,6 +25,6 @@ struct columnModel {
     var mask:maskModel?
     let unique:Bool = false
     let not_null:Bool = false
-    let auto_increment:Bool = false
+    // TODO: убрать из таблицы let auto_increment:Bool = false
     let primary_key:Bool = false
 }
