@@ -11,7 +11,6 @@ import UIKit
 class SqlManager {
     static let shared = SqlManager()
     
-    
     //MARK:- init and opening
     var dbFilePath:String = ""
     let DATABASE_RESOURCE_NAME = "db"
@@ -89,7 +88,6 @@ class SqlManager {
         return result
     }
     
-    // TODO: дописать связи, вставку таблицы
     func addTable(_ name:String, toDb dbId:Int32, withColumns columns:[columnModel], andRelations relations:[relationModel]) {
         let queue:FMDatabaseQueue? = FMDatabaseQueue(path: self.dbFilePath)
 
@@ -104,46 +102,109 @@ class SqlManager {
             for column in columns {
                 var maskId:Int64? = nil
                 if let mask = column.mask {                    
-                    query = "INSERT INTO masks (min_value, max_value, string_mask, max_length) VALUES (\(convertOpt(mask.min_value)), \(convertOpt(mask.min_value)), \(convertStringOpt(mask.string_mask)), \(convertOpt(mask.max_length))"
+                    query = "INSERT INTO masks (min_value, max_value, max_length) VALUES (\(convertOpt(mask.min_value)), \(convertOpt(mask.min_value)), \(convertOpt(mask.max_length))"
                     if !db.executeUpdate(query, withArgumentsIn: []) {
                         rollback.pointee = true
                         return
                     }
                     maskId = db.lastInsertRowId
                 }
-                query = "INSERT INTO colums (id_table, name, default_value, type, id_mask, unique, not_null, primary_key) VALUES (\(tableId), '\(column.name)', '\(column.default_value)', \(column.type), \(convertOpt(maskId)), \(column.unique), \(column.not_null), \(column.primary_key))"
+                query = "INSERT INTO colums (id_table, name, type, id_mask, unique, not_null, primary_key) VALUES (\(tableId), '\(column.name)', \(column.type), \(convertOpt(maskId)), \(column.unique), \(column.not_null), \(column.primary_key))"
                 if !db.executeUpdate(query, withArgumentsIn: []) {
                     rollback.pointee = true
                     return
                 }
+                
                 for relation in relations {
                     query = "INSERT INTO relations (id_table1, id_table2, relation_type) VALUES (\(relation.id_table1), \(relation.id_table2), \(relation.relation_type)"
                     if !db.executeUpdate(query, withArgumentsIn: []) {
                         rollback.pointee = true
                         return
                     }
-                    
                 }
                 
-                query = "CREATE TABLE \(name) ( id integer PRIMARY KEY";
+                query = "CREATE TABLE \(name) ( id integer PRIMARY KEY"
                 for column in columns {
-                    query += ", "
-                    query += column.name + " "
-                    query += column.type + " "
-                    
+                    query += ","
+                    query += " " + column.name
+                    query += " " + column.type
+                    query += column.not_null ? " NOT NULL" : ""
+                    query += column.unique ? " UNIQUE" : ""
                 }
+                
+                for relation in relations {
+                    let queryForTable2Name = "SELECT name FROM tables WHERE id_table == \(relation.id_table2)"
+                    let resultSet: FMResultSet? = db.executeQuery(queryForTable2Name, withArgumentsIn: [])
+                    resultSet!.next()
+                    let table2name:String = resultSet!.string(forColumn: "name")!
+
+                    switch relation.relation_type {
+                    case 1,2,4,5:
+                        if relation.id_table1 == tableId {
+                            query += ", FOREIGN KEY ("
+                            query += table2name + "_id"
+                            query += ") REFERENCES (id"
+                            query += ") ON DELETE CASCADE ON UPDATE NO ACTION"
+                        }
+                    default:
+                        var queryForRasprTable = "CREATE TABLE system_"
+                        queryForRasprTable += name + "_" + table2name
+                        queryForRasprTable += "(id integer PRIMARY KEY, "
+                        queryForRasprTable += "FOREIGN KEY (table1_id) REFERENCES \(name) (id) ON DELETE CASCADE ON UPDATE NO ACTION, "
+                        queryForRasprTable += "FOREIGN KEY (table2_id) REFERENCES \(table2name) (id) ON DELETE CASCADE ON UPDATE NO ACTION)"
+                        if !db.executeUpdate(queryForRasprTable, withArgumentsIn: []) {
+                            rollback.pointee = true
+                            return
+                        }
+                        break
+                    }
+                }
+                query += ")"
                 
                 if !db.executeUpdate(query, withArgumentsIn: []) {
                     rollback.pointee = true
                     return
                 }
             }
-            
         }
-
-        
-        
     }
+    
+    //MARK:- user data
+    // TODO: user data add, user data of connected table
+    
+    // TODO: связи
+    func getData(ofTable tableName:String, withId id:Int32) -> [(String, String)] {
+        let queryGetColumns = "SELECT * FROM colums WHERE id_table = \(id)"
+        let resultSetColumns: FMResultSet? = db!.executeQuery(queryGetColumns, withArgumentsIn: [])
+        // name - type
+        var resultColumns:[(String, String)] = []
+        
+        while (resultSetColumns!.next()) {
+            let name = resultSetColumns?.string(forColumn: "name")
+            let type = resultSetColumns?.string(forColumn: "type")
+            resultColumns.append((type!, name!))
+        }
+        
+        
+        let queryForGetData = "SELECT * FROM \(tableName))"
+        let resultSetData: FMResultSet? = db!.executeQuery(queryForGetData, withArgumentsIn: [])
+        // data - type
+        var resultData:[(String, String)] = []
+        
+        
+        while (resultSetColumns!.next()) {
+            for column in resultColumns {
+                let userCellValue = resultSetData?.string(forColumn: column.0)
+                resultData.append((userCellValue!, column.1))
+            }
+        }
+        return resultData
+    }
+    
+    
+    
+    
+    
     
     private func convertOpt(_ optional:Any?) -> String {
         return optional != nil ? optional! as! String : "NULL"

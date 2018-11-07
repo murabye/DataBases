@@ -8,19 +8,20 @@
 
 import UIKit
 
-// TODO: узнать, как они называются в sqlite
-enum columnType:String {
-    case text
-    case integer
-    case Bool
-    case Double
-}
-
 struct columnModel {
+    
+    // TODO: узнать, как они называются в sqlite
+    enum columnType:String {
+        case text
+        case integer
+        case date
+        case bool
+        case id
+    }
     
     let id_table:Int32 = 0
     let name:String = ""
-    let default_value:String = ""
+    // TODO: убрать из таблицы let default_value:String = ""
     let type:String = ""
     var mask:maskModel?
     let unique:Bool = false
