@@ -13,7 +13,7 @@ class dateCell: UITableViewCell, dataCellsProtocol {
     @IBOutlet weak var datePicker: UIDatePicker!
     
     func getType() -> columnType {
-        return columnType.text
+        return columnType.date
     }
     
     func getData() -> (data: String, type: columnType) {

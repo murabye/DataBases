@@ -14,7 +14,7 @@ class buttonCell: UITableViewCell, dataCellsProtocol {
     var handler: (() -> ())?
     
     func getType() -> columnType {
-        return columnType.integer
+        return columnType.id
     }
     
     func getData() -> (data: String, type: columnType) {
