@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 // MARK: - ChooseDbScreenRouter class
 final class ChooseDbScreenRouter: BaseRouter {
@@ -18,11 +19,6 @@ extension ChooseDbScreenRouter: ChooseDbScreenRouterApi {
         let module = AppModules.ChooseTable.build()
         module._router.show(from: view)
         return module as! ChooseTableModule
-    }
-    
-    func gotoCreateDbModule() -> ChooseDbScreenModule {
-        return ChooseDbScreenModule()
-
     }
     
 }
