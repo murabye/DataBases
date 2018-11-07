@@ -38,7 +38,7 @@ private extension ChooseDbScreenPresenter {
     var module: ChooseDbScreenModule {
         return _module as! ChooseDbScreenModule
     }
-    var tableVM: ChooseDbScreenTableVM {
+    var tableVM: ChooseDbScreenTableViewModel {
         return module.tableVM
     }
 }

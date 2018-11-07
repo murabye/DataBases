@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 // MARK: - ChooseDbScreenDisplayData class
-final class ChooseDbScreenTableVM: BaseTableViewModel {
+final class ChooseDbScreenTableViewModel: BaseTableViewModel {
 
     var databaseList:[String] = []
     
