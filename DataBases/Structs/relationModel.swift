@@ -11,15 +11,17 @@ import UIKit
 struct relationModel {
     enum relationType:Int32 {
         case oneToOne = 1
-        case oneToMore
-        case MoreToMore
-        case oneToOneOrNull
-        case oneToMoreOrNull
-        case MoreToMoreOrNull
+        case oneToMore = 2
+        case MoreToMore = 3
+        case oneToOneOrNull = 4
+        case oneToMoreOrNull = 5
+        case MoreToMoreOrNull = 6
     }
     
+    // name of распределительная table: system_table1_table2
     let id_table1: Int32 = 0
     let id_table2: Int32 = 0
     // TODO: fix in db
     let relation_type: Int32 = 0
+    let name: String = ""
 }

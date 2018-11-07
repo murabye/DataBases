@@ -104,34 +104,64 @@ class SqlManager {
             for column in columns {
                 var maskId:Int64? = nil
                 if let mask = column.mask {                    
-                    query = "INSERT INTO masks (min_value, max_value, string_mask, max_length) VALUES (\(convertOpt(mask.min_value)), \(convertOpt(mask.min_value)), \(convertStringOpt(mask.string_mask)), \(convertOpt(mask.max_length))"
+                    query = "INSERT INTO masks (min_value, max_value, max_length) VALUES (\(convertOpt(mask.min_value)), \(convertOpt(mask.min_value)), \(convertOpt(mask.max_length))"
                     if !db.executeUpdate(query, withArgumentsIn: []) {
                         rollback.pointee = true
                         return
                     }
                     maskId = db.lastInsertRowId
                 }
-                query = "INSERT INTO colums (id_table, name, default_value, type, id_mask, unique, not_null, primary_key) VALUES (\(tableId), '\(column.name)', '\(column.default_value)', \(column.type), \(convertOpt(maskId)), \(column.unique), \(column.not_null), \(column.primary_key))"
+                query = "INSERT INTO colums (id_table, name, type, id_mask, unique, not_null, primary_key) VALUES (\(tableId), '\(column.name)', \(column.type), \(convertOpt(maskId)), \(column.unique), \(column.not_null), \(column.primary_key))"
                 if !db.executeUpdate(query, withArgumentsIn: []) {
                     rollback.pointee = true
                     return
                 }
+                
                 for relation in relations {
                     query = "INSERT INTO relations (id_table1, id_table2, relation_type) VALUES (\(relation.id_table1), \(relation.id_table2), \(relation.relation_type)"
                     if !db.executeUpdate(query, withArgumentsIn: []) {
                         rollback.pointee = true
                         return
                     }
-                    
                 }
                 
-                query = "CREATE TABLE \(name) ( id integer PRIMARY KEY";
+                query = "CREATE TABLE \(name) ( id integer PRIMARY KEY"
                 for column in columns {
-                    query += ", "
-                    query += column.name + " "
-                    query += column.type + " "
-                    
+                    query += ","
+                    query += " " + column.name
+                    query += " " + column.type
+                    query += column.not_null ? " NOT NULL" : ""
+                    query += column.unique ? " UNIQUE" : ""
                 }
+                
+                for relation in relations {
+                    let queryForTable2Name = "SELECT name FROM tables WHERE id_table == \(relation.id_table2)"
+                    let resultSet: FMResultSet? = db.executeQuery(queryForTable2Name, withArgumentsIn: [])
+                    resultSet!.next()
+                    let table2name:String = resultSet!.string(forColumn: "name")!
+
+                    switch relation.relation_type {
+                    case 1,2,4,5:
+                        if relation.id_table1 == tableId {
+                            query += ", FOREIGN KEY ("
+                            query += table2name + "_id"
+                            query += ") REFERENCES (id"
+                            query += ") ON DELETE CASCADE ON UPDATE NO ACTION"
+                        }
+                    default:
+                        var queryForRasprTable = "CREATE TABLE system_"
+                        queryForRasprTable += name + "_" + table2name
+                        queryForRasprTable += "(id integer PRIMARY KEY, "
+                        queryForRasprTable += "FOREIGN KEY (table1_id) REFERENCES \(name) (id) ON DELETE CASCADE ON UPDATE NO ACTION, "
+                        queryForRasprTable += "FOREIGN KEY (table2_id) REFERENCES \(table2name) (id) ON DELETE CASCADE ON UPDATE NO ACTION)"
+                        if !db.executeUpdate(queryForRasprTable, withArgumentsIn: []) {
+                            rollback.pointee = true
+                            return
+                        }
+                        break
+                    }
+                }
+                query += ")"
                 
                 if !db.executeUpdate(query, withArgumentsIn: []) {
                     rollback.pointee = true

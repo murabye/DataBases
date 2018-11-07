@@ -20,7 +20,7 @@ struct columnModel {
     
     let id_table:Int32 = 0
     let name:String = ""
-    let default_value:String = ""
+    // TODO: убрать из таблицы let default_value:String = ""
     let type:String = ""
     var mask:maskModel?
     let unique:Bool = false
