@@ -11,7 +11,6 @@ import UIKit
 class SqlManager {
     static let shared = SqlManager()
     
-    
     //MARK:- init and opening
     var dbFilePath:String = ""
     let DATABASE_RESOURCE_NAME = "db"
@@ -89,7 +88,6 @@ class SqlManager {
         return result
     }
     
-    // TODO: дописать связи, вставку таблицы
     func addTable(_ name:String, toDb dbId:Int32, withColumns columns:[columnModel], andRelations relations:[relationModel]) {
         let queue:FMDatabaseQueue? = FMDatabaseQueue(path: self.dbFilePath)
 
@@ -168,12 +166,45 @@ class SqlManager {
                     return
                 }
             }
-            
         }
-
-        
-        
     }
+    
+    //MARK:- user data
+    // TODO: user data add, user data of connected table
+    
+    // TODO: связи
+    func getData(ofTable tableName:String, withId id:Int32) -> [(String, String)] {
+        let queryGetColumns = "SELECT * FROM colums WHERE id_table = \(id)"
+        let resultSetColumns: FMResultSet? = db!.executeQuery(queryGetColumns, withArgumentsIn: [])
+        // name - type
+        var resultColumns:[(String, String)] = []
+        
+        while (resultSetColumns!.next()) {
+            let name = resultSetColumns?.string(forColumn: "name")
+            let type = resultSetColumns?.string(forColumn: "type")
+            resultColumns.append((type!, name!))
+        }
+        
+        
+        let queryForGetData = "SELECT * FROM \(tableName))"
+        let resultSetData: FMResultSet? = db!.executeQuery(queryForGetData, withArgumentsIn: [])
+        // data - type
+        var resultData:[(String, String)] = []
+        
+        
+        while (resultSetColumns!.next()) {
+            for column in resultColumns {
+                let userCellValue = resultSetData?.string(forColumn: column.0)
+                resultData.append((userCellValue!, column.1))
+            }
+        }
+        return resultData
+    }
+    
+    
+    
+    
+    
     
     private func convertOpt(_ optional:Any?) -> String {
         return optional != nil ? optional! as! String : "NULL"

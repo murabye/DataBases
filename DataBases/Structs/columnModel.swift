@@ -14,8 +14,9 @@ struct columnModel {
     enum columnType:String {
         case text
         case integer
-        case Bool
-        case Double
+        case date
+        case bool
+        case id
     }
     
     let id_table:Int32 = 0
