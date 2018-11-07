@@ -170,9 +170,6 @@ class SqlManager {
     }
     
     //MARK:- user data
-    // TODO: user data add, user data of connected table
-    
-    // TODO: связи
     func getData(ofTable tableName:String, withId id:Int32) -> [(String, String)] {
         let queryGetColumns = "SELECT * FROM colums WHERE id_table = \(id)"
         let resultSetColumns: FMResultSet? = db!.executeQuery(queryGetColumns, withArgumentsIn: [])
@@ -185,6 +182,19 @@ class SqlManager {
             resultColumns.append((type!, name!))
         }
         
+        let queryGetRelations = "SELECT * FROM relations WHERE table1_id = \(tableName)"
+        let resultGetRelations: FMResultSet? = db!.executeQuery(queryGetRelations, withArgumentsIn: [])
+        // tableName
+        var resultRelations:[String] = []
+        while (resultGetRelations!.next()) {
+            let rowid:Int32 = (resultGetRelations?.int(forColumn: "table2_id"))!
+            
+            let queryGetTable2Name = "SELECT name FROM tables WHERE id = \(rowid)"
+            let resultGetRelations: FMResultSet? = db!.executeQuery(queryGetTable2Name, withArgumentsIn: [])
+            while (resultGetRelations!.next()) {
+                resultRelations.append((resultGetRelations?.string(forColumn: "name"))!)
+            }
+        }
         
         let queryForGetData = "SELECT * FROM \(tableName))"
         let resultSetData: FMResultSet? = db!.executeQuery(queryForGetData, withArgumentsIn: [])
@@ -197,15 +207,23 @@ class SqlManager {
                 let userCellValue = resultSetData?.string(forColumn: column.0)
                 resultData.append((userCellValue!, column.1))
             }
+            for relation in resultRelations {
+                resultData.append((relation, "id"))
+            }
         }
         return resultData
     }
     
+    func getData(ofTable tableName:String, withId id:Int32, inConnected connected:String) -> [(String, String)] {
+        return []
+    }
+    
+    func addData() {
+        
+    }
     
     
-    
-    
-    
+    //MARK:- help
     private func convertOpt(_ optional:Any?) -> String {
         return optional != nil ? optional! as! String : "NULL"
     }
