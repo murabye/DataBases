@@ -12,6 +12,7 @@ class SqlManager {
     
     static let shared = SqlManager()
     public var connectedDataBaseId: Int32 = 0
+    public var selectedTableId: Int32 = 0
     
     //MARK:- init and opening
     var dbFilePath:String = ""
@@ -76,6 +77,13 @@ class SqlManager {
     }
     
     func addDatabase(_ name:String) {
+        let currentDbs = getDatabaseList()
+        if currentDbs.contains(where: { (arg0:(Int32, String)) -> Bool in
+            return arg0.1 == name
+        }) {
+            return
+        }
+        
         let query = "INSERT INTO databases (name) VALUES (?)"
         let addSuccessful = db!.executeUpdate(query, withArgumentsIn: [name])
         if !addSuccessful {
@@ -98,6 +106,15 @@ class SqlManager {
     }
     
     func addTable(_ name:String, toDb dbId:Int32, withColumns columns:[columnModel], andRelations relations:[relationModel]) {
+        
+        let currentTables = getTableList(forDbId: dbId)
+        if currentTables.contains(where: { (arg0:(Int32, String)) -> Bool in
+            return arg0.1 == name
+        }) {
+            return
+        }
+        
+        
         let queue:FMDatabaseQueue? = FMDatabaseQueue(path: self.dbFilePath)
 
         queue?.inTransaction { db, rollback in
@@ -132,7 +149,7 @@ class SqlManager {
                     }
                 }
                 
-                query = "CREATE TABLE \(name) ( id integer PRIMARY KEY"
+                query = "CREATE TABLE \(String(dbId) + name) ( id integer PRIMARY KEY"
                 for column in columns {
                     query += ","
                     query += " " + column.name
@@ -192,7 +209,7 @@ class SqlManager {
         }
         
         let queryGetRelations = "SELECT * FROM relations WHERE table1_id = ?"
-        let resultGetRelations: FMResultSet? = db!.executeQuery(queryGetRelations, withArgumentsIn: [tableName])
+        let resultGetRelations: FMResultSet? = db!.executeQuery(queryGetRelations, withArgumentsIn: [id])
         // tableName
         var resultRelations:[String] = []
         while (resultGetRelations!.next()) {
@@ -206,7 +223,7 @@ class SqlManager {
         }
         
         let queryForGetData = "SELECT * FROM ?"
-        let resultSetData: FMResultSet? = db!.executeQuery(queryForGetData, withArgumentsIn: [tableName])
+        let resultSetData: FMResultSet? = db!.executeQuery(queryForGetData, withArgumentsIn: [String(connectedDataBaseId) + tableName])
         // data - type
         var resultData:[(String, String)] = []
         
@@ -227,6 +244,7 @@ class SqlManager {
         let queue:FMDatabaseQueue? = FMDatabaseQueue(path: self.dbFilePath)
         
         queue?.inTransaction { db, rollback in
+            
         }
     }
     
