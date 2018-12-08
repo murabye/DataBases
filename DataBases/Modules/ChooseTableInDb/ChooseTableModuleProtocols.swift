@@ -22,9 +22,12 @@ protocol ChooseTableViewProtocol: BaseViewProtocol {
 protocol ChooseTablePresenterProtocol: BasePresenterProtocol {
     func CreateTable()
     func SelectTable(index: Int)
+    
+    func openTable(atIndex: Int)
 }
 
 //MARK: - ChooseTableInteractor Protocol
 protocol ChooseTableInteractorProtocol: BaseInteractorProtocol {
     func getTableList() -> [String]
+    func open(table: Int)
 }

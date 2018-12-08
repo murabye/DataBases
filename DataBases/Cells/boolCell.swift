@@ -14,7 +14,7 @@ class boolCell: UITableViewCell, dataCellsProtocol {
     @IBOutlet weak var switchView: UISwitch!
     
     func getType() -> columnType {
-        return columnType.Bool
+        return columnType.bool
     }
     
     func getData() -> (data: String, type: columnType) {

@@ -27,5 +27,6 @@ protocol ChooseDbScreenPresenterApi: BasePresenterProtocol {
 
 //MARK: - ChooseDbScreenInteractor API
 protocol ChooseDbScreenInteractorApi: BaseInteractorProtocol {
-    func getDatabaseList() -> [String]
+    func getDatabaseList() -> [(Int32, String)]
+    func createNewDB(name: String)
 }

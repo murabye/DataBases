@@ -15,7 +15,7 @@ final class ChooseDbScreenPresenter: BasePresenter {
 // MARK: - ChooseDbScreenPresenter API
 extension ChooseDbScreenPresenter: ChooseDbScreenPresenterApi {
     func createNewDb(name: String) {
-        
+        interactor.createNewDB(name: name)
     }
     
     func CreateDb() {

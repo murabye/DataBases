@@ -14,9 +14,12 @@ final class ChooseDbScreenInteractor: BaseInteractor {
 
 // MARK: - ___VARIABLE_ViperitModuleName___Interactor API
 extension ChooseDbScreenInteractor: ChooseDbScreenInteractorApi {
-    func getDatabaseList() -> [String] {
+    func getDatabaseList() -> [(Int32, String)] {
         // TODO:
-        return []
+        return SqlManager.shared.getDatabaseList();
+    }
+    func createNewDB(name: String) {
+        SqlManager.shared.addDatabase(name)
     }
     
 }

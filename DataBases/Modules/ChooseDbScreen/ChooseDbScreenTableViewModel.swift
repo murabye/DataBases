@@ -12,7 +12,7 @@ import UIKit
 // MARK: - ChooseDbScreenDisplayData class
 final class ChooseDbScreenTableViewModel: BaseTableViewModel {
 
-    var databaseList:[String] = []
+    var databaseList:[(Int32, String)] = []
     
     //MARK: DataSource
     override func number(ofRowsInSection section: Int, tableView: UITableView) -> Int {
@@ -25,7 +25,7 @@ final class ChooseDbScreenTableViewModel: BaseTableViewModel {
         switch section {
         case 0:
             let cell = UITableViewCell.init(style: .default, reuseIdentifier: nil)
-            cell.textLabel?.text = databaseList[row]
+            cell.textLabel?.text = databaseList[row].1
             cell.accessoryType = .disclosureIndicator
             return cell
         default:
@@ -39,7 +39,6 @@ final class ChooseDbScreenTableViewModel: BaseTableViewModel {
     
     //MARK: Delegate
     override func did(selectRow row: Int, section: Int, tableView: UITableView) {
-    
     }
     override func height(forRow row: Int, section: Int, tableView: UITableView) -> CGFloat {
         return 44
