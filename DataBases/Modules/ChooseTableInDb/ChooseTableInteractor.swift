@@ -14,6 +14,10 @@ final class ChooseTableInteractor: BaseInteractor {
 
 // MARK: - ___VARIABLE_ViperitModuleName___Interactor Protocol
 extension ChooseTableInteractor: ChooseTableInteractorProtocol {
+    func open(table: Int) {
+        
+    }
+    
     // TODO:
     func getTableList() -> [String] {
         return []

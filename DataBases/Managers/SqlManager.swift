@@ -22,7 +22,7 @@ class SqlManager {
     }
     
     func initializeDb() -> Bool {
-        let documentFolderPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
+        let documentFolderPath = "/Users/wolfram/Documents/DataBases/DataBases/Managers/db.sqlite"// NSSearchPathForDirectoriesInDomains(.developerApplicationDirectory, .userDomainMask, true)[0] as String
         
         let dbfile = "/" + DATABASE_FILE_NAME;
         

@@ -30,9 +30,13 @@ final class ChooseTableTableViewModel: BaseTableViewModel {
     
     //MARK: Delegate
     override func did(selectRow row: Int, section: Int, tableView: UITableView) {
-        
+        presenter.SelectTable(index: row)
     }
     override func height(forRow row: Int, section: Int, tableView: UITableView) -> CGFloat {
         return 44
+    }
+    
+    var presenter: ChooseTablePresenter {
+        return _module._presenter as! ChooseTablePresenter
     }
 }

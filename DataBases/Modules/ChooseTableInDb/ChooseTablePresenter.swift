@@ -14,6 +14,10 @@ final class ChooseTablePresenter: BasePresenter {
 
 // MARK: - ChooseTablePresenter Protocol
 extension ChooseTablePresenter: ChooseTablePresenterProtocol {
+    func openTable(atIndex: Int) {
+       // interactor.open(table: )
+    }
+    
     func CreateTable() {
         _ = router.gotoCreateTableModule()
     }
