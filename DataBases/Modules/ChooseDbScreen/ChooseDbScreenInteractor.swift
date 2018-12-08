@@ -10,20 +10,22 @@ import Foundation
 
 // MARK: - ChooseDbScreenInteractor Class
 final class ChooseDbScreenInteractor: BaseInteractor {
+    var dbList: [(Int32, String)] = []
 }
 
 // MARK: - ___VARIABLE_ViperitModuleName___Interactor API
 extension ChooseDbScreenInteractor: ChooseDbScreenInteractorApi {
     func getDatabaseList() -> [(Int32, String)] {
         // TODO:
-        return SqlManager.shared.getDatabaseList();
+        dbList = SqlManager.shared.getDatabaseList()
+        return dbList;
     }
     func createNewDB(name: String) {
         SqlManager.shared.addDatabase(name)
     }
     
     func selectDB(index: Int) {
-        SqlManager.setSelectedDB()
+        SqlManager.shared.setSelectedDb(toId: dbList[index].0)
     }
 }
 

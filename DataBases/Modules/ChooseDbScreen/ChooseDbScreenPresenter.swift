@@ -22,7 +22,7 @@ extension ChooseDbScreenPresenter: ChooseDbScreenPresenterApi {
     }
     func selectTable(index: Int) {
         _ = router.gotoSelectTableModule()
-        interactor.
+        interactor.selectDB(index: index)
     }
     
 }

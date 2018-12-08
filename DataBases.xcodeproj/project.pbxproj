@@ -48,6 +48,15 @@
 		5DD22795218E3E4400795D3B /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DD22794218E3E4400795D3B /* libsqlite3.tbd */; };
 		5DD2279F218E4D3300795D3B /* FMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DD2279E218E4D3300795D3B /* FMDB.framework */; };
 		6B59BAB621BC447A004C3043 /* db.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 5D4BFF4021918BC0004199F8 /* db.sqlite */; };
+		6B59BAC021BC5301004C3043 /* DetailTable.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B59BAB821BC5301004C3043 /* DetailTable.storyboard */; };
+		6B59BAC121BC5301004C3043 /* DetailTableModuleProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B59BAB921BC5301004C3043 /* DetailTableModuleProtocols.swift */; };
+		6B59BAC221BC5301004C3043 /* DetailTableModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B59BABA21BC5301004C3043 /* DetailTableModule.swift */; };
+		6B59BAC321BC5301004C3043 /* DetailTablePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B59BABB21BC5301004C3043 /* DetailTablePresenter.swift */; };
+		6B59BAC421BC5301004C3043 /* DetailTableRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B59BABC21BC5301004C3043 /* DetailTableRouter.swift */; };
+		6B59BAC521BC5301004C3043 /* DetailTableInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B59BABD21BC5301004C3043 /* DetailTableInteractor.swift */; };
+		6B59BAC621BC5301004C3043 /* DetailTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B59BABE21BC5301004C3043 /* DetailTableView.swift */; };
+		6B59BAC721BC5301004C3043 /* DetailTableTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B59BABF21BC5301004C3043 /* DetailTableTableViewModel.swift */; };
+		6B59BACB21BC5A63004C3043 /* CreateTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B59BACA21BC5A62004C3043 /* CreateTableViewController.swift */; };
 		6BA6E90D219355910042EE55 /* dataCellsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA6E90C219355910042EE55 /* dataCellsProtocol.swift */; };
 		6BA6E90F219358390042EE55 /* boolCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA6E90E219358390042EE55 /* boolCell.swift */; };
 		6BA6E911219358850042EE55 /* dateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA6E910219358850042EE55 /* dateCell.swift */; };
@@ -102,6 +111,15 @@
 		5DD22794218E3E4400795D3B /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		5DD22797218E3E7400795D3B /* FMDB-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FMDB-Bridging-Header.h"; sourceTree = "<group>"; };
 		5DD2279E218E4D3300795D3B /* FMDB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FMDB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6B59BAB821BC5301004C3043 /* DetailTable.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DetailTable.storyboard; sourceTree = "<group>"; };
+		6B59BAB921BC5301004C3043 /* DetailTableModuleProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableModuleProtocols.swift; sourceTree = "<group>"; };
+		6B59BABA21BC5301004C3043 /* DetailTableModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableModule.swift; sourceTree = "<group>"; };
+		6B59BABB21BC5301004C3043 /* DetailTablePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTablePresenter.swift; sourceTree = "<group>"; };
+		6B59BABC21BC5301004C3043 /* DetailTableRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableRouter.swift; sourceTree = "<group>"; };
+		6B59BABD21BC5301004C3043 /* DetailTableInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableInteractor.swift; sourceTree = "<group>"; };
+		6B59BABE21BC5301004C3043 /* DetailTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableView.swift; sourceTree = "<group>"; };
+		6B59BABF21BC5301004C3043 /* DetailTableTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableTableViewModel.swift; sourceTree = "<group>"; };
+		6B59BACA21BC5A62004C3043 /* CreateTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CreateTableViewController.swift; path = /Users/wolfram/Documents/DataBases/DataBases/Modules/CreateTableViewController.swift; sourceTree = "<absolute>"; };
 		6BA6E90C219355910042EE55 /* dataCellsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dataCellsProtocol.swift; sourceTree = "<group>"; };
 		6BA6E90E219358390042EE55 /* boolCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = boolCell.swift; sourceTree = "<group>"; };
 		6BA6E910219358850042EE55 /* dateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dateCell.swift; sourceTree = "<group>"; };
@@ -221,6 +239,8 @@
 			isa = PBXGroup;
 			children = (
 				5DD2277D218CB98C00795D3B /* AppModulesViper.swift */,
+				6B59BACA21BC5A62004C3043 /* CreateTableViewController.swift */,
+				6B59BAB721BC52D9004C3043 /* DetailTable */,
 				5DB67BD6219063E2007F6522 /* ChooseTableInDb */,
 				5DD22755218CB27400795D3B /* ChooseDbScreen */,
 			);
@@ -257,6 +277,21 @@
 				5DD22797218E3E7400795D3B /* FMDB-Bridging-Header.h */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6B59BAB721BC52D9004C3043 /* DetailTable */ = {
+			isa = PBXGroup;
+			children = (
+				6B59BAB821BC5301004C3043 /* DetailTable.storyboard */,
+				6B59BAB921BC5301004C3043 /* DetailTableModuleProtocols.swift */,
+				6B59BABA21BC5301004C3043 /* DetailTableModule.swift */,
+				6B59BABB21BC5301004C3043 /* DetailTablePresenter.swift */,
+				6B59BABC21BC5301004C3043 /* DetailTableRouter.swift */,
+				6B59BABD21BC5301004C3043 /* DetailTableInteractor.swift */,
+				6B59BABE21BC5301004C3043 /* DetailTableView.swift */,
+				6B59BABF21BC5301004C3043 /* DetailTableTableViewModel.swift */,
+			);
+			path = DetailTable;
 			sourceTree = "<group>";
 		};
 		6BA6E90B2193555E0042EE55 /* Cells */ = {
@@ -347,6 +382,7 @@
 				5DD2273B218C55D800795D3B /* LaunchScreen.storyboard in Resources */,
 				5DB67C1F219067A6007F6522 /* ChooseTable.storyboard in Resources */,
 				5DD22738218C55D800795D3B /* Assets.xcassets in Resources */,
+				6B59BAC021BC5301004C3043 /* DetailTable.storyboard in Resources */,
 				5DD22736218C55D700795D3B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -400,18 +436,21 @@
 				5D4BFF4F2191E6FB004199F8 /* maskModel.swift in Sources */,
 				5DB67BCE21906181007F6522 /* ViperModule.swift in Sources */,
 				5DB67BCC21906181007F6522 /* String + SafeString.swift in Sources */,
+				6B59BAC221BC5301004C3043 /* DetailTableModule.swift in Sources */,
 				6BA6E911219358850042EE55 /* dateCell.swift in Sources */,
 				5DD22760218CB29800795D3B /* ChooseDbScreenModule.swift in Sources */,
 				5DB67BD321906181007F6522 /* BaseInteractor.swift in Sources */,
 				5DB67BD421906181007F6522 /* BaseTableView.swift in Sources */,
 				5DD22733218C55D700795D3B /* ViewController.swift in Sources */,
 				5DD22788218CB98D00795D3B /* AppModulesViper.swift in Sources */,
+				6B59BAC621BC5301004C3043 /* DetailTableView.swift in Sources */,
 				5DD22765218CB29800795D3B /* ChooseDbScreenView.swift in Sources */,
 				5DD2275E218CB29800795D3B /* ChooseDbScreenTableViewModel.swift in Sources */,
 				5DB67BD521906181007F6522 /* BaseModule.swift in Sources */,
 				5D4BFF492191E3E7004199F8 /* tableModel.swift in Sources */,
 				5DB67BD021906181007F6522 /* BaseRouter.swift in Sources */,
 				5DB67C24219067A6007F6522 /* ChooseTableInteractor.swift in Sources */,
+				6B59BAC721BC5301004C3043 /* DetailTableTableViewModel.swift in Sources */,
 				5DB67C21219067A6007F6522 /* ChooseTableModule.swift in Sources */,
 				5DB67C23219067A6007F6522 /* ChooseTableRouter.swift in Sources */,
 				5DB67C25219067A6007F6522 /* ChooseTableView.swift in Sources */,
@@ -422,6 +461,7 @@
 				6BA6E90D219355910042EE55 /* dataCellsProtocol.swift in Sources */,
 				5DB67BD121906181007F6522 /* BaseTableViewModel.swift in Sources */,
 				5D4BFF422191960D004199F8 /* SqlManager.swift in Sources */,
+				6B59BAC421BC5301004C3043 /* DetailTableRouter.swift in Sources */,
 				5DB67C26219067A6007F6522 /* ChooseTableTableViewModel.swift in Sources */,
 				5DB67C22219067A6007F6522 /* ChooseTablePresenter.swift in Sources */,
 				6BA6E90F219358390042EE55 /* boolCell.swift in Sources */,
@@ -430,12 +470,16 @@
 				5D4BFF4B2191E46A004199F8 /* columnModel.swift in Sources */,
 				5DD22761218CB29800795D3B /* ChooseDbScreenPresenter.swift in Sources */,
 				5DB67BD221906181007F6522 /* BaseView.swift in Sources */,
+				6B59BACB21BC5A63004C3043 /* CreateTableViewController.swift in Sources */,
+				6B59BAC121BC5301004C3043 /* DetailTableModuleProtocols.swift in Sources */,
 				5D4BFF452191E32C004199F8 /* dbModel.swift in Sources */,
 				5DB67BCD21906181007F6522 /* ViperComponent.swift in Sources */,
+				6B59BAC521BC5301004C3043 /* DetailTableInteractor.swift in Sources */,
 				5D4BFF4D2191E699004199F8 /* relationModel.swift in Sources */,
 				6BA6E913219358930042EE55 /* textCell.swift in Sources */,
 				5DB67C20219067A6007F6522 /* ChooseTableModuleProtocols.swift in Sources */,
 				5DB67BCB21906181007F6522 /* BasePresenter.swift in Sources */,
+				6B59BAC321BC5301004C3043 /* DetailTablePresenter.swift in Sources */,
 				6BA6E919219372E20042EE55 /* buttonCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
