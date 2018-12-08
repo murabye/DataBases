@@ -9,7 +9,9 @@
 import UIKit
 
 class SqlManager {
+    
     static let shared = SqlManager()
+    public var connectedDataBaseId: Int32 = 0
     
     //MARK:- init and opening
     var dbFilePath:String = ""
@@ -19,7 +21,9 @@ class SqlManager {
     var db:FMDatabase? = nil
     
     private init() {
-//initializeDb()
+        if self.initializeDb() {
+            print("SUCCESS")
+        }
     }
     
     func initializeDb() -> Bool {
@@ -67,9 +71,13 @@ class SqlManager {
         return result
     }
     
+    func setSelectedDb(toId dbId: Int32) {
+        connectedDataBaseId = dbId
+    }
+    
     func addDatabase(_ name:String) {
-        let query = "INSERT INTO databases (name) VALUES ('\(name)')"
-        let addSuccessful = db!.executeUpdate(query, withArgumentsIn: [])
+        let query = "INSERT INTO databases (name) VALUES (?)"
+        let addSuccessful = db!.executeUpdate(query, withArgumentsIn: [name])
         if !addSuccessful {
             print("insert failed: \(db!.lastErrorMessage())")
         }
@@ -77,8 +85,8 @@ class SqlManager {
     
     //MARK:- tables
     func getTableList(forDbId dbId:Int32) -> [(Int32, String)]  {
-        let query = "SELECT id_table, name FROM tables WHERE id_database = \(dbId)"
-        let resultSet: FMResultSet? = db!.executeQuery(query, withArgumentsIn: [])
+        let query = "SELECT id_table, name FROM tables WHERE id_database = ?"
+        let resultSet: FMResultSet? = db!.executeQuery(query, withArgumentsIn: [dbId])
         var result:[(Int32, String)] = []
         
         while (resultSet!.next()) {
@@ -93,8 +101,8 @@ class SqlManager {
         let queue:FMDatabaseQueue? = FMDatabaseQueue(path: self.dbFilePath)
 
         queue?.inTransaction { db, rollback in
-            var query = "INSERT INTO tables (name, id_database) VALUES ('\(name)', \(dbId))"
-            if !db.executeUpdate(query, withArgumentsIn: []) {
+            var query = "INSERT INTO tables (name, id_database) VALUES (?, ?)"
+            if !db.executeUpdate(query, withArgumentsIn: [name, dbId]) {
                 rollback.pointee = true
                 return
             }
@@ -103,22 +111,22 @@ class SqlManager {
             for column in columns {
                 var maskId:Int64? = nil
                 if let mask = column.mask {                    
-                    query = "INSERT INTO masks (min_value, max_value, max_length) VALUES (\(convertOpt(mask.min_value)), \(convertOpt(mask.min_value)), \(convertOpt(mask.max_length))"
-                    if !db.executeUpdate(query, withArgumentsIn: []) {
+                    query = "INSERT INTO masks (min_value, max_value, max_length) VALUES (?, ?, ?)"
+                    if !db.executeUpdate(query, withArgumentsIn: [convertOpt(mask.min_value), convertOpt(mask.min_value), convertOpt(mask.max_length)]) {
                         rollback.pointee = true
                         return
                     }
                     maskId = db.lastInsertRowId
                 }
-                query = "INSERT INTO colums (id_table, name, type, id_mask, unique, not_null, primary_key) VALUES (\(tableId), '\(column.name)', \(column.type), \(convertOpt(maskId)), \(column.unique), \(column.not_null), \(column.primary_key))"
-                if !db.executeUpdate(query, withArgumentsIn: []) {
+                query = "INSERT INTO colums (id_table, name, type, id_mask, unique, not_null, primary_key) VALUES (?, ?, ?, ?, ?, ?, ?)"
+                if !db.executeUpdate(query, withArgumentsIn: [tableId, column.name, column.type, convertOpt(maskId), column.unique, column.not_null, column.primary_key]) {
                     rollback.pointee = true
                     return
                 }
                 
                 for relation in relations {
-                    query = "INSERT INTO relations (id_table1, id_table2, relation_type) VALUES (\(relation.id_table1), \(relation.id_table2), \(relation.relation_type)"
-                    if !db.executeUpdate(query, withArgumentsIn: []) {
+                    query = "INSERT INTO relations (id_table1, id_table2, relation_type) VALUES (?, ?, ?)"
+                    if !db.executeUpdate(query, withArgumentsIn: [relation.id_table1, relation.id_table2, relation.relation_type]) {
                         rollback.pointee = true
                         return
                     }
@@ -134,8 +142,8 @@ class SqlManager {
                 }
                 
                 for relation in relations {
-                    let queryForTable2Name = "SELECT name FROM tables WHERE id_table == \(relation.id_table2)"
-                    let resultSet: FMResultSet? = db.executeQuery(queryForTable2Name, withArgumentsIn: [])
+                    let queryForTable2Name = "SELECT name FROM tables WHERE id_table == ?"
+                    let resultSet: FMResultSet? = db.executeQuery(queryForTable2Name, withArgumentsIn: [relation.id_table2])
                     resultSet!.next()
                     let table2name:String = resultSet!.string(forColumn: "name")!
 
@@ -172,8 +180,8 @@ class SqlManager {
     
     //MARK:- user data
     func getData(ofTable tableName:String, withId id:Int32) -> [(String, String)] {
-        let queryGetColumns = "SELECT * FROM colums WHERE id_table = \(id)"
-        let resultSetColumns: FMResultSet? = db!.executeQuery(queryGetColumns, withArgumentsIn: [])
+        let queryGetColumns = "SELECT * FROM colums WHERE id_table = ?"
+        let resultSetColumns: FMResultSet? = db!.executeQuery(queryGetColumns, withArgumentsIn: [id])
         // name - type
         var resultColumns:[(String, String)] = []
         
@@ -183,22 +191,22 @@ class SqlManager {
             resultColumns.append((type!, name!))
         }
         
-        let queryGetRelations = "SELECT * FROM relations WHERE table1_id = \(tableName)"
-        let resultGetRelations: FMResultSet? = db!.executeQuery(queryGetRelations, withArgumentsIn: [])
+        let queryGetRelations = "SELECT * FROM relations WHERE table1_id = ?"
+        let resultGetRelations: FMResultSet? = db!.executeQuery(queryGetRelations, withArgumentsIn: [tableName])
         // tableName
         var resultRelations:[String] = []
         while (resultGetRelations!.next()) {
             let rowid:Int32 = (resultGetRelations?.int(forColumn: "table2_id"))!
             
-            let queryGetTable2Name = "SELECT name FROM tables WHERE id = \(rowid)"
-            let resultGetRelations: FMResultSet? = db!.executeQuery(queryGetTable2Name, withArgumentsIn: [])
+            let queryGetTable2Name = "SELECT name FROM tables WHERE id = ?"
+            let resultGetRelations: FMResultSet? = db!.executeQuery(queryGetTable2Name, withArgumentsIn: [rowid])
             while (resultGetRelations!.next()) {
                 resultRelations.append((resultGetRelations?.string(forColumn: "name"))!)
             }
         }
         
-        let queryForGetData = "SELECT * FROM \(tableName))"
-        let resultSetData: FMResultSet? = db!.executeQuery(queryForGetData, withArgumentsIn: [])
+        let queryForGetData = "SELECT * FROM ?"
+        let resultSetData: FMResultSet? = db!.executeQuery(queryForGetData, withArgumentsIn: [tableName])
         // data - type
         var resultData:[(String, String)] = []
         
@@ -215,12 +223,11 @@ class SqlManager {
         return resultData
     }
     
-    func getData(ofTable tableName:String, withId id:Int32, inConnected connected:String) -> [(String, String)] {
-        return []
-    }
-    
-    func addData() {
+    func addData(toTable: String, withId: Int32, data: Dictionary<String, Any>) {
+        let queue:FMDatabaseQueue? = FMDatabaseQueue(path: self.dbFilePath)
         
+        queue?.inTransaction { db, rollback in
+        }
     }
     
     
