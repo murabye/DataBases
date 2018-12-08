@@ -22,6 +22,9 @@ extension ChooseDbScreenInteractor: ChooseDbScreenInteractorApi {
         SqlManager.shared.addDatabase(name)
     }
     
+    func selectDB(index: Int) {
+        SqlManager.setSelectedDB()
+    }
 }
 
 // MARK: - Interactor Viper Components Api
