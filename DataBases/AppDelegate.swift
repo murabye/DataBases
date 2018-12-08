@@ -17,9 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        if SqlManager.shared.initializeDb() {
-            print("Succesful init db")
-        }
+        //if SqlManager.shared.initializeDb() {
+        //    print("Succesful init db")
+        //}
         return true
     }
 
