@@ -76,7 +76,7 @@
 		5D4BFF4A2191E46A004199F8 /* ColumnModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnModel.swift; sourceTree = "<group>"; };
 		5D4BFF4C2191E699004199F8 /* RelationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelationModel.swift; sourceTree = "<group>"; };
 		5D4BFF4E2191E6FB004199F8 /* MaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskModel.swift; sourceTree = "<group>"; };
-		5D9EBCA821BD9A4200434D81 /* db.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = db.sqlite; sourceTree = "<group>"; };
+		5D9EBCAA21BD9CC300434D81 /* db.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = db.sqlite; sourceTree = "<group>"; };
 		5DB67BC021906180007F6522 /* BasePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasePresenter.swift; sourceTree = "<group>"; };
 		5DB67BC121906180007F6522 /* String + SafeString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String + SafeString.swift"; sourceTree = "<group>"; };
 		5DB67BC221906180007F6522 /* ViperComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViperComponent.swift; sourceTree = "<group>"; };
@@ -272,7 +272,7 @@
 		5DD22793218CC97500795D3B /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				5D9EBCA821BD9A4200434D81 /* db.sqlite */,
+				5D9EBCAA21BD9CC300434D81 /* db.sqlite */,
 				5D4BFF412191960D004199F8 /* SqlManager.swift */,
 				6B39C51621BD8EEF003106FC /* Helper.swift */,
 			);

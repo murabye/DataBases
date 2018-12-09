@@ -134,7 +134,7 @@ class SqlManager {
                     }
                     maskId = db.lastInsertRowId
                 }
-                query = "INSERT INTO colums (id_table, name, type, id_mask, unique, not_null, primary_key) VALUES (\(tableId), '\(column.name)', \(column.type), \(convertOpt(maskId)), \(column.unique), \(column.not_null), \(column.primary_key))"
+                query = "INSERT INTO colums (id_table, name, type, id_mask, is_unique, not_null, primary_key) VALUES (\(tableId), '\(column.name)', \(column.type), \(convertOpt(maskId)), \(column.isUnique), \(column.not_null), \(column.primary_key))"
                 if !db.executeUpdate(query, withArgumentsIn: []) {
                     rollback.pointee = true
                     return
@@ -152,20 +152,20 @@ class SqlManager {
                     resultSet!.next()
                     let table2name:String = resultSet!.string(forColumn: "name")!
 
-                    query = "INSERT INTO colums (id_table, name, type, id_mask, unique, not_null, primary_key) VALUES (?, ?, ?, ?, ?, ?, ?)"
+                    query = "INSERT INTO colums (id_table, name, type, id_mask, is_unique, not_null, primary_key) VALUES (?, ?, ?, ?, ?, ?, ?)"
                     if !db.executeUpdate(query, withArgumentsIn: [tableId, table2name, "id", "NULL", "false", "false", "false"]) {
                         rollback.pointee = true
                         return
                     }
                 }
                 
-                query = "CREATE TABLE \(String(dbId) + name) ( id integer PRIMARY KEY"
+                query = "CREATE TABLE \(String(dbId) + name) (id integer PRIMARY KEY"
                 for column in columns {
                     query += ","
                     query += " " + column.name
                     query += " " + String(column.type.rawValue)
                     query += column.not_null ? " NOT NULL" : ""
-                    query += column.unique ? " UNIQUE" : ""
+                    query += column.isUnique ? " UNIQUE" : ""
                 }
                 
                 for relation in relations {
