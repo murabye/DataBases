@@ -12,10 +12,8 @@ struct RelationModel {
     enum relationType:Int32 {
         case oneToOne = 1
         case oneToMore = 2
-        case MoreToMore = 3
         case oneToOneOrNull = 4
         case oneToMoreOrNull = 5
-        case MoreToMoreOrNull = 6
     }
     
     // name of распределительная table: system_table1_table2
