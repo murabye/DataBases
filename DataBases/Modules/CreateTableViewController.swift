@@ -17,7 +17,7 @@ class CreateTableViewController: UITableViewController {
     @IBOutlet weak var notNullSwitch: UISwitch!
     @IBOutlet weak var keySwitch: UISwitch!
     
-    var columnArray: [(String, columnType)] = []
+    var columnArray: [columnModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +31,6 @@ class CreateTableViewController: UITableViewController {
     //MARK: - Actions
     
     @IBAction func uniqueSwitchAction(_ sender: Any) {
-        
     }
     @IBAction func notNullSwitchAction(_ sender: Any) {
     }
@@ -41,11 +40,19 @@ class CreateTableViewController: UITableViewController {
     }
     
     @IBAction func createColumnAction(_ sender: Any) {
+        if dataTypeSegment.selectedSegmentIndex == 4 {
+            
+        }
+        
     }
     @IBAction func createTableAction(_ sender: Any) {
     }
     
     // MARK: - Helpers
+    
+    func createColumnWithTableId(tableID: Int32){
+        
+    }
     
     func getNameAt(columnType: columnType) -> String{
         switch columnType {
@@ -77,8 +84,8 @@ class CreateTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell.init(style: .value1, reuseIdentifier: nil)
-        cell.textLabel?.text = columnArray[indexPath.row].0
-        cell.detailTextLabel?.text = getNameAt(columnType: columnArray[indexPath.row].1)
+        cell.textLabel?.text = columnArray[indexPath.row].name
+        cell.detailTextLabel?.text = getNameAt(columnType: columnArray[indexPath.row].type)
         return cell
     }
     
@@ -118,14 +125,10 @@ class CreateTableViewController: UITableViewController {
     }
     */
 
-    /*
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
     }
-    */
 
 }

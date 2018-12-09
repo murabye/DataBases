@@ -14,19 +14,19 @@ final class DetailTableTableViewModel: BaseTableViewModel {
     
     //MARK: DataSource
     override func number(ofRowsInSection section: Int, tableView: UITableView) -> Int {
-        return
+        return 1
     }
     override func cell(forRow row: Int, section: Int, tableView: UITableView) -> UITableViewCell {
-        return
+        return UITableViewCell.init(style: .default, reuseIdentifier: nil)
     }
     override func number(ofSections tableView: UITableView) -> Int {
-        return
+        return 1
     }
     //MARK: Delegate
     override func did(selectRow row: Int, section: Int, tableView: UITableView) {
         
     }
     override func height(forRow row: Int, section: Int, tableView: UITableView) -> CGFloat {
-        return 
+        return 44
     }
 }
