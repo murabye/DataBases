@@ -295,6 +295,10 @@ class SqlManager {
     }
     
     //MARK:- relations :3
+    func getRelation() {
+        // tableName
+        // table2name + "_id"
+    }
     
     //MARK:- help
     private func convertOpt(_ optional:Any?) -> String {
