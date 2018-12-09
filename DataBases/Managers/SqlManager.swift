@@ -296,7 +296,20 @@ class SqlManager {
         }
     }
     
-    //MARK:- data
+    func getColumnList(forTableId idTable: Int32) -> [(type: String, name: String)] {
+        let queryGetColumns = "SELECT * FROM colums WHERE id_table = ?"
+        let resultSetColumns: FMResultSet? = db!.executeQuery(queryGetColumns, withArgumentsIn: [idTable])
+        var resultColumns:[(type: String, name: String)] = []
+        while (resultSetColumns!.next()) {
+            let name = resultSetColumns?.string(forColumn: "name")
+            let type = resultSetColumns?.string(forColumn: "type")
+            resultColumns.append((type!, name!))
+        }
+        
+        return resultColumns
+    }
+    
+    //MARK:- related data
     func getRelateData(ofTableWithTableId id:Int32, forDataId dataId: Int32, forColumnName columnName: String) -> [[(data: Any?, type: ColumnType, columnName: String)]] {
         
         let queryRelation = "SELECT (id_table1, id_table2) FROM relations WHERE name = ?"
@@ -366,6 +379,13 @@ class SqlManager {
         return resultData
     }
 
+    //MARK:- delete data
+    func deleteData(fromTableWithId: Int32, dataId: Int32) {
+        let queryTableName = "SELECT name FROM tables WHERE id = ?"
+        
+        
+        let queryDeleteData = "DELETE FROM ? WHERE id = ?"
+    }
     
     //MARK:- help
     private func convertOpt(_ optional:Any?) -> String {
