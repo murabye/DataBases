@@ -10,7 +10,7 @@ import UIKit
 
 class CreateTableStringViewController: UITableViewController {
 
-    var modelsList: [ColumnModel] = [] //= SqlManager.shared.get
+    var modelsList: [ColumnModel] = SqlManager.shared.getColumnList(forTableId: SqlManager.shared.selectedTableId)
     
     override func viewDidLoad() {
         super.viewDidLoad()
