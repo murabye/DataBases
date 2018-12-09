@@ -196,6 +196,9 @@ class SqlManager {
     }
     
     //MARK:- user data
+    
+    // relations!!!
+    
     func getData(ofTable tableName:String, withId id:Int32) -> [(String, String)] {
         let queryGetColumns = "SELECT * FROM colums WHERE id_table = ?"
         let resultSetColumns: FMResultSet? = db!.executeQuery(queryGetColumns, withArgumentsIn: [id])
@@ -227,7 +230,6 @@ class SqlManager {
         // data - type
         var resultData:[(String, String)] = []
         
-        
         while (resultSetColumns!.next()) {
             for column in resultColumns {
                 let userCellValue = resultSetData?.string(forColumn: column.0)
@@ -240,11 +242,41 @@ class SqlManager {
         return resultData
     }
     
-    func addData(toTable: String, withId: Int32, data: Dictionary<String, Any>) {
+    func addData(toTable name: String, withId id: Int32, data: Dictionary<String, Any>) {
         let queue:FMDatabaseQueue? = FMDatabaseQueue(path: self.dbFilePath)
         
         queue?.inTransaction { db, rollback in
+            let tableName = String(connectedDataBaseId) + name
+            var addDataQuery = "INSERT INTO \(tableName) " //({column}) VALUES ({value})
+            var keys = ""
+            var values = ""
             
+            for column in data {
+                keys = keys + column.key + ", "
+                
+                switch column.value {
+                    case is String:
+                        values = values + "\"" + (column.value as! String) + "\", "
+                    case is Int32:
+                        values = values + String(column.value as! Int32) + ", "
+                    case is Bool:
+                        values = values + ((column.value as! Bool) ? "255" : "0") + ", "
+                    default:
+                        break
+                }
+            }
+            
+            let keysRange = keys.index(keys.endIndex, offsetBy: -2)..<keys.endIndex
+            let valuesRange = values.index(values.endIndex, offsetBy: -2)..<values.endIndex
+            keys.removeSubrange(keysRange)
+            values.removeSubrange(valuesRange)
+
+            addDataQuery = addDataQuery + "(" + keys + ") VALUES (" + values + ")"
+            
+            if !db.executeUpdate(addDataQuery, withArgumentsIn: []) {
+                rollback.pointee = true
+                return
+            }
         }
     }
     

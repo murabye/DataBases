@@ -9,6 +9,6 @@
 import UIKit
 
 struct tableModel {
-    let name:           String  = ""
-    let id_database:    Int32   = 0
+    let name: String  = ""
+    let id_database: Int32   = 0
 }
