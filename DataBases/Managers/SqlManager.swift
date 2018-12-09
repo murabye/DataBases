@@ -327,7 +327,7 @@ class SqlManager {
         let queryTable2Name = "SELECT name FROM tables WHERE id = ?"
         let resultSetTabName: FMResultSet? = db!.executeQuery(queryTable2Name, withArgumentsIn: [id2!])
         resultSetTabName!.next()
-        let table2name = resultSetTabName?.string(forColumn: "name")
+        let table2name = resultSetTabName?.string(forColumn: "name")!
         
         let queryGetColumns = "SELECT * FROM colums WHERE id_table = ?"
         let resultSetColumns: FMResultSet? = db!.executeQuery(queryGetColumns, withArgumentsIn: [id2!])
@@ -390,7 +390,32 @@ class SqlManager {
         let queryDeleteData = "DELETE FROM ? WHERE id = ?"
         let deleteSuccessful = db!.executeUpdate(queryDeleteData, withArgumentsIn: [table2fullName, dataId])
         if !deleteSuccessful {
-            print("delete failed: \(db?.lastErrorMessage())")
+            print("delete failed: \(String(describing: db?.lastErrorMessage()))")
+        }
+    }
+    
+    func deleteTable(withId tableId: Int32) {
+        let queue:FMDatabaseQueue? = FMDatabaseQueue(path: self.dbFilePath)
+        
+        queue?.inTransaction { db, rollback in
+
+            let queryTableName = "SELECT name FROM tables WHERE id = ?"
+            let resultSetTabName: FMResultSet? = db.executeQuery(queryTableName, withArgumentsIn: [tableId])
+            resultSetTabName!.next()
+            let tableName = resultSetTabName?.string(forColumn: "name")
+            let tableFullName = String(connectedDataBaseId) + tableName!
+
+            let queryDeleteFromTables = "DELETE FROM tables WHERE id = ?"
+            if !db.executeUpdate(queryDeleteFromTables, withArgumentsIn: [tableId]) {
+                rollback.pointee = true
+                return
+            }
+
+            let queryDelete = "DROP TABLE IF EXISTS \(tableFullName)"
+            if !db.executeUpdate(queryDelete, withArgumentsIn: []) {
+                rollback.pointee = true
+                return
+            }
         }
     }
     
