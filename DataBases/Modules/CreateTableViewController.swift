@@ -41,7 +41,7 @@ class CreateTableViewController: UITableViewController {
     
     @IBAction func createColumnAction(_ sender: Any) {
         if dataTypeSegment.selectedSegmentIndex == 3 {
-           // self.view
+            self.performSegue(withIdentifier: "showAllTables", sender: nil)
         }
         
     }

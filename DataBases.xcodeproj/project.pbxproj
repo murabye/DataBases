@@ -119,7 +119,7 @@
 		6B59BABD21BC5301004C3043 /* DetailTableInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableInteractor.swift; sourceTree = "<group>"; };
 		6B59BABE21BC5301004C3043 /* DetailTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableView.swift; sourceTree = "<group>"; };
 		6B59BABF21BC5301004C3043 /* DetailTableTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableTableViewModel.swift; sourceTree = "<group>"; };
-		6B59BACA21BC5A62004C3043 /* CreateTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CreateTableViewController.swift; path = /Users/wolfram/Documents/DataBases/DataBases/Modules/CreateTableViewController.swift; sourceTree = "<absolute>"; };
+		6B59BACA21BC5A62004C3043 /* CreateTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTableViewController.swift; sourceTree = "<group>"; };
 		6B59BACC21BC7493004C3043 /* CreateTableDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTableDetailViewController.swift; sourceTree = "<group>"; };
 		6BA6E90C219355910042EE55 /* dataCellsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dataCellsProtocol.swift; sourceTree = "<group>"; };
 		6BA6E90E219358390042EE55 /* boolCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = boolCell.swift; sourceTree = "<group>"; };
