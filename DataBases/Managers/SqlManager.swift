@@ -385,9 +385,10 @@ class SqlManager {
         let resultSetTabName: FMResultSet? = db!.executeQuery(queryTableName, withArgumentsIn: [tableId])
         resultSetTabName!.next()
         let table2name = resultSetTabName?.string(forColumn: "name")
-
+        let table2fullName = String(connectedDataBaseId)+table2name!
+        
         let queryDeleteData = "DELETE FROM ? WHERE id = ?"
-        let deleteSuccessful = db!.executeUpdate(queryDeleteData, withArgumentsIn: [table2name!, dataId])
+        let deleteSuccessful = db!.executeUpdate(queryDeleteData, withArgumentsIn: [table2fullName, dataId])
         if !deleteSuccessful {
             print("delete failed: \(db?.lastErrorMessage())")
         }
