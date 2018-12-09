@@ -127,15 +127,15 @@ class SqlManager {
             for column in columns {
                 var maskId:Int64? = nil
                 if let mask = column.mask {                    
-                    query = "INSERT INTO masks (min_value, max_value, max_length) VALUES (?, ?, ?)"
-                    if !db.executeUpdate(query, withArgumentsIn: [convertOpt(mask.min_value), convertOpt(mask.min_value), convertOpt(mask.max_length)]) {
+                    query = "INSERT INTO masks (min_value, max_value, max_length) VALUES (\(convertOpt(mask.min_value)), \(convertOpt(mask.min_value)), \(convertOpt(mask.max_length))"
+                    if !db.executeUpdate(query, withArgumentsIn: []) {
                         rollback.pointee = true
                         return
                     }
                     maskId = db.lastInsertRowId
                 }
-                query = "INSERT INTO colums (id_table, name, type, id_mask, unique, not_null, primary_key) VALUES (?, ?, ?, ?, ?, ?, ?)"
-                if !db.executeUpdate(query, withArgumentsIn: [tableId, column.name, column.type, convertOpt(maskId), column.unique, column.not_null, column.primary_key]) {
+                query = "INSERT INTO colums (id_table, name, type, id_mask, unique, not_null, primary_key) VALUES (\(tableId), '\(column.name)', \(column.type), \(convertOpt(maskId)), \(column.unique), \(column.not_null), \(column.primary_key))"
+                if !db.executeUpdate(query, withArgumentsIn: []) {
                     rollback.pointee = true
                     return
                 }
@@ -153,7 +153,7 @@ class SqlManager {
                     let table2name:String = resultSet!.string(forColumn: "name")!
 
                     query = "INSERT INTO colums (id_table, name, type, id_mask, unique, not_null, primary_key) VALUES (?, ?, ?, ?, ?, ?, ?)"
-                    if !db.executeUpdate(query, withArgumentsIn: [tableId, table2name, "id", "NULL", "false", relation.relation_type < 4, "false"]) {
+                    if !db.executeUpdate(query, withArgumentsIn: [tableId, table2name, "id", "NULL", "false", "false", "false"]) {
                         rollback.pointee = true
                         return
                     }
@@ -297,8 +297,20 @@ class SqlManager {
     }
     
     //MARK:- relations :3
-    func getRelation(forTableWithId: Int, columnName: String, dataId: Int) {
+    func getRelation(forTableWithId tableId: Int, columnName: String, dataId: Int) {
         //system_table1_table2
+        let queryRelation = "SELECT * FROM relations WHERE name == columnName"
+        
+        
+        
+        /*
+         отсюда берем id_table2
+         получаем имена table1, table2
+         если тип связи не подразумевает много
+         
+         
+         
+         */
         
     }
     
