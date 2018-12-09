@@ -380,11 +380,17 @@ class SqlManager {
     }
 
     //MARK:- delete data
-    func deleteData(fromTableWithId: Int32, dataId: Int32) {
+    func deleteData(fromTableWithId tableId: Int32, dataId: Int32) {
         let queryTableName = "SELECT name FROM tables WHERE id = ?"
-        
-        
+        let resultSetTabName: FMResultSet? = db!.executeQuery(queryTableName, withArgumentsIn: [tableId])
+        resultSetTabName!.next()
+        let table2name = resultSetTabName?.string(forColumn: "name")
+
         let queryDeleteData = "DELETE FROM ? WHERE id = ?"
+        let deleteSuccessful = db!.executeUpdate(queryDeleteData, withArgumentsIn: [table2name!, dataId])
+        if !deleteSuccessful {
+            print("delete failed: \(db?.lastErrorMessage())")
+        }
     }
     
     //MARK:- help
