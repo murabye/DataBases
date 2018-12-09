@@ -23,5 +23,6 @@ struct relationModel {
     let id_table2: Int32 = 0
     // TODO: fix in db
     let relation_type: Int32 = 0
+    let name: String = ""
     //let name: String = ""
 }
