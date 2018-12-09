@@ -13,15 +13,15 @@ class textCell: UITableViewCell, dataCellsProtocol, UITextFieldDelegate {
     @IBOutlet weak var textField: UITextField!
     var maxLenght: Int32 = Int32.max
     
-    func getType() -> columnType {
-        return columnType.text
+    func getType() -> ColumnType {
+        return ColumnType.text
     }
     
-    func getData() -> (data: String, type: columnType) {
+    func getData() -> (data: String, type: ColumnType) {
         return (textField.text!, getType())
     }
     
-    func set(data: String, type: columnType) {
+    func set(data: String, type: ColumnType) {
         textField.text = data
     }
     
@@ -29,7 +29,7 @@ class textCell: UITableViewCell, dataCellsProtocol, UITextFieldDelegate {
         textField.isUserInteractionEnabled = interactionEnabled
     }
     
-    func set(mask: maskModel) {
+    func set(mask: MaskModel) {
         maxLenght = mask.max_length!
     }
     

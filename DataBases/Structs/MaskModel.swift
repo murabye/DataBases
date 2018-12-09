@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct maskModel {
+struct MaskModel {
     let min_value: Int32? = 0
     let max_value: Int32? = 0
     // TODO: удалить в базе данных let string_mask: String? = ""

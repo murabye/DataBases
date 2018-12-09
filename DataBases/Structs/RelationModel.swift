@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct relationModel {
+struct RelationModel {
     enum relationType:Int32 {
         case oneToOne = 1
         case oneToMore = 2

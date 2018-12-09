@@ -13,15 +13,15 @@ class buttonCell: UITableViewCell, dataCellsProtocol {
     @IBOutlet weak var button: UIButton!
     var handler: (() -> ())?
     
-    func getType() -> columnType {
-        return columnType.id
+    func getType() -> ColumnType {
+        return ColumnType.id
     }
     
-    func getData() -> (data: String, type: columnType) {
+    func getData() -> (data: String, type: ColumnType) {
         return ("", getType())
     }
     
-    func set(data: String, type: columnType) {
+    func set(data: String, type: ColumnType) {
         button.setTitle(data, for: .normal)
         button.setTitle(data, for: .focused)
         button.setTitle(data, for: .highlighted)
@@ -32,7 +32,7 @@ class buttonCell: UITableViewCell, dataCellsProtocol {
         button.isUserInteractionEnabled = interactionEnabled
     }
     
-    func set(mask: maskModel) {
+    func set(mask: MaskModel) {
     }
     
     @IBAction func buttonClick(_ sender: Any) {

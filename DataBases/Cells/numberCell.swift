@@ -20,15 +20,15 @@ class numberCell: UITableViewCell, dataCellsProtocol, UITextFieldDelegate {
         numberField.text = String(stepper.value) 
     }
     
-    func getType() -> columnType {
-        return columnType.integer
+    func getType() -> ColumnType {
+        return ColumnType.integer
     }
     
-    func getData() -> (data: String, type: columnType) {
+    func getData() -> (data: String, type: ColumnType) {
         return (numberField.text!, getType())
     }
     
-    func set(data: String, type: columnType) {
+    func set(data: String, type: ColumnType) {
         numberField.text = data
         stepper.value = Double(data)!
     }
@@ -37,7 +37,7 @@ class numberCell: UITableViewCell, dataCellsProtocol, UITextFieldDelegate {
         numberField.isUserInteractionEnabled = interactionEnabled
     }
     
-    func set(mask: maskModel) {
+    func set(mask: MaskModel) {
         maxValue = mask.max_value!
         stepper.maximumValue = Double(mask.max_value!)
         minValue = mask.min_value!

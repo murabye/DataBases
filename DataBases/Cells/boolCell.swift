@@ -13,18 +13,18 @@ class boolCell: UITableViewCell, dataCellsProtocol {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var switchView: UISwitch!
     
-    func getType() -> columnType {
-        return columnType.bool
+    func getType() -> ColumnType {
+        return ColumnType.bool
     }
     
-    func getData() -> (data: String, type: columnType) {
+    func getData() -> (data: String, type: ColumnType) {
         if switchView.isOn {
             return ("1", getType())
         }
         return ("0", getType())
     }
     
-    func set(data: String, type: columnType) {
+    func set(data: String, type: ColumnType) {
         if type == getType() {
             if data == "1"  {
                 switchView.isOn = true
@@ -38,7 +38,7 @@ class boolCell: UITableViewCell, dataCellsProtocol {
         switchView.isUserInteractionEnabled = interactionEnabled
     }
     
-    func set(mask: maskModel) {
+    func set(mask: MaskModel) {
     }
     
 

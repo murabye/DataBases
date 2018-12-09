@@ -9,10 +9,10 @@
 import UIKit
 
 protocol dataCellsProtocol {
-    func getType() -> columnType
-    func getData() -> (data: String, type: columnType)
+    func getType() -> ColumnType
+    func getData() -> (data: String, type: ColumnType)
     
-    func set(data: String, type: columnType)
+    func set(data: String, type: ColumnType)
     func set(interactionEnabled: Bool) // = false
-    func set(mask: maskModel)
+    func set(mask: MaskModel)
 }

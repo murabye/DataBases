@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct tableModel {
+struct TableModel {
     let name: String  = ""
     let id_database: Int32   = 0
 }

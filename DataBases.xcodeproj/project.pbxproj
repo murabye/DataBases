@@ -9,11 +9,11 @@
 /* Begin PBXBuildFile section */
 		174D7ACE57F863F600724489 /* Pods_DataBases.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 909E4CEE398FD214D34C20FE /* Pods_DataBases.framework */; };
 		5D4BFF422191960D004199F8 /* SqlManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4BFF412191960D004199F8 /* SqlManager.swift */; };
-		5D4BFF452191E32C004199F8 /* dbModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4BFF442191E32C004199F8 /* dbModel.swift */; };
-		5D4BFF492191E3E7004199F8 /* tableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4BFF482191E3E7004199F8 /* tableModel.swift */; };
+		5D4BFF452191E32C004199F8 /* DbModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4BFF442191E32C004199F8 /* DbModel.swift */; };
+		5D4BFF492191E3E7004199F8 /* TableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4BFF482191E3E7004199F8 /* TableModel.swift */; };
 		5D4BFF4B2191E46A004199F8 /* ColumnModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4BFF4A2191E46A004199F8 /* ColumnModel.swift */; };
-		5D4BFF4D2191E699004199F8 /* relationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4BFF4C2191E699004199F8 /* relationModel.swift */; };
-		5D4BFF4F2191E6FB004199F8 /* maskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4BFF4E2191E6FB004199F8 /* maskModel.swift */; };
+		5D4BFF4D2191E699004199F8 /* RelationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4BFF4C2191E699004199F8 /* RelationModel.swift */; };
+		5D4BFF4F2191E6FB004199F8 /* MaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4BFF4E2191E6FB004199F8 /* MaskModel.swift */; };
 		5DB67BCB21906181007F6522 /* BasePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB67BC021906180007F6522 /* BasePresenter.swift */; };
 		5DB67BCC21906181007F6522 /* String + SafeString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB67BC121906180007F6522 /* String + SafeString.swift */; };
 		5DB67BCD21906181007F6522 /* ViperComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB67BC221906180007F6522 /* ViperComponent.swift */; };
@@ -70,11 +70,11 @@
 		4B12A5C3B14F540EB23AC78F /* Pods-DataBases.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DataBases.release.xcconfig"; path = "Pods/Target Support Files/Pods-DataBases/Pods-DataBases.release.xcconfig"; sourceTree = "<group>"; };
 		5D4BFF4021918BC0004199F8 /* db.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = db.sqlite; sourceTree = "<group>"; };
 		5D4BFF412191960D004199F8 /* SqlManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SqlManager.swift; sourceTree = "<group>"; };
-		5D4BFF442191E32C004199F8 /* dbModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dbModel.swift; sourceTree = "<group>"; };
-		5D4BFF482191E3E7004199F8 /* tableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tableModel.swift; sourceTree = "<group>"; };
+		5D4BFF442191E32C004199F8 /* DbModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DbModel.swift; sourceTree = "<group>"; };
+		5D4BFF482191E3E7004199F8 /* TableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableModel.swift; sourceTree = "<group>"; };
 		5D4BFF4A2191E46A004199F8 /* ColumnModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnModel.swift; sourceTree = "<group>"; };
-		5D4BFF4C2191E699004199F8 /* relationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = relationModel.swift; sourceTree = "<group>"; };
-		5D4BFF4E2191E6FB004199F8 /* maskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = maskModel.swift; sourceTree = "<group>"; };
+		5D4BFF4C2191E699004199F8 /* RelationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelationModel.swift; sourceTree = "<group>"; };
+		5D4BFF4E2191E6FB004199F8 /* MaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskModel.swift; sourceTree = "<group>"; };
 		5DB67BC021906180007F6522 /* BasePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasePresenter.swift; sourceTree = "<group>"; };
 		5DB67BC121906180007F6522 /* String + SafeString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String + SafeString.swift"; sourceTree = "<group>"; };
 		5DB67BC221906180007F6522 /* ViperComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViperComponent.swift; sourceTree = "<group>"; };
@@ -158,11 +158,11 @@
 		5D4BFF432191E313004199F8 /* Structs */ = {
 			isa = PBXGroup;
 			children = (
-				5D4BFF442191E32C004199F8 /* dbModel.swift */,
-				5D4BFF482191E3E7004199F8 /* tableModel.swift */,
+				5D4BFF442191E32C004199F8 /* DbModel.swift */,
+				5D4BFF482191E3E7004199F8 /* TableModel.swift */,
 				5D4BFF4A2191E46A004199F8 /* ColumnModel.swift */,
-				5D4BFF4C2191E699004199F8 /* relationModel.swift */,
-				5D4BFF4E2191E6FB004199F8 /* maskModel.swift */,
+				5D4BFF4C2191E699004199F8 /* RelationModel.swift */,
+				5D4BFF4E2191E6FB004199F8 /* MaskModel.swift */,
 			);
 			path = Structs;
 			sourceTree = "<group>";
@@ -433,7 +433,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5D4BFF4F2191E6FB004199F8 /* maskModel.swift in Sources */,
+				5D4BFF4F2191E6FB004199F8 /* MaskModel.swift in Sources */,
 				5DB67BCE21906181007F6522 /* ViperModule.swift in Sources */,
 				5DB67BCC21906181007F6522 /* String + SafeString.swift in Sources */,
 				6B59BAC221BC5301004C3043 /* DetailTableModule.swift in Sources */,
@@ -446,7 +446,7 @@
 				5DD22765218CB29800795D3B /* ChooseDbScreenView.swift in Sources */,
 				5DD2275E218CB29800795D3B /* ChooseDbScreenTableViewModel.swift in Sources */,
 				5DB67BD521906181007F6522 /* BaseModule.swift in Sources */,
-				5D4BFF492191E3E7004199F8 /* tableModel.swift in Sources */,
+				5D4BFF492191E3E7004199F8 /* TableModel.swift in Sources */,
 				5DB67BD021906181007F6522 /* BaseRouter.swift in Sources */,
 				5DB67C24219067A6007F6522 /* ChooseTableInteractor.swift in Sources */,
 				6B59BAC721BC5301004C3043 /* DetailTableTableViewModel.swift in Sources */,
@@ -472,10 +472,10 @@
 				6B59BACB21BC5A63004C3043 /* CreateTableViewController.swift in Sources */,
 				6B59BACD21BC7493004C3043 /* CreateTableDetailViewController.swift in Sources */,
 				6B59BAC121BC5301004C3043 /* DetailTableModuleProtocols.swift in Sources */,
-				5D4BFF452191E32C004199F8 /* dbModel.swift in Sources */,
+				5D4BFF452191E32C004199F8 /* DbModel.swift in Sources */,
 				5DB67BCD21906181007F6522 /* ViperComponent.swift in Sources */,
 				6B59BAC521BC5301004C3043 /* DetailTableInteractor.swift in Sources */,
-				5D4BFF4D2191E699004199F8 /* relationModel.swift in Sources */,
+				5D4BFF4D2191E699004199F8 /* RelationModel.swift in Sources */,
 				6BA6E913219358930042EE55 /* textCell.swift in Sources */,
 				5DB67C20219067A6007F6522 /* ChooseTableModuleProtocols.swift in Sources */,
 				5DB67BCB21906181007F6522 /* BasePresenter.swift in Sources */,

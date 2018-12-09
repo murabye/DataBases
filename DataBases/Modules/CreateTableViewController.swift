@@ -18,7 +18,7 @@ class CreateTableViewController: UITableViewController {
     @IBOutlet weak var keySwitch: UISwitch!
     
     var columnArray: [ColumnModel] = []
-    var relationArray: [relationModel] = []
+    var relationArray: [RelationModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,7 +47,7 @@ class CreateTableViewController: UITableViewController {
         guard let name = nameField.text else {
             return
         }
-        let columnModel = columnModel.init(id_table: 0,
+        let columnModel = ColumnModel.init(id_table: 0,
                                  name: name,
                                  type: getTypeAt(segmentSelectedIndex: dataTypeSegment.selectedSegmentIndex),
                                  mask: nil,
@@ -66,8 +66,8 @@ class CreateTableViewController: UITableViewController {
         
     }
     
-    func getNameAt(columnType: columnType) -> String{
-        switch columnType {
+    func getNameAt(ColumnType: ColumnType) -> String{
+        switch ColumnType {
         case .bool:
             return "Да/Нет"
         case .id:
@@ -78,7 +78,7 @@ class CreateTableViewController: UITableViewController {
             return "Текст"
         }
     }
-    func getTypeAt(segmentSelectedIndex: Int) -> columnType{
+    func getTypeAt(segmentSelectedIndex: Int) -> ColumnType{
         switch segmentSelectedIndex {
         case 0:
             return .text
@@ -110,10 +110,10 @@ class CreateTableViewController: UITableViewController {
         let cell = UITableViewCell.init(style: .value1, reuseIdentifier: nil)
         if (indexPath.section == 0){
             cell.textLabel?.text = columnArray[indexPath.row].name
-            cell.detailTextLabel?.text = getNameAt(columnType: columnArray[indexPath.row].type)
+            cell.detailTextLabel?.text = getNameAt(ColumnType: columnArray[indexPath.row].type)
         } else {
             cell.textLabel?.text = relationArray[indexPath.row].name
-            cell.detailTextLabel?.text = getNameAt(columnType: .id)
+            cell.detailTextLabel?.text = getNameAt(ColumnType: .id)
         }
         return cell
     }

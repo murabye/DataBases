@@ -105,7 +105,7 @@ class SqlManager {
         return result
     }
     
-    func addTable(_ name:String, toDb dbId:Int32, withColumns columns:[ColumnModel], andRelations relations:[relationModel]) {
+    func addTable(_ name:String, toDb dbId:Int32, withColumns columns:[ColumnModel], andRelations relations:[RelationModel]) {
         
         let currentTables = getTableList(forDbId: dbId)
         if currentTables.contains(where: { (arg0:(Int32, String)) -> Bool in
@@ -207,7 +207,7 @@ class SqlManager {
     
     //MARK:- user data
     
-    func getData(ofTable tableName:String, withId id:Int32) -> [[(data: Any?, type: columnType, columnName: String)]] {
+    func getData(ofTable tableName:String, withId id:Int32) -> [[(data: Any?, type: ColumnType, columnName: String)]] {
         let queryGetColumns = "SELECT * FROM colums WHERE id_table = ?"
         let resultSetColumns: FMResultSet? = db!.executeQuery(queryGetColumns, withArgumentsIn: [id])
         var resultColumns:[(type: String, name: String)] = []
@@ -225,13 +225,13 @@ class SqlManager {
         queryForGetData = queryForGetData + ") FROM ?"
         let resultSetData: FMResultSet? = db!.executeQuery(queryForGetData, withArgumentsIn: [String(connectedDataBaseId) + tableName])
         
-        var resultData:[[(data: Any?, type: columnType, columnName: String)]] = []
+        var resultData:[[(data: Any?, type: ColumnType, columnName: String)]] = []
         while resultSetData!.next() {
-            var tableStr: [(data: Any?, type: columnType, columnName: String)] = []
+            var tableStr: [(data: Any?, type: ColumnType, columnName: String)] = []
             
             for column in resultColumns {
                 let typ = column.type
-                let realType = columnType(rawValue: typ)
+                let realType = ColumnType(rawValue: typ)
                 let nam = column.name
                 var data: Any? = nil
                 
@@ -251,7 +251,7 @@ class SqlManager {
                 tableStr.append((data: data, type: realType!, columnName: nam))
             }
             
-            tableStr.append((data: resultSetData?.int(forColumn: "id"), type: columnType.integer, columnName: "id"))
+            tableStr.append((data: resultSetData?.int(forColumn: "id"), type: ColumnType.integer, columnName: "id"))
             resultData.append(tableStr)
         }
         

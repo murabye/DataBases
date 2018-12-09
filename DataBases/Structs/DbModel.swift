@@ -8,6 +8,6 @@
 
 import UIKit
 
-struct dbModel {
+struct DbModel {
     let name:String = ""
 }
