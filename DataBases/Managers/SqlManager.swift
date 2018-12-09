@@ -207,7 +207,12 @@ class SqlManager {
     
     //MARK:- user data
     
-    func getData(ofTable tableName:String, withId id:Int32) -> [[(data: Any?, type: ColumnType, columnName: String)]] {
+    func getData(withId id:Int32) -> [[(data: Any?, type: ColumnType, columnName: String)]] {
+        let queryTableName = "SELECT name FROM tables WHERE id = ?"
+        let resultSetTabName: FMResultSet? = db!.executeQuery(queryTableName, withArgumentsIn: [id])
+        resultSetTabName!.next()
+        let tableName = resultSetTabName?.string(forColumn: "name")!
+
         let queryGetColumns = "SELECT * FROM colums WHERE id_table = ?"
         let resultSetColumns: FMResultSet? = db!.executeQuery(queryGetColumns, withArgumentsIn: [id])
         var resultColumns:[(type: String, name: String)] = []
@@ -223,7 +228,7 @@ class SqlManager {
         }
         
         queryForGetData = queryForGetData + ") FROM ?"
-        let resultSetData: FMResultSet? = db!.executeQuery(queryForGetData, withArgumentsIn: [String(connectedDataBaseId) + tableName])
+        let resultSetData: FMResultSet? = db!.executeQuery(queryForGetData, withArgumentsIn: [String(connectedDataBaseId) + tableName!])
         
         var resultData:[[(data: Any?, type: ColumnType, columnName: String)]] = []
         while resultSetData!.next() {
