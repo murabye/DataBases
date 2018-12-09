@@ -39,8 +39,13 @@ final class ChooseDbScreenTableViewModel: BaseTableViewModel {
     
     //MARK: Delegate
     override func did(selectRow row: Int, section: Int, tableView: UITableView) {
+        presenter.selectTable(index: row)
     }
     override func height(forRow row: Int, section: Int, tableView: UITableView) -> CGFloat {
         return 44
+    }
+    
+    var presenter: ChooseDbScreenPresenterApi {
+        return self._module._presenter as! ChooseDbScreenPresenterApi
     }
 }

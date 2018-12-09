@@ -10,6 +10,9 @@ import Foundation
 
 // MARK: - ChooseDbScreenPresenter Class
 final class ChooseDbScreenPresenter: BasePresenter {
+    override func viewHasLoaded() {
+        tableVM.databaseList = interactor.getDatabaseList()
+    }
 }
 
 // MARK: - ChooseDbScreenPresenter API
@@ -17,13 +20,9 @@ extension ChooseDbScreenPresenter: ChooseDbScreenPresenterApi {
     func createNewDb(name: String) {
         interactor.createNewDB(name: name)
     }
-    
-    func CreateDb() {
-        
-    }
-    
-    func SelectTable(index: Int) {
+    func selectTable(index: Int) {
         _ = router.gotoSelectTableModule()
+        interactor.selectDB(index: index)
     }
     
 }
