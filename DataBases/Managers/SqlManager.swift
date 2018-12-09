@@ -105,7 +105,7 @@ class SqlManager {
         return result
     }
     
-    func addTable(_ name:String, toDb dbId:Int32, withColumns columns:[columnModel], andRelations relations:[relationModel]) {
+    func addTable(_ name:String, toDb dbId:Int32, withColumns columns:[ColumnModel], andRelations relations:[relationModel]) {
         
         let currentTables = getTableList(forDbId: dbId)
         if currentTables.contains(where: { (arg0:(Int32, String)) -> Bool in
@@ -163,7 +163,7 @@ class SqlManager {
                 for column in columns {
                     query += ","
                     query += " " + column.name
-                    query += " " + column.type
+                    query += " " + String(column.type.rawValue)
                     query += column.not_null ? " NOT NULL" : ""
                     query += column.unique ? " UNIQUE" : ""
                 }
@@ -178,7 +178,7 @@ class SqlManager {
                     case 1,2,4,5:
                         if relation.id_table1 == tableId {
                             query += ", FOREIGN KEY ("
-                            query += table2name + "_id"
+                            query += relation.name
                             query += ") REFERENCES (id"
                             query += ") ON DELETE CASCADE ON UPDATE NO ACTION"
                         }
@@ -186,8 +186,8 @@ class SqlManager {
                         var queryForRasprTable = "CREATE TABLE system_"
                         queryForRasprTable += name + "_" + table2name
                         queryForRasprTable += "(id integer PRIMARY KEY, "
-                        queryForRasprTable += "FOREIGN KEY (table1_id) REFERENCES \(name) (id) ON DELETE CASCADE ON UPDATE NO ACTION, "
-                        queryForRasprTable += "FOREIGN KEY (table2_id) REFERENCES \(table2name) (id) ON DELETE CASCADE ON UPDATE NO ACTION)"
+                        queryForRasprTable += "FOREIGN KEY (table1_id) REFERENCES \(String(connectedDataBaseId)+name) (id) ON DELETE CASCADE ON UPDATE NO ACTION, "
+                        queryForRasprTable += "FOREIGN KEY (table2_id) REFERENCES \(String(connectedDataBaseId)+table2name) (id) ON DELETE CASCADE ON UPDATE NO ACTION)"
                         if !db.executeUpdate(queryForRasprTable, withArgumentsIn: []) {
                             rollback.pointee = true
                             return
@@ -243,13 +243,15 @@ class SqlManager {
                 case "bool":
                     data = resultSetData?.bool(forColumn: nam)
                 case "id":
-                    data = resultSetData?.int(forColumn: nam)
+                    data = nil
                 default:
                     data = nil
                 }
                 
                 tableStr.append((data: data, type: realType!, columnName: nam))
             }
+            
+            tableStr.append((data: resultSetData?.int(forColumn: "id"), type: columnType.integer, columnName: "id"))
             resultData.append(tableStr)
         }
         
@@ -295,9 +297,9 @@ class SqlManager {
     }
     
     //MARK:- relations :3
-    func getRelation() {
-        // tableName
-        // table2name + "_id"
+    func getRelation(forTableWithId: Int, columnName: String, dataId: Int) {
+        //system_table1_table2
+        
     }
     
     //MARK:- help

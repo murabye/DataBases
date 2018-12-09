@@ -17,7 +17,7 @@ class CreateTableViewController: UITableViewController {
     @IBOutlet weak var notNullSwitch: UISwitch!
     @IBOutlet weak var keySwitch: UISwitch!
     
-    var columnArray: [columnModel] = []
+    var columnArray: [ColumnModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
