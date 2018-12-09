@@ -15,7 +15,7 @@ class CreateTableStringViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        modelsList = SqlManager.shared.getColumnList(forTableId: SqlManager.shared.selectedTableId)
         for model in modelsList{
             let cell = tableView.dequeueReusableCell(withIdentifier: Helper.identifierCellAt(type: model.0)) as! dataCellsProtocol
             cell.set(data: model.1, type: model.0)
