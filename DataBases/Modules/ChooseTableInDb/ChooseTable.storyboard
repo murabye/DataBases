@@ -383,19 +383,19 @@
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
-                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="T2t-tx-xAe">
+                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="T2t-tx-xAe">
                                     <rect key="frame" x="310" y="144" width="51" height="31"/>
                                     <connections>
                                         <action selector="uniqueSwitchAction:" destination="9du-Sb-YJY" eventType="valueChanged" id="1YE-4y-0PS"/>
                                     </connections>
                                 </switch>
-                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BMc-5J-6Bl">
+                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="BMc-5J-6Bl">
                                     <rect key="frame" x="310" y="183" width="51" height="31"/>
                                     <connections>
                                         <action selector="notNullSwitchAction:" destination="9du-Sb-YJY" eventType="valueChanged" id="8R0-S2-mKp"/>
                                     </connections>
                                 </switch>
-                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fcV-WT-nEn">
+                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="fcV-WT-nEn">
                                     <rect key="frame" x="310" y="222" width="51" height="31"/>
                                     <connections>
                                         <action selector="keySwitchAction:" destination="9du-Sb-YJY" eventType="valueChanged" id="IzG-ff-aiZ"/>
