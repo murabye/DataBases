@@ -313,7 +313,7 @@ class SqlManager {
     func getRelateData(ofTableWithTableId id:Int32, forDataId dataId: Int32, forColumnName columnName: String) -> [[(data: Any?, type: ColumnType, columnName: String)]] {
         
         let queryRelation = "SELECT (id_table1, id_table2) FROM relations WHERE name = ?"
-            
+        
         let resultSetRel: FMResultSet? = db!.executeQuery(queryRelation, withArgumentsIn: [columnName])
         resultSetRel!.next()
         var id1 = resultSetRel?.int(forColumn: "id_table1")
@@ -337,7 +337,7 @@ class SqlManager {
             let type = resultSetColumns?.string(forColumn: "type")
             resultColumns.append((type!, name!))
         }
-
+        
         var queryForGetData = "SELECT (id"
         for column in resultColumns {
             queryForGetData = queryForGetData + ", " + column.name
@@ -377,6 +377,24 @@ class SqlManager {
         }
         
         return resultData
+    }
+    
+    
+    func getRelateTable(ofTableWithTableId id:Int32, forColumnName columnName: String) -> Int32 {
+        
+        let queryRelation = "SELECT (id_table1, id_table2) FROM relations WHERE name = ?"
+        
+        let resultSetRel: FMResultSet? = db!.executeQuery(queryRelation, withArgumentsIn: [columnName])
+        resultSetRel!.next()
+        var id1 = resultSetRel?.int(forColumn: "id_table1")
+        var id2 = resultSetRel?.int(forColumn: "id_table2")
+        
+        if id2 == Int32(id) {
+            id2 = id1
+            id1 = Int32(id)
+        }
+        
+        return id2!
     }
 
     //MARK:- delete data
