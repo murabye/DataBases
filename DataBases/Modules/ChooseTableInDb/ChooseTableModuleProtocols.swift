@@ -9,8 +9,7 @@
 
 //MARK: - ChooseTableRouter Protocol
 protocol ChooseTableRouterProtocol: BaseRouterProtocol {
-    func gotoTableModule() -> ChooseDbScreenModule
-    func gotoCreateTableModule() -> ChooseDbScreenModule
+    func gotoTableModule() -> TableViewController
 }
 
 //MARK: - ChooseTableView Protocol
@@ -20,7 +19,6 @@ protocol ChooseTableViewProtocol: BaseViewProtocol {
 
 //MARK: - ChooseTablePresenter Protocol
 protocol ChooseTablePresenterProtocol: BasePresenterProtocol {
-    func CreateTable()
     func SelectTable(index: Int)
     
     func openTable(atIndex: Int)
@@ -30,4 +28,5 @@ protocol ChooseTablePresenterProtocol: BasePresenterProtocol {
 protocol ChooseTableInteractorProtocol: BaseInteractorProtocol {
     func getTableList() -> [(Int32, String)]
     func open(table: Int)
+    func selectTable(index: Int)
 }

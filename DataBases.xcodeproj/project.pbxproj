@@ -47,6 +47,9 @@
 		5DD22788218CB98D00795D3B /* AppModulesViper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD2277D218CB98C00795D3B /* AppModulesViper.swift */; };
 		5DD22795218E3E4400795D3B /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DD22794218E3E4400795D3B /* libsqlite3.tbd */; };
 		5DD2279F218E4D3300795D3B /* FMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DD2279E218E4D3300795D3B /* FMDB.framework */; };
+		6B39C51321BD8670003106FC /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B39C51221BD8670003106FC /* TableViewController.swift */; };
+		6B39C51521BD8BE2003106FC /* CreateTableStringViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B39C51421BD8BE2003106FC /* CreateTableStringViewController.swift */; };
+		6B39C51721BD8EEF003106FC /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B39C51621BD8EEF003106FC /* Helper.swift */; };
 		6B59BAB621BC447A004C3043 /* db.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 5D4BFF4021918BC0004199F8 /* db.sqlite */; };
 		6B59BAC021BC5301004C3043 /* DetailTable.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B59BAB821BC5301004C3043 /* DetailTable.storyboard */; };
 		6B59BAC121BC5301004C3043 /* DetailTableModuleProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B59BAB921BC5301004C3043 /* DetailTableModuleProtocols.swift */; };
@@ -111,6 +114,9 @@
 		5DD22794218E3E4400795D3B /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		5DD22797218E3E7400795D3B /* FMDB-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FMDB-Bridging-Header.h"; sourceTree = "<group>"; };
 		5DD2279E218E4D3300795D3B /* FMDB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FMDB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6B39C51221BD8670003106FC /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		6B39C51421BD8BE2003106FC /* CreateTableStringViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTableStringViewController.swift; sourceTree = "<group>"; };
+		6B39C51621BD8EEF003106FC /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		6B59BAB821BC5301004C3043 /* DetailTable.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DetailTable.storyboard; sourceTree = "<group>"; };
 		6B59BAB921BC5301004C3043 /* DetailTableModuleProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableModuleProtocols.swift; sourceTree = "<group>"; };
 		6B59BABA21BC5301004C3043 /* DetailTableModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableModule.swift; sourceTree = "<group>"; };
@@ -220,6 +226,7 @@
 		5DD2272F218C55D700795D3B /* DataBases */ = {
 			isa = PBXGroup;
 			children = (
+				6B39C51621BD8EEF003106FC /* Helper.swift */,
 				6BA6E90B2193555E0042EE55 /* Cells */,
 				5D4BFF432191E313004199F8 /* Structs */,
 				5DB67BBF21906173007F6522 /* Viper */,
@@ -241,6 +248,8 @@
 				5DD2277D218CB98C00795D3B /* AppModulesViper.swift */,
 				6B59BACA21BC5A62004C3043 /* CreateTableViewController.swift */,
 				6B59BACC21BC7493004C3043 /* CreateTableDetailViewController.swift */,
+				6B39C51221BD8670003106FC /* TableViewController.swift */,
+				6B39C51421BD8BE2003106FC /* CreateTableStringViewController.swift */,
 				6B59BAB721BC52D9004C3043 /* DetailTable */,
 				5DB67BD6219063E2007F6522 /* ChooseTableInDb */,
 				5DD22755218CB27400795D3B /* ChooseDbScreen */,
@@ -441,6 +450,8 @@
 				5DB67BD321906181007F6522 /* BaseInteractor.swift in Sources */,
 				5DB67BD421906181007F6522 /* BaseTableView.swift in Sources */,
 				5DD22733218C55D700795D3B /* ViewController.swift in Sources */,
+				6B39C51721BD8EEF003106FC /* Helper.swift in Sources */,
+				6B39C51321BD8670003106FC /* TableViewController.swift in Sources */,
 				5DD22788218CB98D00795D3B /* AppModulesViper.swift in Sources */,
 				6B59BAC621BC5301004C3043 /* DetailTableView.swift in Sources */,
 				5DD22765218CB29800795D3B /* ChooseDbScreenView.swift in Sources */,
@@ -454,6 +465,7 @@
 				5DB67C23219067A6007F6522 /* ChooseTableRouter.swift in Sources */,
 				5DB67C25219067A6007F6522 /* ChooseTableView.swift in Sources */,
 				5DD22731218C55D700795D3B /* AppDelegate.swift in Sources */,
+				6B39C51521BD8BE2003106FC /* CreateTableStringViewController.swift in Sources */,
 				6BA6E917219358DF0042EE55 /* pickerCell.swift in Sources */,
 				5DD22764218CB29800795D3B /* ChooseDbScreenInteractor.swift in Sources */,
 				6BA6E915219358C70042EE55 /* numberCell.swift in Sources */,

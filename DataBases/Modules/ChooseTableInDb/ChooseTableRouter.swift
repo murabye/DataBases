@@ -15,14 +15,12 @@ final class ChooseTableRouter: BaseRouter {
 // MARK: - ChooseTableRouter Protocol
 extension ChooseTableRouter: ChooseTableRouterProtocol {
     // TODO
-    func gotoTableModule() -> ChooseDbScreenModule {
-        return ChooseDbScreenModule()
+    func gotoTableModule() -> TableViewController {
+        let sb = UIStoryboard.init(name: "ChooseTable", bundle: .main)
+        let vc = sb.instantiateViewController(withIdentifier: "TableViewController") as! TableViewController
+        view.show(vc, sender: nil)
+        return vc
     }
-    
-    func gotoCreateTableModule() -> ChooseDbScreenModule {
-        return ChooseDbScreenModule()
-    }
-    
 }
 
 // MARK: - ChooseTable Viper Components

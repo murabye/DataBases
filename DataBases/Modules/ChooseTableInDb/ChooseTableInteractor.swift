@@ -10,6 +10,7 @@ import Foundation
 
 // MARK: - ChooseTableInteractor Class
 final class ChooseTableInteractor: BaseInteractor {
+    var tableList: [(Int32, String)] = []
 }
 
 // MARK: - ___VARIABLE_ViperitModuleName___Interactor Protocol
@@ -17,10 +18,12 @@ extension ChooseTableInteractor: ChooseTableInteractorProtocol {
     func open(table: Int) {
         
     }
-    
-    // TODO:
+    func selectTable(index: Int) {
+        SqlManager.shared.selectedTableId = tableList[index].0
+    }
     func getTableList() -> [(Int32, String)] {
-        return SqlManager.shared.getTableList(forDbId: SqlManager.shared.connectedDataBaseId)
+        tableList = SqlManager.shared.getTableList(forDbId: SqlManager.shared.connectedDataBaseId)
+        return tableList
     }
     
 }

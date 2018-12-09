@@ -10,9 +10,6 @@ import UIKit
 
 //MARK: ChooseTableView Class
 final class ChooseTableView: BaseTableView {
-    @IBAction func AddTableAction(_ sender: Any) {
-        presenter.CreateTable()
-    }
 }
 
 //MARK: - ChooseTableView Protocol

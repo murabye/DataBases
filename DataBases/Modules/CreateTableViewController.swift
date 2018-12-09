@@ -52,7 +52,20 @@ class CreateTableViewController: UITableViewController {
     
     @IBAction func createColumnAction(_ sender: Any) {
         guard let name = columnNameField.text else {
+            showAlert(withMessage: "Имя некорректно!")
             return
+        }
+        for column in columnArray {
+            if column.name == name {
+                showAlert(withMessage: "Имя уже занято!")
+                return
+            }
+        }
+        for relation in relationArray {
+            if relation.name == name {
+                showAlert(withMessage: "Имя уже занято!")
+                return
+            }
         }
         
         guard dataTypeSegment.selectedSegmentIndex != 3 else {
@@ -74,8 +87,19 @@ class CreateTableViewController: UITableViewController {
     
     @IBAction func createTableAction(_ sender: Any) {
         guard let name = nameField.text else {
+            showAlert(withMessage: "Имя некорректно!")
             return
         }
+        
+        let tablesInDB = SqlManager.shared.getTableList(forDbId: SqlManager.shared.connectedDataBaseId)
+        
+        for table in tablesInDB {
+            if table.1 == name {
+                showAlert(withMessage: "Имя таблицы уже занято!")
+                return
+            }
+        }
+        
         let db = SqlManager.shared.connectedDataBaseId
         SqlManager.shared.addTable(name, toDb: db, withColumns: columnArray, andRelations: relationArray)
         self.navigationController?.popViewController(animated: true)
@@ -89,6 +113,16 @@ class CreateTableViewController: UITableViewController {
                                                name: columnNameField.text!)
         relationArray.append(relationModel)
         tableView.reloadData()
+    }
+    
+    func showAlert(withMessage message: String) {
+        let alertController = UIAlertController(title: message, message:
+            nil, preferredStyle: UIAlertController.Style.actionSheet)
+        
+        self.present(alertController, animated: true, completion: nil)
+        let _ = Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { (_) in
+            alertController.dismiss(animated: true, completion: nil)
+        })
     }
     
     func getNameAt(ColumnType: ColumnType) -> String{

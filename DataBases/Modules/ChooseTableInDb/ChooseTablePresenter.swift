@@ -22,12 +22,10 @@ extension ChooseTablePresenter: ChooseTablePresenterProtocol {
        // interactor.open(table: )
     }
     
-    func CreateTable() {
-        _ = router.gotoCreateTableModule()
-    }
-    
     func SelectTable(index: Int) {
-        _ = router.gotoTableModule()
+        let tableViewController = router.gotoTableModule()
+        interactor.selectTable(index: index)
+        tableViewController.title = interactor.getTableList()[index].1
     }
     
 }

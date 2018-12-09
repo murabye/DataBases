@@ -19,6 +19,8 @@ final class ChooseDbScreenPresenter: BasePresenter {
 extension ChooseDbScreenPresenter: ChooseDbScreenPresenterApi {
     func createNewDb(name: String) {
         interactor.createNewDB(name: name)
+        tableVM.databaseList = interactor.getDatabaseList()
+        view.table.reloadData()
     }
     func selectTable(index: Int) {
         _ = router.gotoSelectTableModule()
