@@ -10,14 +10,29 @@ import UIKit
 
 class CreateTableStringViewController: UITableViewController {
 
-    var modelsList: [ColumnType, String)] = SqlManager.shared.getColumnList(forTableId: SqlManager.shared.selectedTableId)
+    var modelsList: [(ColumnType, String)] = SqlManager.shared.getColumnList(forTableId: SqlManager.shared.selectedTableId)
+    var cellArray: [dataCellsProtocol] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-       
+        for model in modelsList{
+            let cell = tableView.dequeueReusableCell(withIdentifier: Helper.identifierCellAt(type: model.0)) as! dataCellsProtocol
+            cell.set(data: model.1, type: model.0)
+        }
+            
     }
-
+    // MARK: - Actions
+    @IBAction func createAction(_ sender: Any) {
+        var dictionary: Dictionary<String, Any> = [:]
+        for i in 0..<cellArray.count {
+            let data = cellArray[i].getData().data
+            let type = cellArray[i].getData().type
+            let name = modelsList[i].1
+            dictionary[name] = Helper.getData(from: data, type: type)
+        }
+    }
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -32,11 +47,7 @@ class CreateTableStringViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let model = modelsList[indexPath.row]
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: Helper.identifierCellAt(type: model.type)) as! dataCellsProtocol
-        cell.set(data: model.name, type: model.type)
-        return cell as! UITableViewCell
+        return cellArray[indexPath.row] as! UITableViewCell
     }
 
     /*

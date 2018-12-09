@@ -226,7 +226,6 @@
 		5DD2272F218C55D700795D3B /* DataBases */ = {
 			isa = PBXGroup;
 			children = (
-				6B39C51621BD8EEF003106FC /* Helper.swift */,
 				6BA6E90B2193555E0042EE55 /* Cells */,
 				5D4BFF432191E313004199F8 /* Structs */,
 				5DB67BBF21906173007F6522 /* Viper */,
@@ -276,6 +275,7 @@
 			children = (
 				5D4BFF4021918BC0004199F8 /* db.sqlite */,
 				5D4BFF412191960D004199F8 /* SqlManager.swift */,
+				6B39C51621BD8EEF003106FC /* Helper.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";

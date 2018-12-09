@@ -260,7 +260,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Создание строки" id="mlL-HJ-dkU">
-                        <barButtonItem key="rightBarButtonItem" title="Готово" id="gi4-Tp-1It"/>
+                        <barButtonItem key="rightBarButtonItem" title="Готово" id="gi4-Tp-1It">
+                            <connections>
+                                <action selector="createAction:" destination="wxk-9n-6Kh" id="7f0-uZ-QcB"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ngo-Sv-9eV" userLabel="First Responder" sceneMemberID="firstResponder"/>

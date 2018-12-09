@@ -19,8 +19,23 @@ class Helper {
             return "numberCell"
         case .text:
             return "textCell"
-        default:
-            return ""
+        }
+    }
+    
+    static func getData(from string: String, type: ColumnType) -> Any{
+        switch type {
+        case .bool:
+            if string == "0"{
+                return false
+            } else {
+                return true
+            }
+        case .id:
+            return string
+        case .integer:
+            return Int(string)!
+        case .text:
+            return string
         }
     }
 }
