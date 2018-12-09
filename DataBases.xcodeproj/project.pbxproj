@@ -50,7 +50,6 @@
 		6B39C51321BD8670003106FC /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B39C51221BD8670003106FC /* TableViewController.swift */; };
 		6B39C51521BD8BE2003106FC /* CreateTableStringViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B39C51421BD8BE2003106FC /* CreateTableStringViewController.swift */; };
 		6B39C51721BD8EEF003106FC /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B39C51621BD8EEF003106FC /* Helper.swift */; };
-		6B59BAB621BC447A004C3043 /* db.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 5D4BFF4021918BC0004199F8 /* db.sqlite */; };
 		6B59BAC021BC5301004C3043 /* DetailTable.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B59BAB821BC5301004C3043 /* DetailTable.storyboard */; };
 		6B59BAC121BC5301004C3043 /* DetailTableModuleProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B59BAB921BC5301004C3043 /* DetailTableModuleProtocols.swift */; };
 		6B59BAC221BC5301004C3043 /* DetailTableModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B59BABA21BC5301004C3043 /* DetailTableModule.swift */; };
@@ -71,13 +70,13 @@
 
 /* Begin PBXFileReference section */
 		4B12A5C3B14F540EB23AC78F /* Pods-DataBases.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DataBases.release.xcconfig"; path = "Pods/Target Support Files/Pods-DataBases/Pods-DataBases.release.xcconfig"; sourceTree = "<group>"; };
-		5D4BFF4021918BC0004199F8 /* db.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = db.sqlite; sourceTree = "<group>"; };
 		5D4BFF412191960D004199F8 /* SqlManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SqlManager.swift; sourceTree = "<group>"; };
 		5D4BFF442191E32C004199F8 /* DbModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DbModel.swift; sourceTree = "<group>"; };
 		5D4BFF482191E3E7004199F8 /* TableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableModel.swift; sourceTree = "<group>"; };
 		5D4BFF4A2191E46A004199F8 /* ColumnModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnModel.swift; sourceTree = "<group>"; };
 		5D4BFF4C2191E699004199F8 /* RelationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelationModel.swift; sourceTree = "<group>"; };
 		5D4BFF4E2191E6FB004199F8 /* MaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskModel.swift; sourceTree = "<group>"; };
+		5D9EBCA821BD9A4200434D81 /* db.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = db.sqlite; sourceTree = "<group>"; };
 		5DB67BC021906180007F6522 /* BasePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasePresenter.swift; sourceTree = "<group>"; };
 		5DB67BC121906180007F6522 /* String + SafeString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String + SafeString.swift"; sourceTree = "<group>"; };
 		5DB67BC221906180007F6522 /* ViperComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViperComponent.swift; sourceTree = "<group>"; };
@@ -273,7 +272,7 @@
 		5DD22793218CC97500795D3B /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				5D4BFF4021918BC0004199F8 /* db.sqlite */,
+				5D9EBCA821BD9A4200434D81 /* db.sqlite */,
 				5D4BFF412191960D004199F8 /* SqlManager.swift */,
 				6B39C51621BD8EEF003106FC /* Helper.swift */,
 			);
@@ -387,7 +386,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6B59BAB621BC447A004C3043 /* db.sqlite in Resources */,
 				5DD2273B218C55D800795D3B /* LaunchScreen.storyboard in Resources */,
 				5DB67C1F219067A6007F6522 /* ChooseTable.storyboard in Resources */,
 				5DD22738218C55D800795D3B /* Assets.xcassets in Resources */,
