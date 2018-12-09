@@ -90,7 +90,6 @@
                                     <segments>
                                         <segment title="Текст"/>
                                         <segment title="Число"/>
-                                        <segment title="Дата"/>
                                         <segment title="Да/Нет"/>
                                         <segment title="Ссылка"/>
                                     </segments>
@@ -337,7 +336,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H4W-Y6-wYf">
-                                            <rect key="frame" x="0.0" y="0.0" width="376" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="384" height="43.5"/>
                                             <state key="normal" title="Кнопка"/>
                                             <connections>
                                                 <action selector="buttonClick:" destination="AMI-rf-SLo" eventType="touchUpInside" id="bW5-sf-DCe"/>
