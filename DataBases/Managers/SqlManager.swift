@@ -343,8 +343,8 @@ class SqlManager {
             queryForGetData = queryForGetData + ", " + column.name
         }
         
-        queryForGetData = queryForGetData + ") FROM ? WHERE id = ?"
-        let resultSetData: FMResultSet? = db!.executeQuery(queryForGetData, withArgumentsIn: [String(connectedDataBaseId) + table2name!, dataId])
+        queryForGetData = queryForGetData + ") FROM \(String(connectedDataBaseId) + table2name!) WHERE id = ?"
+        let resultSetData: FMResultSet? = db!.executeQuery(queryForGetData, withArgumentsIn: [dataId])
         
         var resultData:[[(data: Any?, type: ColumnType, columnName: String)]] = []
         while resultSetData!.next() {
@@ -387,7 +387,7 @@ class SqlManager {
         let table2name = resultSetTabName?.string(forColumn: "name")
         let table2fullName = String(connectedDataBaseId)+table2name!
         
-        let queryDeleteData = "DELETE FROM ? WHERE id = ?"
+        let queryDeleteData = "DELETE FROM \(table2fullName) WHERE id = ?"
         let deleteSuccessful = db!.executeUpdate(queryDeleteData, withArgumentsIn: [table2fullName, dataId])
         if !deleteSuccessful {
             print("delete failed: \(String(describing: db?.lastErrorMessage()))")
