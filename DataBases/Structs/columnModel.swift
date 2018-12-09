@@ -12,7 +12,6 @@ import UIKit
 enum columnType:String {
     case text
     case integer
-    //case date
     case bool
     case id
 }

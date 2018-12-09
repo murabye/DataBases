@@ -114,7 +114,6 @@ class SqlManager {
             return
         }
         
-        
         let queue:FMDatabaseQueue? = FMDatabaseQueue(path: self.dbFilePath)
 
         queue?.inTransaction { db, rollback in
@@ -144,6 +143,17 @@ class SqlManager {
                 for relation in relations {
                     query = "INSERT INTO relations (id_table1, id_table2, relation_type) VALUES (?, ?, ?)"
                     if !db.executeUpdate(query, withArgumentsIn: [relation.id_table1, relation.id_table2, relation.relation_type]) {
+                        rollback.pointee = true
+                        return
+                    }
+                    
+                    let queryForTable2Name = "SELECT name FROM tables WHERE id_table == ?"
+                    let resultSet: FMResultSet? = db.executeQuery(queryForTable2Name, withArgumentsIn: [relation.id_table2])
+                    resultSet!.next()
+                    let table2name:String = resultSet!.string(forColumn: "name")!
+
+                    query = "INSERT INTO colums (id_table, name, type, id_mask, unique, not_null, primary_key) VALUES (?, ?, ?, ?, ?, ?, ?)"
+                    if !db.executeUpdate(query, withArgumentsIn: [tableId, table2name, "id", "NULL", "false", relation.relation_type < 4, "false"]) {
                         rollback.pointee = true
                         return
                     }
@@ -197,48 +207,51 @@ class SqlManager {
     
     //MARK:- user data
     
-    // relations!!!
-    
-    func getData(ofTable tableName:String, withId id:Int32) -> [(String, String)] {
+    func getData(ofTable tableName:String, withId id:Int32) -> [[(data: Any?, type: String, columnName: String)]] {
         let queryGetColumns = "SELECT * FROM colums WHERE id_table = ?"
         let resultSetColumns: FMResultSet? = db!.executeQuery(queryGetColumns, withArgumentsIn: [id])
-        // name - type
-        var resultColumns:[(String, String)] = []
-        
+        var resultColumns:[(type: String, name: String)] = []
         while (resultSetColumns!.next()) {
             let name = resultSetColumns?.string(forColumn: "name")
             let type = resultSetColumns?.string(forColumn: "type")
             resultColumns.append((type!, name!))
         }
         
-        let queryGetRelations = "SELECT * FROM relations WHERE table1_id = ?"
-        let resultGetRelations: FMResultSet? = db!.executeQuery(queryGetRelations, withArgumentsIn: [id])
-        // tableName
-        var resultRelations:[String] = []
-        while (resultGetRelations!.next()) {
-            let rowid:Int32 = (resultGetRelations?.int(forColumn: "table2_id"))!
-            
-            let queryGetTable2Name = "SELECT name FROM tables WHERE id = ?"
-            let resultGetRelations: FMResultSet? = db!.executeQuery(queryGetTable2Name, withArgumentsIn: [rowid])
-            while (resultGetRelations!.next()) {
-                resultRelations.append((resultGetRelations?.string(forColumn: "name"))!)
-            }
+        var queryForGetData = "SELECT (id"
+        for column in resultColumns {
+            queryForGetData = queryForGetData + ", " + column.name
         }
         
-        let queryForGetData = "SELECT * FROM ?"
+        queryForGetData = queryForGetData + ") FROM ?"
         let resultSetData: FMResultSet? = db!.executeQuery(queryForGetData, withArgumentsIn: [String(connectedDataBaseId) + tableName])
-        // data - type
-        var resultData:[(String, String)] = []
         
-        while (resultSetColumns!.next()) {
+        var resultData:[[(data: Any?, type: String, columnName: String)]] = []
+        while resultSetData!.next() {
+            var tableStr: [(data: Any?, type: String, columnName: String)] = []
+            
             for column in resultColumns {
-                let userCellValue = resultSetData?.string(forColumn: column.0)
-                resultData.append((userCellValue!, column.1))
+                let typ = column.type
+                let nam = column.name
+                var data: Any? = nil
+                
+                switch typ {
+                case "text":
+                    data = resultSetData?.string(forColumn: nam)
+                case "integer":
+                    data = resultSetData?.int(forColumn: nam)
+                case "bool":
+                    data = resultSetData?.bool(forColumn: nam)
+                case "id":
+                    data = resultSetData?.int(forColumn: nam)
+                default:
+                    data = nil
+                }
+                
+                tableStr.append((data: data, type: typ, columnName: nam))
             }
-            for relation in resultRelations {
-                resultData.append((relation, "id"))
-            }
+            resultData.append(tableStr)
         }
+        
         return resultData
     }
     
@@ -247,7 +260,7 @@ class SqlManager {
         
         queue?.inTransaction { db, rollback in
             let tableName = String(connectedDataBaseId) + name
-            var addDataQuery = "INSERT INTO \(tableName) " //({column}) VALUES ({value})
+            var addDataQuery = "INSERT INTO \(tableName) "
             var keys = ""
             var values = ""
             
@@ -260,9 +273,9 @@ class SqlManager {
                     case is Int32:
                         values = values + String(column.value as! Int32) + ", "
                     case is Bool:
-                        values = values + ((column.value as! Bool) ? "255" : "0") + ", "
+                        values = values + ((column.value as! Bool) ? "true" : "false") + ", "
                     default:
-                        break
+                        values = values + ", "
                 }
             }
             
@@ -280,6 +293,7 @@ class SqlManager {
         }
     }
     
+    //MARK:- relations :3
     
     //MARK:- help
     private func convertOpt(_ optional:Any?) -> String {
