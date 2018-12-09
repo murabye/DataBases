@@ -13,7 +13,7 @@ class SqlManager {
     static let shared = SqlManager()
     public var connectedDataBaseId: Int32 = 0
     public var selectedTableId: Int32 = 0
-    
+
     //MARK:- init and opening
     var dbFilePath:String = ""
     let DATABASE_RESOURCE_NAME = "db"
@@ -296,23 +296,76 @@ class SqlManager {
         }
     }
     
-    //MARK:- relations :3
-    func getRelation(forTableWithId tableId: Int, columnName: String, dataId: Int) {
-        //system_table1_table2
-        let queryRelation = "SELECT * FROM relations WHERE name == columnName"
+    //MARK:- data
+    func getRelateData(ofTableWithTableId id:Int32, forDataId dataId: Int32, forColumnName columnName: String) -> [[(data: Any?, type: ColumnType, columnName: String)]] {
         
+        let queryRelation = "SELECT (id_table1, id_table2) FROM relations WHERE name = ?"
+            
+        let resultSetRel: FMResultSet? = db!.executeQuery(queryRelation, withArgumentsIn: [columnName])
+        resultSetRel!.next()
+        var id1 = resultSetRel?.int(forColumn: "id_table1")
+        var id2 = resultSetRel?.int(forColumn: "id_table2")
         
+        if id2 == Int32(id) {
+            id2 = id1
+            id1 = Int32(id)
+        }
         
-        /*
-         отсюда берем id_table2
-         получаем имена table1, table2
-         если тип связи не подразумевает много
-         
-         
-         
-         */
+        let queryTable2Name = "SELECT name FROM tables WHERE id = ?"
+        let resultSetTabName: FMResultSet? = db!.executeQuery(queryTable2Name, withArgumentsIn: [id2!])
+        resultSetTabName!.next()
+        let table2name = resultSetTabName?.string(forColumn: "name")
         
+        let queryGetColumns = "SELECT * FROM colums WHERE id_table = ?"
+        let resultSetColumns: FMResultSet? = db!.executeQuery(queryGetColumns, withArgumentsIn: [id2!])
+        var resultColumns:[(type: String, name: String)] = []
+        while (resultSetColumns!.next()) {
+            let name = resultSetColumns?.string(forColumn: "name")
+            let type = resultSetColumns?.string(forColumn: "type")
+            resultColumns.append((type!, name!))
+        }
+
+        var queryForGetData = "SELECT (id"
+        for column in resultColumns {
+            queryForGetData = queryForGetData + ", " + column.name
+        }
+        
+        queryForGetData = queryForGetData + ") FROM ? WHERE id = ?"
+        let resultSetData: FMResultSet? = db!.executeQuery(queryForGetData, withArgumentsIn: [String(connectedDataBaseId) + table2name!, dataId])
+        
+        var resultData:[[(data: Any?, type: ColumnType, columnName: String)]] = []
+        while resultSetData!.next() {
+            var tableStr: [(data: Any?, type: ColumnType, columnName: String)] = []
+            
+            for column in resultColumns {
+                let typ = column.type
+                let realType = ColumnType(rawValue: typ)
+                let nam = column.name
+                var data: Any? = nil
+                
+                switch typ {
+                case "text":
+                    data = resultSetData?.string(forColumn: nam)
+                case "integer":
+                    data = resultSetData?.int(forColumn: nam)
+                case "bool":
+                    data = resultSetData?.bool(forColumn: nam)
+                case "id":
+                    data = nil
+                default:
+                    data = nil
+                }
+                
+                tableStr.append((data: data, type: realType!, columnName: nam))
+            }
+            
+            tableStr.append((data: resultSetData?.int(forColumn: "id"), type: ColumnType.integer, columnName: "id"))
+            resultData.append(tableStr)
+        }
+        
+        return resultData
     }
+
     
     //MARK:- help
     private func convertOpt(_ optional:Any?) -> String {
