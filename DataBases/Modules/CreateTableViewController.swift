@@ -38,15 +38,28 @@ class CreateTableViewController: UITableViewController {
     @IBAction func keySwitchAction(_ sender: Any) {
     }
     @IBAction func segmentChange(_ sender: Any) {
+        switch dataTypeSegment.selectedSegmentIndex {
+        case 3:
+            keySwitch.isHidden = true
+            uniqueSwitch.isHidden = true
+            notNullSwitch.isHidden = true
+        default:
+            keySwitch.isHidden = false
+            uniqueSwitch.isHidden = false
+            notNullSwitch.isHidden = false
+        }
     }
     
     @IBAction func createColumnAction(_ sender: Any) {
-        if dataTypeSegment.selectedSegmentIndex == 3 {
-            self.performSegue(withIdentifier: "showAllTables", sender: nil)
-        }
-        guard let name = nameField.text else {
+        guard let name = columnNameField.text else {
             return
         }
+        
+        guard dataTypeSegment.selectedSegmentIndex != 3 else {
+            self.performSegue(withIdentifier: "showAllTables", sender: nil)
+            return
+        }
+        
         let columnModel = ColumnModel.init(id_table: 0,
                                  name: name,
                                  type: getTypeAt(segmentSelectedIndex: dataTypeSegment.selectedSegmentIndex),
@@ -56,14 +69,26 @@ class CreateTableViewController: UITableViewController {
                                  primary_key: keySwitch.isOn)
         
         columnArray.append(columnModel)
+        tableView.reloadData()
     }
     
     @IBAction func createTableAction(_ sender: Any) {
+        guard let name = nameField.text else {
+            return
+        }
+        let db = SqlManager.shared.connectedDataBaseId
+        SqlManager.shared.addTable(name, toDb: db, withColumns: columnArray, andRelations: relationArray)
+        self.navigationController?.popViewController(animated: true)
     }
     
     // MARK: - Helpers
-    func createColumnWithTableId(tableID: Int32){
-        
+    func createColumnWithTableId(tableID: Int32, relationType: Int32){
+        let relationModel = RelationModel.init(id_table1: 0,
+                                               id_table2: tableID,
+                                               relation_type: relationType,
+                                               name: columnNameField.text!)
+        relationArray.append(relationModel)
+        tableView.reloadData()
     }
     
     func getNameAt(ColumnType: ColumnType) -> String{
@@ -110,12 +135,22 @@ class CreateTableViewController: UITableViewController {
         let cell = UITableViewCell.init(style: .value1, reuseIdentifier: nil)
         if (indexPath.section == 0){
             cell.textLabel?.text = columnArray[indexPath.row].name
-            cell.detailTextLabel?.text = getNameAt(ColumnType: columnArray[indexPath.row].type)
+            cell.detailTextLabel?.text = getNameAt(ColumnType: columnArray[indexPath.row].type) + (columnArray[indexPath.row].primary_key ? " : Ключевой" : "")
         } else {
             cell.textLabel?.text = relationArray[indexPath.row].name
             cell.detailTextLabel?.text = getNameAt(ColumnType: .id)
         }
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 0 && columnArray.count > 0 {
+            return "Столбцы"
+        } else if section == 1 && relationArray.count > 0 {
+            return "Связи"
+        } else {
+            return nil
+        }
     }
 
     // MARK: - Navigation

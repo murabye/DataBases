@@ -10,6 +10,7 @@ import UIKit
 
 class CreateTableDetailViewController: UITableViewController {
 
+    @IBOutlet weak var relationSegment: UISegmentedControl!
     let tableArray = SqlManager.shared.getTableList(forDbId: SqlManager.shared.connectedDataBaseId)
     var selectedTable: (Int32, String)?
     var createTableViewController: CreateTableViewController? = nil
@@ -19,8 +20,21 @@ class CreateTableDetailViewController: UITableViewController {
         
     }
     @IBAction func createAction(_ sender: Any) {
+        var relationType = 0
+        switch relationSegment!.selectedSegmentIndex {
+        case 0:
+            relationType = 0
+        case 1:
+            relationType = 1
+        case 2:
+            relationType = 4
+        case 3:
+            relationType = 5
+        default:
+            relationType = 0
+        }
         if let selectedTable = selectedTable {
-            createTableViewController?.createColumnWithTableId(tableID: selectedTable.0)
+            createTableViewController?.createColumnWithTableId(tableID: selectedTable.0, relationType: Int32(relationType))
         }
     }
     

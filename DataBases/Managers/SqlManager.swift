@@ -128,14 +128,14 @@ class SqlManager {
                 var maskId:Int64? = nil
                 if let mask = column.mask {                    
                     query = "INSERT INTO masks (min_value, max_value, max_length) VALUES (?, ?, ?)"
-                    if !db.executeUpdate(query, withArgumentsIn: [convertOpt(mask.min_value), convertOpt(mask.min_value), convertOpt(mask.max_length)]) {
+                    if !db.executeUpdate(query, withArgumentsIn: [mask.min_value, mask.min_value, mask.max_length]) {
                         rollback.pointee = true
                         return
                     }
                     maskId = db.lastInsertRowId
                 }
                 query = "INSERT INTO colums (id_table, name, type, id_mask, unique, not_null, primary_key) VALUES (?, ?, ?, ?, ?, ?, ?)"
-                if !db.executeUpdate(query, withArgumentsIn: [tableId, column.name, column.type, convertOpt(maskId), column.unique, column.not_null, column.primary_key]) {
+                if !db.executeUpdate(query, withArgumentsIn: [tableId, column.name, column.type, maskId, column.unique, column.not_null, column.primary_key]) {
                     rollback.pointee = true
                     return
                 }

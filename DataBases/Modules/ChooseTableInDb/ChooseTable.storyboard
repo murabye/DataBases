@@ -386,10 +386,10 @@
         <scene sceneID="fMj-gr-vxW">
             <objects>
                 <tableViewController id="J6G-d6-fGv" customClass="CreateTableDetailViewController" customModule="DataBases" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="b1a-pH-w9B">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="b1a-pH-w9B">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="IVR-rd-njS">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="46"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -399,10 +399,8 @@
                                     <segments>
                                         <segment title="1 к 1"/>
                                         <segment title="1 к *"/>
-                                        <segment title="* к *"/>
                                         <segment title="1 к 1:0"/>
                                         <segment title="1 к *:0"/>
-                                        <segment title="* к *:0"/>
                                     </segments>
                                 </segmentedControl>
                             </subviews>
@@ -425,6 +423,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="relationSegment" destination="xzG-AY-llB" id="PLq-52-uKm"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BYQ-el-Djx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

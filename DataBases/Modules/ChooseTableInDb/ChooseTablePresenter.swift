@@ -10,6 +10,10 @@ import Foundation
 
 // MARK: - ChooseTablePresenter Class
 final class ChooseTablePresenter: BasePresenter {
+    override func viewIsAboutToAppear() {
+        tableViewModel.tableList = interactor.getTableList()
+        view.table.reloadData()
+    }
 }
 
 // MARK: - ChooseTablePresenter Protocol

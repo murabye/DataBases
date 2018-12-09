@@ -19,10 +19,10 @@ struct RelationModel {
     }
     
     // name of распределительная table: system_table1_table2
-    let id_table1: Int32 = 0
-    let id_table2: Int32 = 0
+    let id_table1: Int32// = 0
+    let id_table2: Int32// = 0
     // TODO: fix in db
-    let relation_type: Int32 = 0
-    let name: String = ""
+    let relation_type: Int32// = 0
+    let name: String// = ""
     //let name: String = ""
 }

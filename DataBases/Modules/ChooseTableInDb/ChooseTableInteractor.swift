@@ -19,8 +19,8 @@ extension ChooseTableInteractor: ChooseTableInteractorProtocol {
     }
     
     // TODO:
-    func getTableList() -> [String] {
-        return []
+    func getTableList() -> [(Int32, String)] {
+        return SqlManager.shared.getTableList(forDbId: SqlManager.shared.connectedDataBaseId)
     }
     
 }

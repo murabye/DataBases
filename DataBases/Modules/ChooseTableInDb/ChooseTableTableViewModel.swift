@@ -12,7 +12,7 @@ import UIKit
 // MARK: - ChooseTableDisplayData class
 final class ChooseTableTableViewModel: BaseTableViewModel {
     
-    var tableList:[String] = []
+    var tableList:[(Int32, String)] = []
     
     //MARK: DataSource
     override func number(ofRowsInSection section: Int, tableView: UITableView) -> Int {
@@ -20,7 +20,7 @@ final class ChooseTableTableViewModel: BaseTableViewModel {
     }
     override func cell(forRow row: Int, section: Int, tableView: UITableView) -> UITableViewCell {
         let cell = UITableViewCell.init(style: .default, reuseIdentifier: nil)
-        cell.textLabel?.text = tableList[row]
+        cell.textLabel?.text = tableList[row].1
         cell.accessoryType = .disclosureIndicator
         return cell
     }

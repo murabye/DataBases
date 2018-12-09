@@ -28,6 +28,6 @@ protocol ChooseTablePresenterProtocol: BasePresenterProtocol {
 
 //MARK: - ChooseTableInteractor Protocol
 protocol ChooseTableInteractorProtocol: BaseInteractorProtocol {
-    func getTableList() -> [String]
+    func getTableList() -> [(Int32, String)]
     func open(table: Int)
 }
