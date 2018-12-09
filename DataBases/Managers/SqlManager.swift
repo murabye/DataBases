@@ -296,13 +296,13 @@ class SqlManager {
         }
     }
     
-    func getColumnList(forTableId idTable: Int32) -> [(type: String, name: String)] {
+    func getColumnList(forTableId idTable: Int32) -> [(type: ColumnType, name: String)] {
         let queryGetColumns = "SELECT * FROM colums WHERE id_table = ?"
         let resultSetColumns: FMResultSet? = db!.executeQuery(queryGetColumns, withArgumentsIn: [idTable])
-        var resultColumns:[(type: String, name: String)] = []
+        var resultColumns:[(type: ColumnType, name: String)] = []
         while (resultSetColumns!.next()) {
             let name = resultSetColumns?.string(forColumn: "name")
-            let type = resultSetColumns?.string(forColumn: "type")
+            let type = ColumnType(rawValue: (resultSetColumns?.string(forColumn: "type")!)!)
             resultColumns.append((type!, name!))
         }
         
