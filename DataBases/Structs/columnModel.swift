@@ -18,13 +18,13 @@ enum columnType:String {
 
 struct columnModel {
     
-    let id_table: Int32 = 0
-    let name: String = ""
+    let id_table: Int32// = 0
+    let name: String// = ""
     // TODO: убрать из таблицы let default_value:String = ""
-    let type: String = ""
+    let type: String// = ""
     var mask: maskModel?
-    let unique: Bool = false
-    let not_null: Bool = false
+    let unique: Bool// = false
+    let not_null: Bool// = false
     // TODO: убрать из таблицы let auto_increment:Bool = false
-    let primary_key: Bool = false
+    let primary_key: Bool// = false
 }

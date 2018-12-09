@@ -18,6 +18,7 @@ class CreateTableViewController: UITableViewController {
     @IBOutlet weak var keySwitch: UISwitch!
     
     var columnArray: [columnModel] = []
+    var relationArray: [relationModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,13 +44,24 @@ class CreateTableViewController: UITableViewController {
         if dataTypeSegment.selectedSegmentIndex == 3 {
             self.performSegue(withIdentifier: "showAllTables", sender: nil)
         }
+        guard let name = nameField.text else {
+            return
+        }
+        let columnModel = columnModel.init(id_table: 0,
+                                 name: name,
+                                 type: getTypeAt(segmentSelectedIndex: dataTypeSegment.selectedSegmentIndex),
+                                 mask: nil,
+                                 unique: uniqueSwitch.isOn,
+                                 not_null: notNullSwitch.isOn,
+                                 primary_key: keySwitch.isOn)
         
+        columnArray.append(columnModel)
     }
+    
     @IBAction func createTableAction(_ sender: Any) {
     }
     
     // MARK: - Helpers
-    
     func createColumnWithTableId(tableID: Int32){
         
     }
@@ -66,29 +78,52 @@ class CreateTableViewController: UITableViewController {
             return "Текст"
         }
     }
+    func getTypeAt(segmentSelectedIndex: Int) -> columnType{
+        switch segmentSelectedIndex {
+        case 0:
+            return .text
+        case 1:
+            return .integer
+        case 2:
+            return .bool
+        default:
+            return .id
+        }
+    }
     
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return columnArray.count
+        if section == 0 {
+            return columnArray.count
+        } else {
+            return relationArray.count
+        }
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell.init(style: .value1, reuseIdentifier: nil)
-        cell.textLabel?.text = columnArray[indexPath.row].name
-       // cell.detailTextLabel?.text = getNameAt(columnType: columnArray[indexPath.row].type)
+        if (indexPath.section == 0){
+            cell.textLabel?.text = columnArray[indexPath.row].name
+            cell.detailTextLabel?.text = getNameAt(columnType: columnArray[indexPath.row].type)
+        } else {
+            cell.textLabel?.text = relationArray[indexPath.row].name
+            cell.detailTextLabel?.text = getNameAt(columnType: .id)
+        }
         return cell
     }
 
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "showAllTables"{
+            let vc = segue.destination as! CreateTableDetailViewController
+            vc.createTableViewController = self
+        }
     }
 
 }

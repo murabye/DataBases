@@ -12,7 +12,7 @@ class CreateTableDetailViewController: UITableViewController {
 
     let tableArray = SqlManager.shared.getTableList(forDbId: SqlManager.shared.connectedDataBaseId)
     var selectedTable: (Int32, String)?
-    let createTableViewController: CreateTableViewController? = nil
+    var createTableViewController: CreateTableViewController? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
