@@ -60,6 +60,7 @@ class SqlManager {
     }
     
     //MARK:- DB
+    // получить список баз данных
     func getDatabaseList() -> [(Int32, String)] {
         let query = "SELECT * FROM databases"
         let resultSet: FMResultSet? = db!.executeQuery(query, withArgumentsIn: [])
@@ -73,10 +74,12 @@ class SqlManager {
         return result
     }
     
+    // сеттер connectedDataBaseId
     func setSelectedDb(toId dbId: Int32) {
         connectedDataBaseId = dbId
     }
     
+    // добавить бд в список
     func addDatabase(_ name:String) {
         let currentDbs = getDatabaseList()
         if currentDbs.contains(where: { (arg0:(Int32, String)) -> Bool in
@@ -93,6 +96,7 @@ class SqlManager {
     }
     
     //MARK:- tables
+    // взять список всех таблиц
     func getTableList(forDbId dbId:Int32) -> [(Int32, String)]  {
         let query = "SELECT id_table, name FROM tables WHERE id_database = ?"
         let resultSet: FMResultSet? = db!.executeQuery(query, withArgumentsIn: [dbId])
@@ -106,6 +110,11 @@ class SqlManager {
         return result
     }
     
+    // создать таблицу, где
+    // name - имя таблицы
+    // dbId - идентификатор БД (приходит вместе со списком)
+    // colums - колонки базы данных, простые (в этом методе сюда не писать те, которые columntype id)
+    // relations - это как раз отношение. name для relations - название колонки. создавать relation от дочерней таблицы
     func addTable(_ name:String, toDb dbId:Int32, withColumns columns:[ColumnModel], andRelations relations:[RelationModel]) {
         
         let currentTables = getTableList(forDbId: dbId)
@@ -206,8 +215,20 @@ class SqlManager {
     }
     
     //MARK:- user data
-    
-    func getData(ofTable tableName:String, withId id:Int32) -> [[(data: Any?, type: ColumnType, columnName: String)]] {
+    // Получить данные из таблицы по указанному ID
+    // дает массив кортежей таблицы
+    // то есть это матрица вот такая
+    // [ [ячейка ячейка ячейка ]
+    //   [ячейка ячейка ячейка ]
+    //   [ячейка ячейка ячейка ] ]
+    // тут массив [ячейка ячейка ячейка ] - это кортеж
+    // ячейка - это одна штучка из трех данных: data значение, type тип значения, columnName имя колонки
+    func getData(withId id:Int32) -> [[(data: Any?, type: ColumnType, columnName: String)]] {
+        let queryTableName = "SELECT name FROM tables WHERE id = ?"
+        let resultSetTabName: FMResultSet? = db!.executeQuery(queryTableName, withArgumentsIn: [id])
+        resultSetTabName!.next()
+        let tableName = resultSetTabName?.string(forColumn: "name")!
+
         let queryGetColumns = "SELECT * FROM colums WHERE id_table = ?"
         let resultSetColumns: FMResultSet? = db!.executeQuery(queryGetColumns, withArgumentsIn: [id])
         var resultColumns:[(type: String, name: String)] = []
@@ -262,6 +283,12 @@ class SqlManager {
         return resultData
     }
     
+    
+    // добавить данные в таблицу
+    // имя таблицы указать, id таблицы, данные
+    // в данных: ключ - название столбика
+    // значение - значение
+    // для отношений ключ название столбца, значение - id
     func addData(toTable name: String, withId id: Int32, data: Dictionary<String, Any>) {
         let queue:FMDatabaseQueue? = FMDatabaseQueue(path: self.dbFilePath)
         
@@ -300,6 +327,8 @@ class SqlManager {
         }
     }
     
+    // получить список столбиков для таблицы
+    // также приходят столбики, в которых id
     func getColumnList(forTableId idTable: Int32) -> [(type: ColumnType, name: String)] {
         let queryGetColumns = "SELECT * FROM colums WHERE id_table = ?"
         let resultSetColumns: FMResultSet? = db!.executeQuery(queryGetColumns, withArgumentsIn: [idTable])
@@ -314,10 +343,14 @@ class SqlManager {
     }
     
     //MARK:- related data
+    // получить данные из таблицы связанной
+    // id - айди текущей таблицы
+    // dataId - id кортежа (строчки)
+    // columnName - имя колонки, значение которой ищем
     func getRelateData(ofTableWithTableId id:Int32, forDataId dataId: Int32, forColumnName columnName: String) -> [[(data: Any?, type: ColumnType, columnName: String)]] {
         
         let queryRelation = "SELECT (id_table1, id_table2) FROM relations WHERE name = ?"
-            
+        
         let resultSetRel: FMResultSet? = db!.executeQuery(queryRelation, withArgumentsIn: [columnName])
         resultSetRel!.next()
         var id1 = resultSetRel?.int(forColumn: "id_table1")
@@ -341,7 +374,7 @@ class SqlManager {
             let type = resultSetColumns?.string(forColumn: "type")
             resultColumns.append((type!, name!))
         }
-
+        
         var queryForGetData = "SELECT (id"
         for column in resultColumns {
             queryForGetData = queryForGetData + ", " + column.name
@@ -382,8 +415,33 @@ class SqlManager {
         
         return resultData
     }
+    
+    // получить данные о таблице, с которой связана эта таблица
+    // id - айди текущей таблицы
+    // columnName - колонка
+    func getRelateTable(ofTableWithTableId id:Int32, forColumnName columnName: String) -> (id: Int32, name: String) {
+        
+        let queryRelation = "SELECT (id_table1, id_table2) FROM relations WHERE name = ?"
+        
+        let resultSetRel: FMResultSet? = db!.executeQuery(queryRelation, withArgumentsIn: [columnName])
+        resultSetRel!.next()
+        var id1 = resultSetRel?.int(forColumn: "id_table1")
+        var id2 = resultSetRel?.int(forColumn: "id_table2")
+        
+        if id2 == Int32(id) {
+            id2 = id1
+            id1 = Int32(id)
+        }
+        
+        let queryTableName = "SELECT name FROM tables WHERE id = ?"
+        let resultSetTabName: FMResultSet? = db!.executeQuery(queryTableName, withArgumentsIn: [id2!])
+        resultSetTabName!.next()
+
+        return (id: id2!, name: (resultSetTabName!.string(forColumn: "name")!))
+    }
 
     //MARK:- delete data
+    // удалить данные из таблицы
     func deleteData(fromTableWithId tableId: Int32, dataId: Int32) {
         let queryTableName = "SELECT name FROM tables WHERE id = ?"
         let resultSetTabName: FMResultSet? = db!.executeQuery(queryTableName, withArgumentsIn: [tableId])
@@ -398,6 +456,7 @@ class SqlManager {
         }
     }
     
+    // удалить всю таблицу
     func deleteTable(withId tableId: Int32) {
         let queue:FMDatabaseQueue? = FMDatabaseQueue(path: self.dbFilePath)
         

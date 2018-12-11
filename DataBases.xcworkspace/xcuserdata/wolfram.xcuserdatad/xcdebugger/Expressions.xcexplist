@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "CreateTableStringViewController.createAction(_:):CreateTableStringViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "cellArray">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "SqlManager.getData(ofTable:withId:):SqlManager.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "db">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
