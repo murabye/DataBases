@@ -23,7 +23,7 @@ struct ColumnModel {
     // TODO: убрать из таблицы let default_value:String = ""
     let type: ColumnType// = .id
     var mask: MaskModel?
-    let unique: Bool// = false
+    let isUnique: Bool// = false
     let not_null: Bool// = false
     // TODO: убрать из таблицы let auto_increment:Bool = false
     let primary_key: Bool// = false

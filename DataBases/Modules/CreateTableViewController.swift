@@ -77,7 +77,7 @@ class CreateTableViewController: UITableViewController {
                                  name: name,
                                  type: getTypeAt(segmentSelectedIndex: dataTypeSegment.selectedSegmentIndex),
                                  mask: nil,
-                                 unique: uniqueSwitch.isOn,
+                                 isUnique: uniqueSwitch.isOn,
                                  not_null: notNullSwitch.isOn,
                                  primary_key: keySwitch.isOn)
         
