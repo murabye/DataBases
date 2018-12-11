@@ -226,7 +226,7 @@ class SqlManager {
     func getData(withId id:Int32) -> [[(data: Any?, type: ColumnType, columnName: String)]] {
         let queryTableName = "SELECT name FROM tables WHERE id = ?"
         let resultSetTabName: FMResultSet? = db!.executeQuery(queryTableName, withArgumentsIn: [id])
-        resultSetTabName!.next()
+        resultSetTabName?.next()
         let tableName = resultSetTabName?.string(forColumn: "name")!
 
         let queryGetColumns = "SELECT * FROM colums WHERE id_table = ?"
@@ -363,7 +363,7 @@ class SqlManager {
         
         let queryTable2Name = "SELECT name FROM tables WHERE id = ?"
         let resultSetTabName: FMResultSet? = db!.executeQuery(queryTable2Name, withArgumentsIn: [id2!])
-        resultSetTabName!.next()
+        resultSetTabName?.next()
         let table2name = resultSetTabName?.string(forColumn: "name")!
         
         let queryGetColumns = "SELECT * FROM colums WHERE id_table = ?"
@@ -435,7 +435,7 @@ class SqlManager {
         
         let queryTableName = "SELECT name FROM tables WHERE id = ?"
         let resultSetTabName: FMResultSet? = db!.executeQuery(queryTableName, withArgumentsIn: [id2!])
-        resultSetTabName!.next()
+        resultSetTabName?.next()
 
         return (id: id2!, name: (resultSetTabName!.string(forColumn: "name")!))
     }
@@ -445,7 +445,7 @@ class SqlManager {
     func deleteData(fromTableWithId tableId: Int32, dataId: Int32) {
         let queryTableName = "SELECT name FROM tables WHERE id = ?"
         let resultSetTabName: FMResultSet? = db!.executeQuery(queryTableName, withArgumentsIn: [tableId])
-        resultSetTabName!.next()
+        resultSetTabName?.next()
         let table2name = resultSetTabName?.string(forColumn: "name")
         let table2fullName = table2name! + String(connectedDataBaseId)
         
@@ -464,7 +464,7 @@ class SqlManager {
 
             let queryTableName = "SELECT name FROM tables WHERE id = ?"
             let resultSetTabName: FMResultSet? = db.executeQuery(queryTableName, withArgumentsIn: [tableId])
-            resultSetTabName!.next()
+            resultSetTabName?.next()
             let tableName = resultSetTabName?.string(forColumn: "name")
             let tableFullName = tableName! + String(connectedDataBaseId)
 
