@@ -12,13 +12,14 @@ class buttonCell: UITableViewCell, dataCellsProtocol {
     
     @IBOutlet weak var button: UIButton!
     var handler: (() -> ())?
+    var id_table: Int32?
     
     func getType() -> ColumnType {
         return ColumnType.id
     }
     
     func getData() -> (data: String, type: ColumnType) {
-        return ("", getType())
+        return (String(id_table!), getType())
     }
     
     func set(data: String, type: ColumnType) {

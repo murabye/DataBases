@@ -1,5 +1,5 @@
 //
-//  CreateTableStringViewController.swift
+//  DetailCreateStringViewController.swift
 //  DataBases
 //
 //  Created by Владимир on 09/12/2018.
@@ -8,59 +8,37 @@
 
 import UIKit
 
-class CreateTableStringViewController: UITableViewController {
-
-    var modelsList: [(ColumnType, String)] = SqlManager.shared.getColumnList(forTableId: SqlManager.shared.selectedTableId)
-    var cellArray: [dataCellsProtocol] = []
+class DetailCreateStringViewController: UITableViewController {
     
+    var cell: buttonCell?
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        modelsList = SqlManager.shared.getColumnList(forTableId: SqlManager.shared.selectedTableId)
-        cellArray.removeAll()
-        for model in modelsList{
-            let cell = tableView.dequeueReusableCell(withIdentifier: Helper.identifierCellAt(type: model.0)) as! dataCellsProtocol
-            if let cell = cell as? buttonCell {
-                cell.handler = {
-                    let sb = UIStoryboard.init(name: "ChooseTable", bundle: .main)
-                    let vc = sb.instantiateViewController(withIdentifier: "detailCreateString") as! DetailCreateStringViewController
-                    vc.cell = cell
-                    vc.title = model.1
-                    self.show(vc, sender: nil)
-                }
-            }
-            cell.set(data: model.1, type: model.0)
-            cellArray.append(cell)
-        }
-            
+
+        //SqlManager.shared.getRelateData(ofTableWithTableId: SqlManager.shared.selectedTableId, forDataId: cell., forColumnName: <#T##String#>)
     }
-    // MARK: - Actions
-    @IBAction func createAction(_ sender: Any) {
-        var dictionary: Dictionary<String, Any> = [:]
-        for i in 0..<cellArray.count {
-            let data = cellArray[i].getData().data
-            let type = cellArray[i].getData().type
-            let name = modelsList[i].1
-            dictionary[name] = Helper.getData(from: data, type: type)
-        }
-        SqlManager.shared.addData(toTable: self.title!, withId: SqlManager.shared.selectedTableId, data: dictionary)
-    }
-    
+
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return 0
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return modelsList.count
+        return 0
     }
 
-    
+    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return cellArray[indexPath.row] as! UITableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+
+        // Configure the cell...
+
+        return cell
     }
+    */
 
     /*
     // Override to support conditional editing of the table view.

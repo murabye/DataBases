@@ -50,6 +50,7 @@
 		6B39C51321BD8670003106FC /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B39C51221BD8670003106FC /* TableViewController.swift */; };
 		6B39C51521BD8BE2003106FC /* CreateTableStringViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B39C51421BD8BE2003106FC /* CreateTableStringViewController.swift */; };
 		6B39C51721BD8EEF003106FC /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B39C51621BD8EEF003106FC /* Helper.swift */; };
+		6B39C51921BD9D77003106FC /* DetailCreateStringViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B39C51821BD9D77003106FC /* DetailCreateStringViewController.swift */; };
 		6B59BACB21BC5A63004C3043 /* CreateTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B59BACA21BC5A62004C3043 /* CreateTableViewController.swift */; };
 		6B59BACD21BC7493004C3043 /* CreateTableDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B59BACC21BC7493004C3043 /* CreateTableDetailViewController.swift */; };
 		6BA6E90D219355910042EE55 /* dataCellsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA6E90C219355910042EE55 /* dataCellsProtocol.swift */; };
@@ -108,6 +109,7 @@
 		6B39C51221BD8670003106FC /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		6B39C51421BD8BE2003106FC /* CreateTableStringViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTableStringViewController.swift; sourceTree = "<group>"; };
 		6B39C51621BD8EEF003106FC /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		6B39C51821BD9D77003106FC /* DetailCreateStringViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCreateStringViewController.swift; sourceTree = "<group>"; };
 		6B59BACA21BC5A62004C3043 /* CreateTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTableViewController.swift; sourceTree = "<group>"; };
 		6B59BACC21BC7493004C3043 /* CreateTableDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTableDetailViewController.swift; sourceTree = "<group>"; };
 		6BA6E90C219355910042EE55 /* dataCellsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dataCellsProtocol.swift; sourceTree = "<group>"; };
@@ -232,6 +234,7 @@
 				6B59BACC21BC7493004C3043 /* CreateTableDetailViewController.swift */,
 				6B39C51221BD8670003106FC /* TableViewController.swift */,
 				6B39C51421BD8BE2003106FC /* CreateTableStringViewController.swift */,
+				6B39C51821BD9D77003106FC /* DetailCreateStringViewController.swift */,
 				5DB67BD6219063E2007F6522 /* ChooseTableInDb */,
 				5DD22755218CB27400795D3B /* ChooseDbScreen */,
 			);
@@ -418,6 +421,7 @@
 				6B39C51321BD8670003106FC /* TableViewController.swift in Sources */,
 				5DD22788218CB98D00795D3B /* AppModulesViper.swift in Sources */,
 				5DD22765218CB29800795D3B /* ChooseDbScreenView.swift in Sources */,
+				6B39C51921BD9D77003106FC /* DetailCreateStringViewController.swift in Sources */,
 				5DD2275E218CB29800795D3B /* ChooseDbScreenTableViewModel.swift in Sources */,
 				5DB67BD521906181007F6522 /* BaseModule.swift in Sources */,
 				5D4BFF492191E3E7004199F8 /* TableModel.swift in Sources */,

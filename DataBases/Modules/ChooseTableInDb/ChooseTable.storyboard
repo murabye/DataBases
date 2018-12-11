@@ -271,10 +271,10 @@
             </objects>
             <point key="canvasLocation" x="801" y="1427"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Detail Create String View Controller-->
         <scene sceneID="dRA-3l-8kP">
             <objects>
-                <tableViewController id="iRH-4H-bXC" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="detailCreateString" id="iRH-4H-bXC" customClass="DetailCreateStringViewController" customModule="DataBases" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="KSc-Mm-PzW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

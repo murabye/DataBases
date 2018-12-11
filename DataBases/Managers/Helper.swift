@@ -31,9 +31,9 @@ class Helper {
                 return true
             }
         case .id:
-            return string
+            return Int32(string)!
         case .integer:
-            return Int(string)!
+            return Int32(string)!
         case .text:
             return string
         }
