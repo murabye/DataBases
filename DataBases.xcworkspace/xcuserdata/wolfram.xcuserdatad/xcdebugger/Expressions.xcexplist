@@ -11,6 +11,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "TableViewController.viewDidLoad():TableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "dataModel">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "SqlManager.getData(ofTable:withId:):SqlManager.swift">
          <PersistentStrings>
             <PersistentString
