@@ -15,7 +15,7 @@ class TableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        dataModel = SqlManager.shared.getData(ofTable: SqlManager.shared.selectedTableName, withId: SqlManager.shared.selectedTableId)
+        dataModel = SqlManager.shared.getData(withId: SqlManager.shared.selectedTableId)
     }
 
     // MARK: - Table view data source
