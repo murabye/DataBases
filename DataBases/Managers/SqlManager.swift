@@ -224,7 +224,7 @@ class SqlManager {
     // тут массив [ячейка ячейка ячейка ] - это кортеж
     // ячейка - это одна штучка из трех данных: data значение, type тип значения, columnName имя колонки
     func getData(withId id:Int32) -> [[(data: Any?, type: ColumnType, columnName: String)]] {
-        let queryTableName = "SELECT name FROM tables WHERE id = ?"
+        let queryTableName = "SELECT name FROM tables WHERE id_table = ?"
         let resultSetTabName: FMResultSet? = db!.executeQuery(queryTableName, withArgumentsIn: [id])
         resultSetTabName?.next()
         let tableName = resultSetTabName?.string(forColumn: "name")!
