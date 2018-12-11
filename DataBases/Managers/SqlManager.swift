@@ -244,7 +244,7 @@ class SqlManager {
         }
         
         queryForGetData = queryForGetData + ") FROM ?"
-        let resultSetDataRaw: FMResultSet? = db!.executeQuery(queryForGetData, withArgumentsIn: [tableName +  String(connectedDataBaseId)])
+        let resultSetDataRaw: FMResultSet? = db!.executeQuery(queryForGetData, withArgumentsIn: [tableName! +  String(connectedDataBaseId)])
         
         guard let resultSetData = resultSetDataRaw else {
             return [];
