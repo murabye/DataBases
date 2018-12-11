@@ -238,13 +238,13 @@ class SqlManager {
             resultColumns.append((type!, name!))
         }
         
-        var queryForGetData = "SELECT (id"
+        var queryForGetData = "SELECT id"
         for column in resultColumns {
             queryForGetData = queryForGetData + ", " + column.name
         }
         
-        queryForGetData = queryForGetData + ") FROM ?"
-        let resultSetDataRaw: FMResultSet? = db!.executeQuery(queryForGetData, withArgumentsIn: [tableName! +  String(connectedDataBaseId)])
+        queryForGetData = queryForGetData + " FROM \(tableName! +  String(connectedDataBaseId))"
+        let resultSetDataRaw: FMResultSet? = db!.executeQuery(queryForGetData, withArgumentsIn: [])
         
         guard let resultSetData = resultSetDataRaw else {
             return [];
@@ -349,7 +349,7 @@ class SqlManager {
     // columnName - имя колонки, значение которой ищем
     func getRelateData(ofTableWithTableId id:Int32, forDataId dataId: Int32, forColumnName columnName: String) -> [[(data: Any?, type: ColumnType, columnName: String)]] {
         
-        let queryRelation = "SELECT (id_table1, id_table2) FROM relations WHERE name = ?"
+        let queryRelation = "SELECT id_table1, id_table2 FROM relations WHERE name = ?"
         
         let resultSetRel: FMResultSet? = db!.executeQuery(queryRelation, withArgumentsIn: [columnName])
         resultSetRel!.next()
@@ -375,12 +375,12 @@ class SqlManager {
             resultColumns.append((type!, name!))
         }
         
-        var queryForGetData = "SELECT (id"
+        var queryForGetData = "SELECT id"
         for column in resultColumns {
             queryForGetData = queryForGetData + ", " + column.name
         }
         
-        queryForGetData = queryForGetData + ") FROM \(table2name! + String(connectedDataBaseId)) WHERE id = ?"
+        queryForGetData = queryForGetData + " FROM \(table2name! + String(connectedDataBaseId)) WHERE id = ?"
         let resultSetData: FMResultSet? = db!.executeQuery(queryForGetData, withArgumentsIn: [dataId])
         
         var resultData:[[(data: Any?, type: ColumnType, columnName: String)]] = []
@@ -421,7 +421,7 @@ class SqlManager {
     // columnName - колонка
     func getRelateTable(ofTableWithTableId id:Int32, forColumnName columnName: String) -> (id: Int32, name: String) {
         
-        let queryRelation = "SELECT (id_table1, id_table2) FROM relations WHERE name = ?"
+        let queryRelation = "SELECT id_table1, id_table2 FROM relations WHERE name = ?"
         
         let resultSetRel: FMResultSet? = db!.executeQuery(queryRelation, withArgumentsIn: [columnName])
         resultSetRel!.next()
