@@ -25,13 +25,7 @@ class boolCell: UITableViewCell, dataCellsProtocol {
     }
     
     func set(data: String, type: ColumnType) {
-        if type == getType() {
-            if data == "1"  {
-                switchView.isOn = true
-            } else {
-                switchView.isOn = false
-            }
-        }
+        titleLabel.text = data
     }
     
     func set(interactionEnabled: Bool) {

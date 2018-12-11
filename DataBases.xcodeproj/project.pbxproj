@@ -47,6 +47,7 @@
 		5DD22788218CB98D00795D3B /* AppModulesViper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD2277D218CB98C00795D3B /* AppModulesViper.swift */; };
 		5DD22795218E3E4400795D3B /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DD22794218E3E4400795D3B /* libsqlite3.tbd */; };
 		5DD2279F218E4D3300795D3B /* FMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DD2279E218E4D3300795D3B /* FMDB.framework */; };
+		6B1791B721C03FEB0036522C /* db.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 5D9EBCAA21BD9CC300434D81 /* db.sqlite */; };
 		6B39C51321BD8670003106FC /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B39C51221BD8670003106FC /* TableViewController.swift */; };
 		6B39C51521BD8BE2003106FC /* CreateTableStringViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B39C51421BD8BE2003106FC /* CreateTableStringViewController.swift */; };
 		6B39C51721BD8EEF003106FC /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B39C51621BD8EEF003106FC /* Helper.swift */; };
@@ -357,6 +358,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B1791B721C03FEB0036522C /* db.sqlite in Resources */,
 				5DD2273B218C55D800795D3B /* LaunchScreen.storyboard in Resources */,
 				5DB67C1F219067A6007F6522 /* ChooseTable.storyboard in Resources */,
 				5DD22738218C55D800795D3B /* Assets.xcassets in Resources */,

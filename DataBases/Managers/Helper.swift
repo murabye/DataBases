@@ -33,7 +33,7 @@ class Helper {
         case .id:
             return Int32(string)!
         case .integer:
-            return Int32(string)!
+            return Int32(Double(string)!)
         case .text:
             return string
         }

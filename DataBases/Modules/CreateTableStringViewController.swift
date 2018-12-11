@@ -12,6 +12,7 @@ class CreateTableStringViewController: UITableViewController {
 
     var modelsList: [(ColumnType, String)] = SqlManager.shared.getColumnList(forTableId: SqlManager.shared.selectedTableId)
     var cellArray: [dataCellsProtocol] = []
+    var tableName: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +43,7 @@ class CreateTableStringViewController: UITableViewController {
             let name = modelsList[i].1
             dictionary[name] = Helper.getData(from: data, type: type)
         }
-        SqlManager.shared.addData(toTable: self.title!, withId: SqlManager.shared.selectedTableId, data: dictionary)
+        SqlManager.shared.addData(toTable: SqlManager.shared.selectedTableName, withId: SqlManager.shared.selectedTableId, data: dictionary)
     }
     
     // MARK: - Table view data source

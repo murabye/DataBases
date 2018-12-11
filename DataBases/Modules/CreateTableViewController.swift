@@ -186,6 +186,20 @@ class CreateTableViewController: UITableViewController {
             return nil
         }
     }
+    
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        let deleteAction = UITableViewRowAction(style: .destructive, title: "Удалить") {
+            _, indexPath in
+            if indexPath.section == 0 {
+                self.columnArray.remove(at: indexPath.row)
+            } else {
+                self.relationArray.remove(at: indexPath.row)
+            }
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+        return [deleteAction]
+    }
 
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

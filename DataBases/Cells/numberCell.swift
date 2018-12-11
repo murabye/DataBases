@@ -29,8 +29,7 @@ class numberCell: UITableViewCell, dataCellsProtocol, UITextFieldDelegate {
     }
     
     func set(data: String, type: ColumnType) {
-        numberField.text = data
-        stepper.value = Double(data)!
+        numberField.placeholder = data
     }
     
     func set(interactionEnabled: Bool) {

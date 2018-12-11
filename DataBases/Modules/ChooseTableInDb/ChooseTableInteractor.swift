@@ -20,6 +20,7 @@ extension ChooseTableInteractor: ChooseTableInteractorProtocol {
     }
     func selectTable(index: Int) {
         SqlManager.shared.selectedTableId = tableList[index].0
+        SqlManager.shared.selectedTableName = tableList[index].1
     }
     func getTableList() -> [(Int32, String)] {
         tableList = SqlManager.shared.getTableList(forDbId: SqlManager.shared.connectedDataBaseId)

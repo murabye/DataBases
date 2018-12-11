@@ -22,7 +22,7 @@ class textCell: UITableViewCell, dataCellsProtocol, UITextFieldDelegate {
     }
     
     func set(data: String, type: ColumnType) {
-        textField.text = data
+        textField.placeholder = data
     }
     
     func set(interactionEnabled: Bool) {
@@ -35,7 +35,7 @@ class textCell: UITableViewCell, dataCellsProtocol, UITextFieldDelegate {
     
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if Int32(textField.text!.count) < maxLenght {
+        if Int32(textField.text!.count) >= maxLenght {
             return false
         }
         return true

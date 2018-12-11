@@ -13,6 +13,7 @@ class SqlManager {
     static let shared = SqlManager()
     public var connectedDataBaseId: Int32 = 0
     public var selectedTableId: Int32 = 0
+    public var selectedTableName: String = ""
 
     //MARK:- init and opening
     var dbFilePath:String = ""
@@ -134,12 +135,12 @@ class SqlManager {
                     }
                     maskId = db.lastInsertRowId
                 }
-                query = "INSERT INTO colums (id_table, name, type, id_mask, is_unique, not_null, primary_key) VALUES (\(tableId), '\(column.name)', \(column.type), \(convertOpt(maskId)), \(column.isUnique), \(column.not_null), \(column.primary_key))"
+                query = "INSERT INTO colums (id_table, name, type, id_mask, is_unique, not_null, primary_key) VALUES (\(tableId), '\(column.name)', '\(column.type)', \(convertOpt(maskId)), \(column.isUnique), \(column.not_null), \(column.primary_key))"
                 if !db.executeUpdate(query, withArgumentsIn: []) {
                     rollback.pointee = true
                     return
                 }
-                
+            }
                 for relation in relations {
                     query = "INSERT INTO relations (id_table1, id_table2, relation_type) VALUES (?, ?, ?)"
                     if !db.executeUpdate(query, withArgumentsIn: [relation.id_table1, relation.id_table2, relation.relation_type]) {
@@ -159,7 +160,7 @@ class SqlManager {
                     }
                 }
                 
-                query = "CREATE TABLE \(String(dbId) + name) (id integer PRIMARY KEY"
+                query = "CREATE TABLE \(name + String(dbId)) (id integer PRIMARY KEY"
                 for column in columns {
                     query += ","
                     query += " " + column.name
@@ -186,8 +187,8 @@ class SqlManager {
                         var queryForRasprTable = "CREATE TABLE system_"
                         queryForRasprTable += name + "_" + table2name
                         queryForRasprTable += "(id integer PRIMARY KEY, "
-                        queryForRasprTable += "FOREIGN KEY (table1_id) REFERENCES \(String(connectedDataBaseId)+name) (id) ON DELETE CASCADE ON UPDATE NO ACTION, "
-                        queryForRasprTable += "FOREIGN KEY (table2_id) REFERENCES \(String(connectedDataBaseId)+table2name) (id) ON DELETE CASCADE ON UPDATE NO ACTION)"
+                        queryForRasprTable += "FOREIGN KEY (table1_id) REFERENCES \(name + String(connectedDataBaseId)) (id) ON DELETE CASCADE ON UPDATE NO ACTION, "
+                        queryForRasprTable += "FOREIGN KEY (table2_id) REFERENCES \(table2name + String(connectedDataBaseId)) (id) ON DELETE CASCADE ON UPDATE NO ACTION)"
                         if !db.executeUpdate(queryForRasprTable, withArgumentsIn: []) {
                             rollback.pointee = true
                             return
@@ -201,7 +202,6 @@ class SqlManager {
                     rollback.pointee = true
                     return
                 }
-            }
         }
     }
     
@@ -223,10 +223,14 @@ class SqlManager {
         }
         
         queryForGetData = queryForGetData + ") FROM ?"
-        let resultSetData: FMResultSet? = db!.executeQuery(queryForGetData, withArgumentsIn: [String(connectedDataBaseId) + tableName])
+        let resultSetDataRaw: FMResultSet? = db!.executeQuery(queryForGetData, withArgumentsIn: [tableName +  String(connectedDataBaseId)])
+        
+        guard let resultSetData = resultSetDataRaw else {
+            return [];
+        }
         
         var resultData:[[(data: Any?, type: ColumnType, columnName: String)]] = []
-        while resultSetData!.next() {
+        while resultSetData.next() {
             var tableStr: [(data: Any?, type: ColumnType, columnName: String)] = []
             
             for column in resultColumns {
@@ -237,11 +241,11 @@ class SqlManager {
                 
                 switch typ {
                 case "text":
-                    data = resultSetData?.string(forColumn: nam)
+                    data = resultSetData.string(forColumn: nam)
                 case "integer":
-                    data = resultSetData?.int(forColumn: nam)
+                    data = resultSetData.int(forColumn: nam)
                 case "bool":
-                    data = resultSetData?.bool(forColumn: nam)
+                    data = resultSetData.bool(forColumn: nam)
                 case "id":
                     data = nil
                 default:
@@ -251,7 +255,7 @@ class SqlManager {
                 tableStr.append((data: data, type: realType!, columnName: nam))
             }
             
-            tableStr.append((data: resultSetData?.int(forColumn: "id"), type: ColumnType.integer, columnName: "id"))
+            tableStr.append((data: resultSetData.int(forColumn: "id"), type: ColumnType.integer, columnName: "id"))
             resultData.append(tableStr)
         }
         
@@ -262,7 +266,7 @@ class SqlManager {
         let queue:FMDatabaseQueue? = FMDatabaseQueue(path: self.dbFilePath)
         
         queue?.inTransaction { db, rollback in
-            let tableName = String(connectedDataBaseId) + name
+            let tableName = name + String(connectedDataBaseId)
             var addDataQuery = "INSERT INTO \(tableName) "
             var keys = ""
             var values = ""
@@ -343,7 +347,7 @@ class SqlManager {
             queryForGetData = queryForGetData + ", " + column.name
         }
         
-        queryForGetData = queryForGetData + ") FROM \(String(connectedDataBaseId) + table2name!) WHERE id = ?"
+        queryForGetData = queryForGetData + ") FROM \(table2name! + String(connectedDataBaseId)) WHERE id = ?"
         let resultSetData: FMResultSet? = db!.executeQuery(queryForGetData, withArgumentsIn: [dataId])
         
         var resultData:[[(data: Any?, type: ColumnType, columnName: String)]] = []
@@ -385,7 +389,7 @@ class SqlManager {
         let resultSetTabName: FMResultSet? = db!.executeQuery(queryTableName, withArgumentsIn: [tableId])
         resultSetTabName!.next()
         let table2name = resultSetTabName?.string(forColumn: "name")
-        let table2fullName = String(connectedDataBaseId)+table2name!
+        let table2fullName = table2name! + String(connectedDataBaseId)
         
         let queryDeleteData = "DELETE FROM \(table2fullName) WHERE id = ?"
         let deleteSuccessful = db!.executeUpdate(queryDeleteData, withArgumentsIn: [table2fullName, dataId])
@@ -403,7 +407,7 @@ class SqlManager {
             let resultSetTabName: FMResultSet? = db.executeQuery(queryTableName, withArgumentsIn: [tableId])
             resultSetTabName!.next()
             let tableName = resultSetTabName?.string(forColumn: "name")
-            let tableFullName = String(connectedDataBaseId) + tableName!
+            let tableFullName = tableName! + String(connectedDataBaseId)
 
             let queryDeleteFromTables = "DELETE FROM tables WHERE id = ?"
             if !db.executeUpdate(queryDeleteFromTables, withArgumentsIn: [tableId]) {
