@@ -29,7 +29,7 @@ class SqlManager {
     }
     
     func initializeDb() -> Bool {
-        let documentFolderPath = "/Users/wolfram/Documents/DataBases/DataBases/Managers"// NSSearchPathForDirectoriesInDomains(.developerApplicationDirectory, .userDomainMask, true)[0] as String
+        let documentFolderPath = "/Users/varya/Documents/DataBases/DataBases/Managers"// NSSearchPathForDirectoriesInDomains(.developerApplicationDirectory, .userDomainMask, true)[0] as String
         
         let dbfile = "/" + DATABASE_FILE_NAME;
         
@@ -224,7 +224,7 @@ class SqlManager {
     // тут массив [ячейка ячейка ячейка ] - это кортеж
     // ячейка - это одна штучка из трех данных: data значение, type тип значения, columnName имя колонки
     func getData(withId id:Int32) -> [[(data: Any?, type: ColumnType, columnName: String)]] {
-        let queryTableName = "SELECT name FROM tables WHERE id = ?"
+        let queryTableName = "SELECT name FROM tables WHERE id_table = ?"
         let resultSetTabName: FMResultSet? = db!.executeQuery(queryTableName, withArgumentsIn: [id])
         resultSetTabName?.next()
         let tableName = resultSetTabName?.string(forColumn: "name")!
@@ -361,7 +361,7 @@ class SqlManager {
             id1 = Int32(id)
         }
         
-        let queryTable2Name = "SELECT name FROM tables WHERE id = ?"
+        let queryTable2Name = "SELECT name FROM tables WHERE id_table = ?"
         let resultSetTabName: FMResultSet? = db!.executeQuery(queryTable2Name, withArgumentsIn: [id2!])
         resultSetTabName?.next()
         let table2name = resultSetTabName?.string(forColumn: "name")!
@@ -433,7 +433,7 @@ class SqlManager {
             id1 = Int32(id)
         }
         
-        let queryTableName = "SELECT name FROM tables WHERE id = ?"
+        let queryTableName = "SELECT name FROM tables WHERE id_table = ?"
         let resultSetTabName: FMResultSet? = db!.executeQuery(queryTableName, withArgumentsIn: [id2!])
         resultSetTabName?.next()
 
@@ -443,7 +443,7 @@ class SqlManager {
     //MARK:- delete data
     // удалить данные из таблицы
     func deleteData(fromTableWithId tableId: Int32, dataId: Int32) {
-        let queryTableName = "SELECT name FROM tables WHERE id = ?"
+        let queryTableName = "SELECT name FROM tables WHERE id_table = ?"
         let resultSetTabName: FMResultSet? = db!.executeQuery(queryTableName, withArgumentsIn: [tableId])
         resultSetTabName?.next()
         let table2name = resultSetTabName?.string(forColumn: "name")
@@ -462,13 +462,13 @@ class SqlManager {
         
         queue?.inTransaction { db, rollback in
 
-            let queryTableName = "SELECT name FROM tables WHERE id = ?"
+            let queryTableName = "SELECT name FROM tables WHERE id_table = ?"
             let resultSetTabName: FMResultSet? = db.executeQuery(queryTableName, withArgumentsIn: [tableId])
             resultSetTabName?.next()
             let tableName = resultSetTabName?.string(forColumn: "name")
             let tableFullName = tableName! + String(connectedDataBaseId)
 
-            let queryDeleteFromTables = "DELETE FROM tables WHERE id = ?"
+            let queryDeleteFromTables = "DELETE FROM tables WHERE id_table = ?"
             if !db.executeUpdate(queryDeleteFromTables, withArgumentsIn: [tableId]) {
                 rollback.pointee = true
                 return
