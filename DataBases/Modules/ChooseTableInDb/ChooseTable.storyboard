@@ -266,12 +266,15 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="iRH-4H-bXC" kind="showDetail" id="fEV-qy-80X"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ngo-Sv-9eV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="801" y="1427"/>
         </scene>
-        <!--Detail Create String View Controller-->
+        <!--Выбор таблицы-->
         <scene sceneID="dRA-3l-8kP">
             <objects>
                 <tableViewController storyboardIdentifier="detailCreateString" id="iRH-4H-bXC" customClass="DetailCreateStringViewController" customModule="DataBases" customModuleProvider="target" sceneMemberID="viewController">
@@ -294,10 +297,29 @@
                             <outlet property="delegate" destination="iRH-4H-bXC" id="Pd3-bY-ZKn"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Выбор таблицы" id="9VI-ub-pZ2">
+                        <barButtonItem key="leftBarButtonItem" systemItem="stop" id="WcL-G1-koE"/>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FDC-8t-OYz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1610" y="1419"/>
+            <point key="canvasLocation" x="1721" y="1426"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="AAu-Ui-Caa">
+            <objects>
+                <navigationController id="AAv-c2-IXO" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="BaO-lg-Oxh">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="iRH-4H-bXC" kind="relationship" relationship="rootViewController" id="Efo-Lb-k4o"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Tfp-ds-Zk0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1721" y="2117"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="dhy-Yf-yfE">
@@ -545,4 +567,7 @@
             <point key="canvasLocation" x="-937" y="283"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="Efo-Lb-k4o"/>
+    </inferredMetricsTieBreakers>
 </document>

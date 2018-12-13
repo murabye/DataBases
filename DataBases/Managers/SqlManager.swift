@@ -151,8 +151,8 @@ class SqlManager {
                 }
             }
                 for relation in relations {
-                    query = "INSERT INTO relations (id_table1, id_table2, relation_type) VALUES (?, ?, ?)"
-                    if !db.executeUpdate(query, withArgumentsIn: [relation.id_table1, relation.id_table2, relation.relation_type]) {
+                    query = "INSERT INTO relations (id_table1, id_table2, relation_type, name) VALUES (?, ?, ?, ?)"
+                    if !db.executeUpdate(query, withArgumentsIn: [relation.id_table1, relation.id_table2, relation.relation_type, relation.name]) {
                         rollback.pointee = true
                         return
                     }
