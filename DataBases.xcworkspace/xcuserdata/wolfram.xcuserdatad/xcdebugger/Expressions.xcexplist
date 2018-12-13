@@ -19,10 +19,21 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "CreateTableStringViewController.viewDidLoad():CreateTableStringViewController.swift">
+      </ContextState>
+      <ContextState
          contextName = "SqlManager.getData(ofTable:withId:):SqlManager.swift">
          <PersistentStrings>
             <PersistentString
                value = "db">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in CreateTableStringViewController.viewDidLoad():CreateTableStringViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "modelsList">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

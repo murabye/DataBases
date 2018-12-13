@@ -26,6 +26,7 @@ class CreateTableStringViewController: UITableViewController {
                     let vc = sb.instantiateViewController(withIdentifier: "detailCreateString") as! DetailCreateStringViewController
                     vc.cell = cell
                     vc.title = model.1
+                    vc.id_table = SqlManager.shared.getRelateTable(ofTableWithTableId: SqlManager.shared.selectedTableId, forColumnName: model.1).id
                     self.show(vc, sender: nil)
                 }
             }
