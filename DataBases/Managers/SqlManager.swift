@@ -29,7 +29,7 @@ class SqlManager {
     }
     
     func initializeDb() -> Bool {
-        let documentFolderPath = "/Users/wolfram/Documents/DataBases/DataBases/Managers"// NSSearchPathForDirectoriesInDomains(.developerApplicationDirectory, .userDomainMask, true)[0] as String
+        let documentFolderPath = "/Users/varya/Documents/DataBases/DataBases/Managers"// NSSearchPathForDirectoriesInDomains(.developerApplicationDirectory, .userDomainMask, true)[0] as String
         
         let dbfile = "/" + DATABASE_FILE_NAME;
         
@@ -133,6 +133,12 @@ class SqlManager {
                 return
             }
             let tableId = db.lastInsertRowId
+            
+            query = "INSERT INTO colums (id_table, name, type, id_mask, is_unique, not_null, primary_key) VALUES (\(tableId), 'id', 'integer', NULL, false, false, true)"
+            if !db.executeUpdate(query, withArgumentsIn: []) {
+                rollback.pointee = true
+                return
+            }
             
             for column in columns {
                 var maskId:Int64? = nil
