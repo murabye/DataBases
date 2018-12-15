@@ -166,7 +166,7 @@ class SqlManager {
             }
             for relation in relations {
                 query = "INSERT INTO relations (id_table1, id_table2, relation_type, name) VALUES (?, ?, ?, ?)"
-                if !db.executeUpdate(query, withArgumentsIn: [relation.id_table1, relation.id_table2, relation.relation_type, relation.name]) {
+                if !db.executeUpdate(query, withArgumentsIn: [tableId, relation.id_table2, relation.relation_type, relation.name]) {
                     print(db.lastError())
                     rollback.pointee = true
                     return
@@ -485,14 +485,25 @@ class SqlManager {
     func getRelateTable(ofTableWithTableId id:Int32, forColumnName columnName: String) -> (id: Int32, name: String) {
         let queryRelation = "SELECT id_table1, id_table2 FROM relations WHERE name = ?"
         
-        let resultSetRel: FMResultSet? = db!.executeQuery(queryRelation, withArgumentsIn: [columnName])
-        resultSetRel!.next()
-        var id1 = resultSetRel?.int(forColumn: "id_table1")
-        var id2 = resultSetRel?.int(forColumn: "id_table2")
+        let resultSetRel: FMResultSet? = db!.executeQuery(queryRelation, withArgumentsIn: [columnName, id, columnName, id])
+        var id1: Int32? = nil
+        var id2: Int32? = nil
         
-        if id2 == Int32(id) {
-            id2 = id1
-            id1 = Int32(id)
+        while resultSetRel!.next() {
+            let curId1 = resultSetRel?.int(forColumn: "id_table1")
+            let curId2 = resultSetRel?.int(forColumn: "id_table2")
+            
+            if curId1 != id && curId2 != id {
+                continue
+            }
+            
+            id1 = curId1
+            id2 = curId2
+            
+            if id2 == Int32(id) {
+                id2 = id1
+                id1 = Int32(id)
+            }
         }
         
         let queryTableName = "SELECT name FROM tables WHERE id_table = ?"
