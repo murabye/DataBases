@@ -200,7 +200,7 @@ class SqlManager {
                 addRelateToCreateQuery += relation.name
                 addRelateToCreateQuery += ") REFERENCES "
                 addRelateToCreateQuery += table2name
-                addRelateToCreateQuery += "(id) ON DELETE CASCADE ON UPDATE NO ACTION"
+                addRelateToCreateQuery += "(id) ON DELETE NO ACTION ON UPDATE NO ACTION"
                 
             }
             
@@ -529,7 +529,7 @@ class SqlManager {
             let resultSetTabName: FMResultSet? = db.executeQuery(queryTableName, withArgumentsIn: [tableId])
             resultSetTabName?.next()
             let tableName = resultSetTabName?.string(forColumn: "name")
-            let tableFullName = tableName! + String(connectedDataBaseId)
+            //let tableFullName = tableName! + String(connectedDataBaseId)
 
             let queryDeleteFromTables = "DELETE FROM tables WHERE id_table = ?"
             if !db.executeUpdate(queryDeleteFromTables, withArgumentsIn: [tableId]) {
