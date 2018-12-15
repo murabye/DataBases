@@ -10,7 +10,7 @@ import UIKit
 
 class CreateTableStringViewController: UITableViewController {
 
-    var modelsList: [(ColumnType, String)] = SqlManager.shared.getColumnList(forTableId: SqlManager.shared.selectedTableId)
+    var modelsList: [(type: ColumnType, name: String, mask: Int32?)] = SqlManager.shared.getColumnList(forTableId: SqlManager.shared.selectedTableId)
     var cellArray: [dataCellsProtocol] = []
     var tableName: String?
     
