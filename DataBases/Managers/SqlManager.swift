@@ -29,7 +29,7 @@ class SqlManager {
     }
     
     func initializeDb() -> Bool {
-        let documentFolderPath = "/Users/wolfram/Documents/DataBases/DataBases/Managers"// NSSearchPathForDirectoriesInDomains(.developerApplicationDirectory, .userDomainMask, true)[0] as String
+        let documentFolderPath = "/Users/varya/Documents/DataBases/DataBases/Managers"// NSSearchPathForDirectoriesInDomains(.developerApplicationDirectory, .userDomainMask, true)[0] as String
         
         let dbfile = "/" + DATABASE_FILE_NAME;
         
@@ -134,6 +134,12 @@ class SqlManager {
             }
             let tableId = db.lastInsertRowId
             
+            query = "INSERT INTO colums (id_table, name, type, id_mask, is_unique, not_null, primary_key) VALUES (\(tableId), 'id', 'integer', NULL, false, false, true)"
+            if !db.executeUpdate(query, withArgumentsIn: []) {
+                rollback.pointee = true
+                return
+            }
+            
             for column in columns {
                 var maskId:Int64? = nil
                 if let mask = column.mask {                    
@@ -195,7 +201,7 @@ class SqlManager {
                     default:
                         var queryForRasprTable = "CREATE TABLE system_"
                         queryForRasprTable += name + "_" + table2name
-                        queryForRasprTable += "(id integer PRIMARY KEY, "
+                        queryForRasprTable += "(id integer PRIMARY KEY, table1_id integer, table2_id integer, "
                         queryForRasprTable += "FOREIGN KEY (table1_id) REFERENCES \(name + String(connectedDataBaseId)) (id) ON DELETE CASCADE ON UPDATE NO ACTION, "
                         queryForRasprTable += "FOREIGN KEY (table2_id) REFERENCES \(table2name + String(connectedDataBaseId)) (id) ON DELETE CASCADE ON UPDATE NO ACTION)"
                         if !db.executeUpdate(queryForRasprTable, withArgumentsIn: []) {
@@ -450,7 +456,7 @@ class SqlManager {
         let table2fullName = table2name! + String(connectedDataBaseId)
         
         let queryDeleteData = "DELETE FROM \(table2fullName) WHERE id = ?"
-        let deleteSuccessful = db!.executeUpdate(queryDeleteData, withArgumentsIn: [table2fullName, dataId])
+        let deleteSuccessful = db!.executeUpdate(queryDeleteData, withArgumentsIn: [dataId])
         if !deleteSuccessful {
             print("delete failed: \(String(describing: db?.lastErrorMessage()))")
         }
