@@ -60,6 +60,7 @@
 		6BA6E915219358C70042EE55 /* numberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA6E914219358C70042EE55 /* numberCell.swift */; };
 		6BA6E917219358DF0042EE55 /* pickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA6E916219358DF0042EE55 /* pickerCell.swift */; };
 		6BA6E919219372E20042EE55 /* buttonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA6E918219372E20042EE55 /* buttonCell.swift */; };
+		6BE3279821C5952C00AFAE6F /* DetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE3279721C5952C00AFAE6F /* DetailTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -119,6 +120,7 @@
 		6BA6E914219358C70042EE55 /* numberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = numberCell.swift; sourceTree = "<group>"; };
 		6BA6E916219358DF0042EE55 /* pickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pickerCell.swift; sourceTree = "<group>"; };
 		6BA6E918219372E20042EE55 /* buttonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = buttonCell.swift; sourceTree = "<group>"; };
+		6BE3279721C5952C00AFAE6F /* DetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewController.swift; sourceTree = "<group>"; };
 		909E4CEE398FD214D34C20FE /* Pods_DataBases.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DataBases.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F58C39E5BACC8873101C5BEF /* Pods-DataBases.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DataBases.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DataBases/Pods-DataBases.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -234,6 +236,7 @@
 				6B59BACA21BC5A62004C3043 /* CreateTableViewController.swift */,
 				6B59BACC21BC7493004C3043 /* CreateTableDetailViewController.swift */,
 				6B39C51221BD8670003106FC /* TableViewController.swift */,
+				6BE3279721C5952C00AFAE6F /* DetailTableViewController.swift */,
 				6B39C51421BD8BE2003106FC /* CreateTableStringViewController.swift */,
 				6B39C51821BD9D77003106FC /* DetailCreateStringViewController.swift */,
 				5DB67BD6219063E2007F6522 /* ChooseTableInDb */,
@@ -456,6 +459,7 @@
 				6BA6E913219358930042EE55 /* textCell.swift in Sources */,
 				5DB67C20219067A6007F6522 /* ChooseTableModuleProtocols.swift in Sources */,
 				5DB67BCB21906181007F6522 /* BasePresenter.swift in Sources */,
+				6BE3279821C5952C00AFAE6F /* DetailTableViewController.swift in Sources */,
 				6BA6E919219372E20042EE55 /* buttonCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
