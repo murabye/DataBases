@@ -13,8 +13,8 @@ class numberCell: UITableViewCell, dataCellsProtocol, UITextFieldDelegate {
     @IBOutlet weak var numberField: UITextField!
     @IBOutlet weak var stepper: UIStepper!
     
-    var maxValue: Int32 = Int32.max
-    var minValue: Int32 = Int32.min
+    var maxValue: Int32?
+    var minValue: Int32?
     
     @IBAction func stepperTap(_ sender: Any) {
         numberField.text = String(stepper.value) 
@@ -47,12 +47,15 @@ class numberCell: UITableViewCell, dataCellsProtocol, UITextFieldDelegate {
         guard let text = textField.text else {
             return false
         }
-        if let value = Int32(text) {
-            if value < maxValue && value > minValue {
-                return true
+        if maxValue != nil && minValue != nil {
+            if let value = Int32(text) {
+                if value > maxValue! || value < minValue! {
+                    return false
+                }
             }
         }
-        return false
+
+        return true
     }
 
     override func awakeFromNib() {

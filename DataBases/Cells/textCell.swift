@@ -11,7 +11,7 @@ import UIKit
 class textCell: UITableViewCell, dataCellsProtocol, UITextFieldDelegate {
     
     @IBOutlet weak var textField: UITextField!
-    var maxLenght: Int32 = Int32.max
+    var maxLenght: Int32?
     
     func getType() -> ColumnType {
         return ColumnType.text
@@ -35,8 +35,10 @@ class textCell: UITableViewCell, dataCellsProtocol, UITextFieldDelegate {
     
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if Int32(textField.text!.count) >= maxLenght {
-            return false
+        if let maxLenght = self.maxLenght {
+            if Int32(textField.text!.count) >= maxLenght {
+                return false
+            }
         }
         return true
     }

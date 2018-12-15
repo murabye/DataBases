@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DataBases/Modules/CreateTableDetailViewController.swift"
-            timestampString = "566593074.669446"
+            timestampString = "566596566.368028"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "38"
@@ -26,7 +26,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DataBases/Modules/ChooseTableInDb/ChooseTableInteractor.swift"
-            timestampString = "566593074.669546"
+            timestampString = "566596566.368104"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "31"
@@ -47,40 +47,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "476"
             endingLineNumber = "476"
-            landmarkName = "deleteTable(withId:)"
+            landmarkName = "getRelateData(ofTableWithTableId:forDataId:forColumnName:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "DataBases.SqlManager.deleteTable(withId: Swift.Int32) -&gt; ()"
-                  moduleName = "DataBases"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/wolfram/Documents/DataBases/DataBases/Managers/SqlManager.swift"
-                  timestampString = "566593074.813518"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "477"
-                  endingLineNumber = "477"
-                  offsetFromSymbolStart = "105">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (__C.FMDatabase, Swift.UnsafeMutablePointer&lt;ObjectiveC.ObjCBool&gt;) -&gt; () in DataBases.SqlManager.deleteTable(withId: Swift.Int32) -&gt; ()"
-                  moduleName = "DataBases"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/wolfram/Documents/DataBases/DataBases/Managers/SqlManager.swift"
-                  timestampString = "566593074.825402"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "479"
-                  endingLineNumber = "479"
-                  offsetFromSymbolStart = "74">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

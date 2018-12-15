@@ -9,7 +9,7 @@
 import UIKit
 
 struct MaskModel {
-    let min_value: Int32? = 0
-    let max_value: Int32? = 0
-    let max_length: Int32? = 0
+    let min_value: Int32?
+    let max_value: Int32?
+    let max_length: Int32?
 }

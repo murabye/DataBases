@@ -37,6 +37,11 @@ class CreateTableStringViewController: UITableViewController {
                     self.show(vc, sender: nil)
                 }
             }
+            if let maskId = column.mask {
+                let maskData = SqlManager.shared.getMaskData(maskId: maskId)
+                let maskModel = MaskModel.init(min_value: maskData.minValue, max_value: maskData.maxValue, max_length: maskData.max_length)
+                cell.set(mask: maskModel)
+            }
             cell.set(data: column.1, type: column.0)
             cellArray.append(cell)
         }

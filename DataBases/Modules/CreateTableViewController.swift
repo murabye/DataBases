@@ -16,6 +16,7 @@ class CreateTableViewController: UITableViewController {
     @IBOutlet weak var uniqueSwitch: UISwitch!
     @IBOutlet weak var notNullSwitch: UISwitch!
     @IBOutlet weak var keySwitch: UISwitch!
+    @IBOutlet weak var maskSwitch: UISwitch!
     
     var columnArray: [ColumnModel] = []
     var relationArray: [RelationModel] = []
@@ -40,13 +41,17 @@ class CreateTableViewController: UITableViewController {
     @IBAction func segmentChange(_ sender: Any) {
         switch dataTypeSegment.selectedSegmentIndex {
         case 3:
-            keySwitch.isHidden = true
-            uniqueSwitch.isHidden = true
-            notNullSwitch.isHidden = true
+            keySwitch.isEnabled = false
+            uniqueSwitch.isEnabled = false
+            notNullSwitch.isEnabled = false
+            maskSwitch.isEnabled = false
+        case 2:
+            maskSwitch.isEnabled = false
         default:
-            keySwitch.isHidden = false
-            uniqueSwitch.isHidden = false
-            notNullSwitch.isHidden = false
+            keySwitch.isEnabled = true
+            uniqueSwitch.isEnabled = true
+            notNullSwitch.isEnabled = true
+            maskSwitch.isEnabled = true
         }
     }
     
@@ -68,6 +73,83 @@ class CreateTableViewController: UITableViewController {
             }
         }
         
+        if maskSwitch.isOn {
+            if dataTypeSegment.selectedSegmentIndex == 0 {
+                let alert = UIAlertController(title: "Маска", message: "Введите максимально допустимую длину вводимого текста", preferredStyle: .alert)
+                let saveAction = UIAlertAction(title: "Принять", style: .default) { (_) -> Void in
+                    let nameField = alert.textFields?[0]
+                    
+                    if let maskText = nameField?.text {
+                        let mask = MaskModel.init(min_value: nil, max_value: nil, max_length: Int32(maskText)!)
+                        let columnModel = ColumnModel.init(id_table: 0,
+                                                           name: name,
+                                                           type: self.getTypeAt(segmentSelectedIndex: self.dataTypeSegment.selectedSegmentIndex),
+                                                           mask: mask,
+                                                           isUnique: self.uniqueSwitch.isOn,
+                                                           not_null: self.notNullSwitch.isOn,
+                                                           primary_key: self.keySwitch.isOn)
+                        
+                        self.columnArray.append(columnModel)
+                        self.columnNameField.text = ""
+                        self.keySwitch.isOn = false
+                        self.uniqueSwitch.isOn = false
+                        self.notNullSwitch.isOn = false
+                        self.maskSwitch.isOn = false
+                        self.tableView.reloadData()
+                    }
+                
+                }
+                
+                alert.addTextField { (_) -> Void in }
+                alert.textFields![0].text = "10"
+                alert.textFields![0].keyboardType = .numberPad
+                
+                alert.addAction(saveAction)
+                
+                self.present(alert, animated: true, completion: nil)
+            } else {
+                let alert = UIAlertController(title: "Маска", message: "Введите минимальное и максимальное значение", preferredStyle: .alert)
+                let saveAction = UIAlertAction(title: "Принять", style: .default) { (_) -> Void in
+                    let minField = alert.textFields?[0]
+                    let maxField = alert.textFields?[1]
+                    
+                    if let minText = minField?.text {
+                        if let maxText = maxField?.text {
+                            let mask = MaskModel.init(min_value: Int32(minText)!, max_value: Int32(maxText)!, max_length: nil)
+                            let columnModel = ColumnModel.init(id_table: 0,
+                                                               name: name,
+                                                               type: self.getTypeAt(segmentSelectedIndex: self.dataTypeSegment.selectedSegmentIndex),
+                                                               mask: mask,
+                                                               isUnique: self.uniqueSwitch.isOn,
+                                                               not_null: self.notNullSwitch.isOn,
+                                                               primary_key: self.keySwitch.isOn)
+                            
+                            self.columnArray.append(columnModel)
+                            self.columnNameField.text = ""
+                            self.keySwitch.isOn = false
+                            self.uniqueSwitch.isOn = false
+                            self.notNullSwitch.isOn = false
+                            self.maskSwitch.isOn = false
+                            self.tableView.reloadData()
+                        }
+                    }
+                }
+                
+                alert.addTextField { (_) -> Void in }
+                alert.textFields![0].text = "0"
+                alert.textFields![0].keyboardType = .numberPad
+                
+                alert.addTextField { (_) -> Void in }
+                alert.textFields![1].text = "999"
+                alert.textFields![1].keyboardType = .numberPad
+                
+                alert.addAction(saveAction)
+                
+                self.present(alert, animated: true, completion: nil)
+            }
+            return
+        }
+        
         guard dataTypeSegment.selectedSegmentIndex != 3 else {
             self.performSegue(withIdentifier: "showAllTables", sender: nil)
             return
@@ -86,6 +168,7 @@ class CreateTableViewController: UITableViewController {
         self.keySwitch.isOn = false
         self.uniqueSwitch.isOn = false
         self.notNullSwitch.isOn = false
+        self.maskSwitch.isOn = false
         tableView.reloadData()
     }
     
@@ -192,10 +275,6 @@ class CreateTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        
-        guard SqlManager.shared.isAdmin else {
-            return []
-        }
         
         let deleteAction = UITableViewRowAction(style: .destructive, title: "Удалить") {
             _, indexPath in
