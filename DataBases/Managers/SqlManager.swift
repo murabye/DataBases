@@ -386,7 +386,7 @@ class SqlManager {
                 }
             }
             
-            if let maxNotNil = minValue {
+            if let maxNotNil = maxValue {
                 maxValueInt = maxNotNil.withUnsafeBytes { (ptr: UnsafePointer<Int32>) -> Int32 in
                     return ptr.pointee
                 }
