@@ -20,7 +20,10 @@ class DetailCreateStringViewController: UITableViewController {
         dataModel = SqlManager.shared.getData(withId: id_table)
     }
 
-
+    // MARK: - Action
+    @IBAction func canselAction(_ sender: Any) {
+        self.navigationController!.popViewController(animated: true)
+    }
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
