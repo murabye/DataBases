@@ -81,11 +81,18 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Таблица" id="ko0-Wg-dwo">
-                        <barButtonItem key="rightBarButtonItem" title="Добавить" id="Tql-g0-Ww4">
-                            <connections>
-                                <segue destination="wxk-9n-6Kh" kind="show" id="ChH-cY-6gU"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="Tql-g0-Ww4">
+                                <connections>
+                                    <segue destination="wxk-9n-6Kh" kind="show" id="ChH-cY-6gU"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="action" id="emR-dT-2Tt">
+                                <connections>
+                                    <action selector="exportAction:" destination="3qd-Ym-6rY" id="eQT-xT-ahZ"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="addButton" destination="Tql-g0-Ww4" id="Pvo-4p-5P4"/>
