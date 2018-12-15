@@ -497,6 +497,10 @@ class SqlManager {
         }
     }
     
+    func deleteDataBase(withId dbId: Int32) {
+        
+    }
+    
     //MARK:- help
     private func convertOpt(_ optional:Any?) -> String {
         return optional != nil ? optional! as! String : "NULL"
