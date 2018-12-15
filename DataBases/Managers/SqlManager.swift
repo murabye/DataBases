@@ -281,7 +281,7 @@ class SqlManager {
                 case "bool":
                     data = resultSetData.bool(forColumn: nam)
                 case "id":
-                    data = nil
+                    data = resultSetData.int(forColumn: nam)
                 default:
                     data = nil
                 }
