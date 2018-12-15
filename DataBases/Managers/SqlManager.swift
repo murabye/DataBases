@@ -582,9 +582,41 @@ class SqlManager {
     
     //MARK:- help
     private func convertOpt(_ optional:Any?) -> String {
-        return optional != nil ? optional! as! String : "NULL"
+        var data = ""
+        
+        guard let optional = optional else {
+            return "NULL"
+        }
+        
+        if optional is String{
+            data = optional as! String
+        }
+        else if optional is Int32{
+            data = String(optional as! Int32)
+        }
+        else if optional is Bool{
+            data = (optional as! Bool) ? "true" : "false"
+        }
+        
+        return data
     }
     private func convertStringOpt(_ optional:Any?) -> String {
-        return optional != nil ? "'" + (optional! as! String) + "'" : "NULL"
+        var data = ""
+        
+        guard let optional = optional else {
+            return "NULL"
+        }
+        
+        if optional is String{
+            data = "'" + (optional as! String) + "'"
+        }
+        else if optional is Int32{
+            data = String(optional as! Int32)
+        }
+        else if optional is Bool{
+            data = (optional as! Bool) ? "true" : "false"
+        }
+        
+        return data
     }
 }
