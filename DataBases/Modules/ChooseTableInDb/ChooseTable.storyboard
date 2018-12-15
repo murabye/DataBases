@@ -307,7 +307,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Выбор таблицы" id="9VI-ub-pZ2">
-                        <barButtonItem key="leftBarButtonItem" systemItem="stop" id="WcL-G1-koE"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="stop" id="WcL-G1-koE">
+                            <connections>
+                                <action selector="canselAction:" destination="iRH-4H-bXC" id="yjM-xN-gF0"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FDC-8t-OYz" userLabel="First Responder" sceneMemberID="firstResponder"/>
