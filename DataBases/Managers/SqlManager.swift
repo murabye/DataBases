@@ -29,7 +29,7 @@ class SqlManager {
     }
     
     func initializeDb() -> Bool {
-        let documentFolderPath = "/Users/wolfram/Documents/DataBases/DataBases/Managers"// NSSearchPathForDirectoriesInDomains(.developerApplicationDirectory, .userDomainMask, true)[0] as String
+        let documentFolderPath = "/Users/varya/Documents/DataBases/DataBases/Managers"// NSSearchPathForDirectoriesInDomains(.developerApplicationDirectory, .userDomainMask, true)[0] as String
         
         let dbfile = "/" + DATABASE_FILE_NAME;
         
@@ -244,10 +244,13 @@ class SqlManager {
             resultColumns.append((type!, name!))
         }
         
-        var queryForGetData = "SELECT id"
+        var queryForGetData = "SELECT "
         for column in resultColumns {
-            queryForGetData = queryForGetData + ", " + column.name
+            queryForGetData = queryForGetData + column.name + ", "
         }
+        let queryRange = queryForGetData.index(queryForGetData.endIndex, offsetBy: -2)..<queryForGetData.endIndex
+        queryForGetData.removeSubrange(queryRange)
+
         
         queryForGetData = queryForGetData + " FROM \(tableName! +  String(connectedDataBaseId))"
         let resultSetDataRaw: FMResultSet? = db!.executeQuery(queryForGetData, withArgumentsIn: [])
