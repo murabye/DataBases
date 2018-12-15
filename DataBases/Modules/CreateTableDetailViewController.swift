@@ -11,13 +11,13 @@ import UIKit
 class CreateTableDetailViewController: UITableViewController {
 
     @IBOutlet weak var relationSegment: UISegmentedControl!
-    let tableArray = SqlManager.shared.getTableList(forDbId: SqlManager.shared.connectedDataBaseId)
+    var tableArray: [(Int32, String)]!
     var selectedTable: (Int32, String)?
     var createTableViewController: CreateTableViewController? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        tableArray = SqlManager.shared.getTableList(forDbId: SqlManager.shared.connectedDataBaseId)
     }
     @IBAction func createAction(_ sender: Any) {
         var relationType = 0

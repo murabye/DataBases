@@ -137,6 +137,7 @@ class TableViewController: UITableViewController, UISearchResultsUpdating {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let dataModel = self.dataModel[indexPath.section][indexPath.row]
         guard dataModel.type == .id else {
+            tableView.deselectRow(at: indexPath, animated: true)
             return
         }
         let sb = UIStoryboard.init(name: "ChooseTable", bundle: .main)
