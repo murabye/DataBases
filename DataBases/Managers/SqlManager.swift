@@ -14,6 +14,7 @@ class SqlManager {
     public var connectedDataBaseId: Int32 = 0
     public var selectedTableId: Int32 = 0
     public var selectedTableName: String = ""
+    public var isAdmin: Bool = false
 
     //MARK:- init and opening
     var dbFilePath:String = ""

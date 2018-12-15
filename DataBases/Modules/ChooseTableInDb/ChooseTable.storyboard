@@ -49,6 +49,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addButton" destination="aEe-nU-ntj" id="hau-Gp-VE5"/>
                         <segue destination="3qd-Ym-6rY" kind="show" identifier="selectTable" id="XDc-20-mSB"/>
                     </connections>
                 </tableViewController>
@@ -87,6 +88,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addButton" destination="Tql-g0-Ww4" id="Pvo-4p-5P4"/>
                         <segue destination="ywq-V1-L2O" kind="show" identifier="tableDetail" id="Dc4-X9-oXQ"/>
                     </connections>
                 </tableViewController>

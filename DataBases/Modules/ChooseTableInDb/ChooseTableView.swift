@@ -11,7 +11,18 @@ import UIKit
 //MARK: ChooseTableView Class
 final class ChooseTableView: BaseTableView {
     
+    @IBOutlet weak var addButton: UIBarButtonItem!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        addButton.isEnabled = SqlManager.shared.isAdmin
+    }
+    
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        guard SqlManager.shared.isAdmin else {
+            return []
+        }
         
         let deleteAction = UITableViewRowAction(style: .destructive, title: "Удалить таблицу") {
             _, indexPath in
@@ -22,7 +33,7 @@ final class ChooseTableView: BaseTableView {
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
+        return SqlManager.shared.isAdmin
     }
 }
 

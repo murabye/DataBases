@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -37,31 +38,27 @@
                                 <constraint firstItem="lWa-b6-xwG" firstAttribute="centerX" secondItem="XLh-e9-Kf0" secondAttribute="centerX" id="g3D-1O-yoO"/>
                             </constraints>
                         </view>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="standart" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="buttonCell" id="4l8-8l-EWA">
-                                <rect key="frame" x="0.0" y="99.5" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4l8-8l-EWA" id="cpS-cD-tF4">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9g9-Do-h1M">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                            <state key="normal" title="Создать новое хранилище"/>
-                                            <connections>
-                                                <action selector="addDbButtonAction:" destination="AgS-5v-SI8" eventType="touchUpInside" id="iLJ-i5-0P8"/>
-                                            </connections>
-                                        </button>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="9g9-Do-h1M" secondAttribute="trailing" id="Ikn-ef-8Nx"/>
-                                        <constraint firstItem="9g9-Do-h1M" firstAttribute="top" secondItem="cpS-cD-tF4" secondAttribute="top" id="Jnc-xg-GtY"/>
-                                        <constraint firstItem="9g9-Do-h1M" firstAttribute="leading" secondItem="cpS-cD-tF4" secondAttribute="leading" id="fF6-Wx-WSV"/>
-                                        <constraint firstAttribute="bottom" secondItem="9g9-Do-h1M" secondAttribute="bottom" id="q5A-eQ-8UE"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="iCZ-BC-Viw">
+                            <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9g9-Do-h1M">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <state key="normal" title="Создать новое хранилище"/>
+                                    <connections>
+                                        <action selector="addDbButtonAction:" destination="AgS-5v-SI8" eventType="touchUpInside" id="iLJ-i5-0P8"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="9g9-Do-h1M" secondAttribute="bottom" id="BO1-lJ-a61"/>
+                                <constraint firstAttribute="trailing" secondItem="9g9-Do-h1M" secondAttribute="trailing" id="FFr-Y1-9pw"/>
+                                <constraint firstItem="9g9-Do-h1M" firstAttribute="leading" secondItem="iCZ-BC-Viw" secondAttribute="leading" id="eyV-p0-ThE"/>
+                                <constraint firstItem="9g9-Do-h1M" firstAttribute="top" secondItem="iCZ-BC-Viw" secondAttribute="top" id="hTL-21-86B"/>
+                            </constraints>
+                            <viewLayoutGuide key="safeArea" id="Hkw-Mr-PSv"/>
+                        </view>
                         <sections/>
                         <connections>
                             <outlet property="dataSource" destination="AgS-5v-SI8" id="Rgs-JQ-Nb6"/>
@@ -78,11 +75,12 @@
                     </navigationItem>
                     <connections>
                         <outlet property="addButton" destination="cAd-du-CLb" id="Ag2-af-9e9"/>
+                        <outlet property="secondAddButton" destination="9g9-Do-h1M" id="xkp-jQ-ycr"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B1h-dT-uYq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="752.34375" y="820.8984375"/>
+            <point key="canvasLocation" x="751.20000000000005" y="820.83958020989508"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="uWS-Ox-4Hb">

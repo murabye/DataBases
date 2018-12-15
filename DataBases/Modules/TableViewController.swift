@@ -10,6 +10,7 @@ import UIKit
 
 class TableViewController: UITableViewController {
 
+    @IBOutlet weak var addButton: UIBarButtonItem!
     var dataModel: [[(data: Any?, type: ColumnType, columnName: String)]]!
     
     override func viewDidLoad() {
@@ -60,7 +61,7 @@ class TableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        
+
         let deleteAction = UITableViewRowAction(style: .destructive, title: "Удалить секцию") {
             _, indexPath in
             for column in self.dataModel[indexPath.section]{

@@ -193,6 +193,10 @@ class CreateTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
+        guard SqlManager.shared.isAdmin else {
+            return []
+        }
+        
         let deleteAction = UITableViewRowAction(style: .destructive, title: "Удалить") {
             _, indexPath in
             if indexPath.section == 0 {

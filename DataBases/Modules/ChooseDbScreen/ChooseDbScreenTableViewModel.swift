@@ -34,7 +34,7 @@ final class ChooseDbScreenTableViewModel: BaseTableViewModel {
         }
     }
     override func number(ofSections tableView: UITableView) -> Int {
-        return 2
+        return 1
     }
     
     //MARK: Delegate
