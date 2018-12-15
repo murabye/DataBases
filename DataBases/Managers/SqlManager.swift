@@ -117,6 +117,9 @@ class SqlManager {
     // relations - это как раз отношение. name для relations - название колонки. создавать relation от дочерней таблицы
     func addTable(_ name:String, toDb dbId:Int32, withColumns columns:[ColumnModel], andRelations relations:[RelationModel]) {
         
+        var columnsForTable = columns
+        var addRelateToCreateQuery = ""
+        
         let currentTables = getTableList(forDbId: dbId)
         if currentTables.contains(where: { (arg0:(Int32, String)) -> Bool in
             return arg0.1 == name
@@ -129,6 +132,7 @@ class SqlManager {
         queue?.inTransaction { db, rollback in
             var query = "INSERT INTO tables (name, id_database) VALUES (?, ?)"
             if !db.executeUpdate(query, withArgumentsIn: [name, dbId]) {
+                print(db.lastError())
                 rollback.pointee = true
                 return
             }
@@ -136,15 +140,17 @@ class SqlManager {
             
             query = "INSERT INTO colums (id_table, name, type, id_mask, is_unique, not_null, primary_key) VALUES (\(tableId), 'id', 'integer', NULL, false, false, true)"
             if !db.executeUpdate(query, withArgumentsIn: []) {
+                print(db.lastError())
                 rollback.pointee = true
                 return
             }
             
-            for column in columns {
+            for column in columnsForTable {
                 var maskId:Int64? = nil
                 if let mask = column.mask {                    
                     query = "INSERT INTO masks (min_value, max_value, max_length) VALUES (\(convertOpt(mask.min_value)), \(convertOpt(mask.min_value)), \(convertOpt(mask.max_length))"
                     if !db.executeUpdate(query, withArgumentsIn: []) {
+                        print(db.lastError())
                         rollback.pointee = true
                         return
                     }
@@ -152,71 +158,69 @@ class SqlManager {
                 }
                 query = "INSERT INTO colums (id_table, name, type, id_mask, is_unique, not_null, primary_key) VALUES (\(tableId), '\(column.name)', '\(column.type)', \(convertOpt(maskId)), \(column.isUnique), \(column.not_null), \(column.primary_key))"
                 if !db.executeUpdate(query, withArgumentsIn: []) {
+                    print(db.lastError())
                     rollback.pointee = true
                     return
                 }
             }
-                for relation in relations {
-                    query = "INSERT INTO relations (id_table1, id_table2, relation_type, name) VALUES (?, ?, ?, ?)"
-                    if !db.executeUpdate(query, withArgumentsIn: [relation.id_table1, relation.id_table2, relation.relation_type, relation.name]) {
-                        rollback.pointee = true
-                        return
-                    }
-                    
-                    let queryForTable2Name = "SELECT name FROM tables WHERE id_table == ?"
-                    let resultSet: FMResultSet? = db.executeQuery(queryForTable2Name, withArgumentsIn: [relation.id_table2])
-                    resultSet!.next()
-                    let table2name:String = resultSet!.string(forColumn: "name")!
-
-                    query = "INSERT INTO colums (id_table, name, type, id_mask, is_unique, not_null, primary_key) VALUES (?, ?, ?, ?, ?, ?, ?)"
-                    if !db.executeUpdate(query, withArgumentsIn: [tableId, table2name, "id", "NULL", "false", "false", "false"]) {
-                        rollback.pointee = true
-                        return
-                    }
-                }
-                
-                query = "CREATE TABLE \(name + String(dbId)) (id integer PRIMARY KEY"
-                for column in columns {
-                    query += ","
-                    query += " " + column.name
-                    query += " " + String(column.type.rawValue)
-                    query += column.not_null ? " NOT NULL" : ""
-                    query += column.isUnique ? " UNIQUE" : ""
-                }
-                
-                for relation in relations {
-                    let queryForTable2Name = "SELECT name FROM tables WHERE id_table == ?"
-                    let resultSet: FMResultSet? = db.executeQuery(queryForTable2Name, withArgumentsIn: [relation.id_table2])
-                    resultSet!.next()
-                    let table2name:String = resultSet!.string(forColumn: "name")!
-
-                    switch relation.relation_type {
-                    case 1,2,4,5:
-                        if relation.id_table1 == tableId {
-                            query += ", FOREIGN KEY ("
-                            query += relation.name
-                            query += ") REFERENCES (id"
-                            query += ") ON DELETE CASCADE ON UPDATE NO ACTION"
-                        }
-                    default:
-                        var queryForRasprTable = "CREATE TABLE system_"
-                        queryForRasprTable += name + "_" + table2name
-                        queryForRasprTable += "(id integer PRIMARY KEY, table1_id integer, table2_id integer, "
-                        queryForRasprTable += "FOREIGN KEY (table1_id) REFERENCES \(name + String(connectedDataBaseId)) (id) ON DELETE CASCADE ON UPDATE NO ACTION, "
-                        queryForRasprTable += "FOREIGN KEY (table2_id) REFERENCES \(table2name + String(connectedDataBaseId)) (id) ON DELETE CASCADE ON UPDATE NO ACTION)"
-                        if !db.executeUpdate(queryForRasprTable, withArgumentsIn: []) {
-                            rollback.pointee = true
-                            return
-                        }
-                        break
-                    }
-                }
-                query += ")"
-                
-                if !db.executeUpdate(query, withArgumentsIn: []) {
+            for relation in relations {
+                query = "INSERT INTO relations (id_table1, id_table2, relation_type, name) VALUES (?, ?, ?, ?)"
+                if !db.executeUpdate(query, withArgumentsIn: [relation.id_table1, relation.id_table2, relation.relation_type, relation.name]) {
+                    print(db.lastError())
                     rollback.pointee = true
                     return
                 }
+                
+                let queryForTable2Name = "SELECT name FROM tables WHERE id_table == ?"
+                let resultSet: FMResultSet? = db.executeQuery(queryForTable2Name, withArgumentsIn: [relation.id_table2])
+                resultSet!.next()
+                let table2name:String = resultSet!.string(forColumn: "name")! + String(connectedDataBaseId)
+
+                query = "INSERT INTO colums (id_table, name, type, id_mask, is_unique, not_null, primary_key) VALUES (?, ?, ?, ?, ?, ?, ?)"
+                if !db.executeUpdate(query, withArgumentsIn: [tableId, relation.name, "id", "NULL", "false", "false", "false"]) {
+                    print(db.lastError())
+                    rollback.pointee = true
+                    return
+                }
+                
+                columnsForTable.append(
+                    ColumnModel(
+                        id_table: Int32(tableId),
+                        name: relation.name,
+                        type: .id,
+                        mask: nil,
+                        isUnique: false,
+                        not_null: false,
+                        primary_key: false
+                    )
+                )
+                
+                addRelateToCreateQuery += ", FOREIGN KEY ("
+                addRelateToCreateQuery += relation.name
+                addRelateToCreateQuery += ") REFERENCES "
+                addRelateToCreateQuery += table2name
+                addRelateToCreateQuery += "(id) ON DELETE CASCADE ON UPDATE NO ACTION"
+                
+            }
+            
+            query = "CREATE TABLE \(name + String(dbId)) (id integer PRIMARY KEY"
+            
+            for column in columnsForTable {
+                query += ","
+                query += " " + column.name
+                query += " " + (String(column.type.rawValue) == "id" ? "integer" : String(column.type.rawValue))
+                query += column.not_null ? " NOT NULL" : ""
+                query += column.isUnique ? " UNIQUE" : ""
+            }
+            
+            
+            query += addRelateToCreateQuery + ")"
+            
+            if !db.executeUpdate(query, withArgumentsIn: []) {
+                print(db.lastError())
+                rollback.pointee = true
+                return
+            }
         }
     }
     
@@ -285,7 +289,6 @@ class SqlManager {
                 tableStr.append((data: data, type: realType!, columnName: nam))
             }
             
-            tableStr.append((data: resultSetData.int(forColumn: "id"), type: ColumnType.integer, columnName: "id"))
             resultData.append(tableStr)
         }
         
@@ -330,6 +333,7 @@ class SqlManager {
             addDataQuery = addDataQuery + "(" + keys + ") VALUES (" + values + ")"
             
             if !db.executeUpdate(addDataQuery, withArgumentsIn: []) {
+                print(db.lastError())
                 rollback.pointee = true
                 return
             }
@@ -479,12 +483,14 @@ class SqlManager {
 
             let queryDeleteFromTables = "DELETE FROM tables WHERE id_table = ?"
             if !db.executeUpdate(queryDeleteFromTables, withArgumentsIn: [tableId]) {
+                print(db.lastError())
                 rollback.pointee = true
                 return
             }
 
             let queryDelete = "DROP TABLE IF EXISTS \(tableFullName)"
             if !db.executeUpdate(queryDelete, withArgumentsIn: []) {
+                print(db.lastError())
                 rollback.pointee = true
                 return
             }
