@@ -343,18 +343,67 @@ class SqlManager {
     
     // получить список столбиков для таблицы
     // также приходят столбики, в которых id
-    func getColumnList(forTableId idTable: Int32) -> [(type: ColumnType, name: String)] {
+    func getColumnList(forTableId idTable: Int32) -> [(type: ColumnType, name: String, mask: Int32?)] {
         let queryGetColumns = "SELECT * FROM colums WHERE id_table = ?"
         let resultSetColumns: FMResultSet? = db!.executeQuery(queryGetColumns, withArgumentsIn: [idTable])
-        var resultColumns:[(type: ColumnType, name: String)] = []
+        var resultColumns:[(type: ColumnType, name: String, mask: Int32?)] = []
         while (resultSetColumns!.next()) {
             let name = resultSetColumns?.string(forColumn: "name")
             let type = ColumnType(rawValue: (resultSetColumns?.string(forColumn: "type")!)!)
-            resultColumns.append((type!, name!))
+            let mask = resultSetColumns?.data(forColumn: "mask")
+            var maskInt: Int32? = nil
+            
+            if let maskNotNil = mask {
+                maskInt = maskNotNil.withUnsafeBytes { (ptr: UnsafePointer<Int32>) -> Int32 in
+                    return ptr.pointee
+                }
+            }
+            
+            resultColumns.append((type!, name!, maskInt))
         }
         
         return resultColumns
     }
+    
+    // get mask
+    func getMaskData(maskId: Int32) -> (minValue: Int32?, maxValue: Int32?, max_length: Int32?) {
+        let query = "SELECT * FROM masks WHERE id = ?"
+        let resultSet: FMResultSet? = db!.executeQuery(query, withArgumentsIn: [maskId])
+        var result: (minValue: Int32?, maxValue: Int32?, max_length: Int32?)?
+        
+        while (resultSet!.next()) {
+            let minValue = resultSet?.data(forColumn: "min_value")
+            let maxValue = resultSet?.data(forColumn: "max_value")
+            let maxLength = resultSet?.data(forColumn: "max_length")
+            
+            var minValueInt: Int32? = nil
+            var maxValueInt: Int32? = nil
+            var maxLengthInt: Int32? = nil
+            
+            if let minNotNil = minValue {
+                minValueInt = minNotNil.withUnsafeBytes { (ptr: UnsafePointer<Int32>) -> Int32 in
+                    return ptr.pointee
+                }
+            }
+            
+            if let maxNotNil = minValue {
+                maxValueInt = maxNotNil.withUnsafeBytes { (ptr: UnsafePointer<Int32>) -> Int32 in
+                    return ptr.pointee
+                }
+            }
+            
+            if let maxLNotNil = maxLength {
+                maxLengthInt = maxLNotNil.withUnsafeBytes { (ptr: UnsafePointer<Int32>) -> Int32 in
+                    return ptr.pointee
+                }
+            }
+            
+            result = (minValue: minValueInt, maxValue: maxValueInt, max_length: maxLengthInt)
+        }
+        
+        return result!
+    }
+    
     
     //MARK:- related data
     // получить данные из таблицы связанной
