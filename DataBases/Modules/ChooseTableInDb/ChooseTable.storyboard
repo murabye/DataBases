@@ -378,8 +378,12 @@
                                     <nil key="textColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <action selector="columnNameChangedAction:" destination="9du-Sb-YJY" eventType="valueChanged" id="ogH-o8-fHt"/>
+                                        <action selector="columnNameChangedEditingAction:" destination="9du-Sb-YJY" eventType="editingChanged" id="dm9-CQ-yLR"/>
+                                    </connections>
                                 </textField>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MzX-pH-rT9">
+                                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MzX-pH-rT9">
                                     <rect key="frame" x="245" y="45" width="122" height="30"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="122" id="Tr4-dZ-536"/>
@@ -515,6 +519,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="columnNameField" destination="IpL-jW-Ujt" id="zVp-W3-dRt"/>
+                        <outlet property="createColumnButton" destination="MzX-pH-rT9" id="AYD-j9-3lW"/>
                         <outlet property="dataTypeSegment" destination="uRh-2f-vtI" id="fd8-Uo-7ux"/>
                         <outlet property="keySwitch" destination="fcV-WT-nEn" id="Qsh-Km-pKn"/>
                         <outlet property="maskSwitch" destination="EHo-gO-owJ" id="XEb-S3-5oZ"/>

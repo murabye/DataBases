@@ -11,6 +11,7 @@ class CreateTableViewController: UITableViewController {
 
     @IBOutlet weak var nameField: UITextField!
     
+    @IBOutlet weak var createColumnButton: UIButton!
     @IBOutlet weak var columnNameField: UITextField!
     @IBOutlet weak var dataTypeSegment: UISegmentedControl!
     @IBOutlet weak var uniqueSwitch: UISwitch!
@@ -31,6 +32,13 @@ class CreateTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     //MARK: - Actions
+    
+    @IBAction func columnNameChangedAction(_ sender: Any) {
+        createColumnButton.isEnabled = (columnNameField.text ?? "") != ""
+    }
+    @IBAction func columnNameChangedEditingAction(_ sender: Any) {
+        createColumnButton.isEnabled = (columnNameField.text ?? "") != ""
+    }
     
     @IBAction func uniqueSwitchAction(_ sender: Any) {
     }

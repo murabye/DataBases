@@ -30,7 +30,7 @@ class SqlManager {
     }
     
     func initializeDb() -> Bool {
-        let documentFolderPath = "/Users/wolfram/Documents/DataBases/DataBases/Managers"// NSSearchPathForDirectoriesInDomains(.developerApplicationDirectory, .userDomainMask, true)[0] as String
+        let documentFolderPath = "/Users/varya/Documents/DataBases/DataBases/Managers"// NSSearchPathForDirectoriesInDomains(.developerApplicationDirectory, .userDomainMask, true)[0] as String
         
         let dbfile = "/" + DATABASE_FILE_NAME;
         
@@ -200,7 +200,7 @@ class SqlManager {
                 addRelateToCreateQuery += relation.name
                 addRelateToCreateQuery += ") REFERENCES "
                 addRelateToCreateQuery += table2name
-                addRelateToCreateQuery += "(id) ON DELETE CASCADE ON UPDATE NO ACTION"
+                addRelateToCreateQuery += "(id) ON DELETE NO ACTION ON UPDATE NO ACTION"
                 
             }
             
@@ -483,7 +483,6 @@ class SqlManager {
     // id - айди текущей таблицы
     // columnName - колонка
     func getRelateTable(ofTableWithTableId id:Int32, forColumnName columnName: String) -> (id: Int32, name: String) {
-        
         let queryRelation = "SELECT id_table1, id_table2 FROM relations WHERE name = ?"
         
         let resultSetRel: FMResultSet? = db!.executeQuery(queryRelation, withArgumentsIn: [columnName])
@@ -520,16 +519,23 @@ class SqlManager {
     }
     
     // удалить всю таблицу
-    func deleteTable(withId tableId: Int32) {
+    func deleteTable(withId tableId: Int32) -> Bool {
         let queue:FMDatabaseQueue? = FMDatabaseQueue(path: self.dbFilePath)
         
+        let query = "SELECT * FROM relations WHERE id_table2 = ?"
+        let resultSet: FMResultSet? = db!.executeQuery(query, withArgumentsIn: [tableId])
+        var counter = 0
+        
+        while (resultSet!.next()) {
+            return false
+        }
+        
         queue?.inTransaction { db, rollback in
-
             let queryTableName = "SELECT name FROM tables WHERE id_table = ?"
             let resultSetTabName: FMResultSet? = db.executeQuery(queryTableName, withArgumentsIn: [tableId])
             resultSetTabName?.next()
             let tableName = resultSetTabName?.string(forColumn: "name")
-            let tableFullName = tableName! + String(connectedDataBaseId)
+            //let tableFullName = tableName! + String(connectedDataBaseId)
 
             let queryDeleteFromTables = "DELETE FROM tables WHERE id_table = ?"
             if !db.executeUpdate(queryDeleteFromTables, withArgumentsIn: [tableId]) {
@@ -551,23 +557,12 @@ class SqlManager {
                 rollback.pointee = true
                 return
             }
-            
-
-            /*let queryDelete = "DROP TABLE IF EXISTS \(tableFullName)"
-            if !db.executeUpdate(queryDelete, withArgumentsIn: []) {
-                print(db.lastError())
-                rollback.pointee = true
-                return
-            }*/
         }
+        return true
     }
     
     func deleteDataBase(withId dbId: Int32) {
         let tableList = getTableList(forDbId: dbId)
-        
-        for table in tableList {
-            deleteTable(withId: table.0)
-        }
         
         let queue:FMDatabaseQueue? = FMDatabaseQueue(path: self.dbFilePath)
 
@@ -579,13 +574,49 @@ class SqlManager {
                 return
             }
         }
+        
+        for table in tableList {
+            deleteTable(withId: table.0)
+        }
     }
     
     //MARK:- help
     private func convertOpt(_ optional:Any?) -> String {
-        return optional != nil ? optional! as! String : "NULL"
+        var data = ""
+        
+        guard let optional = optional else {
+            return "NULL"
+        }
+        
+        if optional is String{
+            data = optional as! String
+        }
+        else if optional is Int32{
+            data = String(optional as! Int32)
+        }
+        else if optional is Bool{
+            data = (optional as! Bool) ? "true" : "false"
+        }
+        
+        return data
     }
     private func convertStringOpt(_ optional:Any?) -> String {
-        return optional != nil ? "'" + (optional! as! String) + "'" : "NULL"
+        var data = ""
+        
+        guard let optional = optional else {
+            return "NULL"
+        }
+        
+        if optional is String{
+            data = "'" + (optional as! String) + "'"
+        }
+        else if optional is Int32{
+            data = String(optional as! Int32)
+        }
+        else if optional is Bool{
+            data = (optional as! Bool) ? "true" : "false"
+        }
+        
+        return data
     }
 }
