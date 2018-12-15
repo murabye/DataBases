@@ -23,9 +23,9 @@ class CreateTableDetailViewController: UITableViewController {
         var relationType = 0
         switch relationSegment!.selectedSegmentIndex {
         case 0:
-            relationType = 0
-        case 1:
             relationType = 1
+        case 1:
+            relationType = 2
         case 2:
             relationType = 4
         case 3:

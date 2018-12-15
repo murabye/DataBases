@@ -14,7 +14,9 @@ class TableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         dataModel = SqlManager.shared.getData(withId: SqlManager.shared.selectedTableId)
     }
 

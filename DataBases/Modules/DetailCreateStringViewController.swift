@@ -58,7 +58,10 @@ class DetailCreateStringViewController: UITableViewController {
         for column in dataModel[indexPath.section]{
             if (column.columnName == "id"){
                 if column.data! is Int32{
-                    cell?.id_table = Int32(((column.data! as? String)!))
+                    cell?.id_table = (column.data! as! Int32)
+                    cell?.button.isEnabled = false
+                    self.navigationController!.popViewController(animated: true)
+                    return
                 }
             }
         }

@@ -3,6 +3,14 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "DetailCreateStringViewController.tableView(_:didSelectRowAt:):DetailCreateStringViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "dataModel[indexPath.section]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "CreateTableStringViewController.createAction(_:):CreateTableStringViewController.swift">
          <PersistentStrings>
             <PersistentString

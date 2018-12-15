@@ -18,19 +18,26 @@ class CreateTableStringViewController: UITableViewController {
         super.viewDidLoad()
         modelsList = SqlManager.shared.getColumnList(forTableId: SqlManager.shared.selectedTableId)
         cellArray.removeAll()
-        for model in modelsList{
-            let cell = tableView.dequeueReusableCell(withIdentifier: Helper.identifierCellAt(type: model.0)) as! dataCellsProtocol
+        for i in 0..<modelsList.count{
+            if modelsList[i].1 == "id" {
+                modelsList.remove(at: i)
+                break
+            }
+        }
+        for column in modelsList{
+            let cell = tableView.dequeueReusableCell(withIdentifier: Helper.identifierCellAt(type: column.0)) as! dataCellsProtocol
             if let cell = cell as? buttonCell {
                 cell.handler = {
                     let sb = UIStoryboard.init(name: "ChooseTable", bundle: .main)
                     let vc = sb.instantiateViewController(withIdentifier: "detailCreateString") as! DetailCreateStringViewController
                     vc.cell = cell
-                    vc.title = model.1
-                    vc.id_table = SqlManager.shared.getRelateTable(ofTableWithTableId: SqlManager.shared.selectedTableId, forColumnName: model.1).id
+                    vc.title = column.1
+                    vc.id_table = SqlManager.shared.getRelateTable(ofTableWithTableId: SqlManager.shared.selectedTableId,
+                                                                   forColumnName: column.1).id
                     self.show(vc, sender: nil)
                 }
             }
-            cell.set(data: model.1, type: model.0)
+            cell.set(data: column.1, type: column.0)
             cellArray.append(cell)
         }
             
@@ -56,7 +63,7 @@ class CreateTableStringViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return modelsList.count
+        return cellArray.count
     }
 
     
