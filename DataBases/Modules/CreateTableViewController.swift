@@ -69,7 +69,7 @@ class CreateTableViewController: UITableViewController {
             return
         }
         
-        guard name == "" else {
+        guard name != "" else {
             showAlert(withMessage: "Имя некорректно!")
             return
         }
@@ -191,7 +191,7 @@ class CreateTableViewController: UITableViewController {
             showAlert(withMessage: "Имя некорректно!")
             return
         }
-        guard name == "" else {
+        guard name != "" else {
             showAlert(withMessage: "Имя некорректно!")
             return
         }
