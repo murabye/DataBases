@@ -27,6 +27,10 @@ extension ChooseDbScreenPresenter: ChooseDbScreenPresenterApi {
         interactor.selectDB(index: index)
     }
     
+    func deleteTable(index: Int) {
+        interactor.deleteTable(index: index)
+        tableVM.databaseList = interactor.getDatabaseList()
+    }
 }
 
 // MARK: - ChooseDbScreen Viper Components

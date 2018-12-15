@@ -10,12 +10,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DataBases/Managers/SqlManager.swift"
-            timestampString = "566599660.018818"
+            timestampString = "566601530.87922"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "476"
-            endingLineNumber = "476"
-            landmarkName = "getRelateData(ofTableWithTableId:forDataId:forColumnName:)"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
+            landmarkName = "initializeDb()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DataBases/Managers/SqlManager.swift"
+            timestampString = "566601530.879555"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "initializeDb()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

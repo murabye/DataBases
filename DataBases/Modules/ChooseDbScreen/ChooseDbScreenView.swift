@@ -86,6 +86,24 @@ final class ChooseDbScreenView: BaseTableView {
         
         self.present(alert, animated: true, completion: nil)
     }
+    
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        guard SqlManager.shared.isAdmin else {
+            return []
+        }
+        
+        let deleteAction = UITableViewRowAction(style: .destructive, title: "Удалить таблицу") {
+            _, indexPath in
+            self.presenter.deleteTable(index: indexPath.row)
+            self.table.reloadSections([0], with: .automatic)
+        }
+        return [deleteAction]
+    }
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return SqlManager.shared.isAdmin
+    }
 }
 
 //MARK: - ChooseDbScreenView API

@@ -27,6 +27,10 @@ extension ChooseDbScreenInteractor: ChooseDbScreenInteractorApi {
     func selectDB(index: Int) {
         SqlManager.shared.setSelectedDb(toId: dbList[index].0)
     }
+    
+    func deleteTable(index: Int) {
+        SqlManager.shared.deleteDataBase(withId: dbList[index].0)
+    }
 }
 
 // MARK: - Interactor Viper Components Api

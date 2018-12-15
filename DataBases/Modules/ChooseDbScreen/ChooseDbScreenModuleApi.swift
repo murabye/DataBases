@@ -22,6 +22,7 @@ protocol ChooseDbScreenViewApi: BaseViewProtocol {
 protocol ChooseDbScreenPresenterApi: BasePresenterProtocol {
     func selectTable(index: Int)
     func createNewDb(name: String)
+    func deleteTable(index: Int)
 }
 
 //MARK: - ChooseDbScreenInteractor API
@@ -29,4 +30,5 @@ protocol ChooseDbScreenInteractorApi: BaseInteractorProtocol {
     func getDatabaseList() -> [(Int32, String)]
     func createNewDB(name: String)
     func selectDB(index: Int)
+    func deleteTable(index: Int)
 }

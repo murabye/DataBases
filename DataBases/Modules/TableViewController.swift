@@ -142,8 +142,17 @@ class TableViewController: UITableViewController, UISearchResultsUpdating {
         }
         let sb = UIStoryboard.init(name: "ChooseTable", bundle: .main)
         let vc = sb.instantiateViewController(withIdentifier: "tableDetail") as! DetailTableViewController
+        
+        var id: Int32 = 0
+        for row in self.dataModel[indexPath.section] {
+            if row.columnName == "id"{
+                id = row.data as! Int32
+            }
+        }
         let relatedData = SqlManager.shared.getRelateTable(ofTableWithTableId: dataModel.data as! Int32, forColumnName: dataModel.columnName)
-        vc.dataModel = SqlManager.shared.getData(withId: relatedData.id)
+        vc.dataModel = SqlManager.shared.getRelateData(ofTableWithTableId: SqlManager.shared.selectedTableId,
+                                                       forDataId: id,
+                                                       forColumnName: dataModel.columnName)
         vc.title = self.title! + " : " + relatedData.name
         
         self.show(vc, sender: nil)
