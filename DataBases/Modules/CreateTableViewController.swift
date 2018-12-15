@@ -68,6 +68,12 @@ class CreateTableViewController: UITableViewController {
             showAlert(withMessage: "Имя некорректно!")
             return
         }
+        
+        guard name == "" else {
+            showAlert(withMessage: "Имя некорректно!")
+            return
+        }
+        
         for column in columnArray {
             if column.name == name {
                 showAlert(withMessage: "Имя уже занято!")
@@ -182,6 +188,10 @@ class CreateTableViewController: UITableViewController {
     
     @IBAction func createTableAction(_ sender: Any) {
         guard let name = nameField.text else {
+            showAlert(withMessage: "Имя некорректно!")
+            return
+        }
+        guard name == "" else {
             showAlert(withMessage: "Имя некорректно!")
             return
         }
