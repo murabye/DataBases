@@ -38,4 +38,14 @@ class Helper {
             return string
         }
     }
+    
+    static func showAlert(withMessage message: String, viewController: UIViewController) {
+        let alertController = UIAlertController(title: message, message:
+            nil, preferredStyle: UIAlertController.Style.actionSheet)
+        
+        viewController.present(alertController, animated: true, completion: nil)
+        let _ = Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { (_) in
+            alertController.dismiss(animated: true, completion: nil)
+        })
+    }
 }

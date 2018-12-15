@@ -18,6 +18,7 @@ class TableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         dataModel = SqlManager.shared.getData(withId: SqlManager.shared.selectedTableId)
+        tableView.reloadData()
     }
 
     // MARK: - Table view data source
@@ -62,12 +63,12 @@ class TableViewController: UITableViewController {
         
         let deleteAction = UITableViewRowAction(style: .destructive, title: "Удалить секцию") {
             _, indexPath in
-            self.dataModel.remove(at: indexPath.section)
             for column in self.dataModel[indexPath.section]{
                 if column.columnName == "id"{
                     SqlManager.shared.deleteData(fromTableWithId: SqlManager.shared.selectedTableId, dataId: column.data as! Int32)
                 }
             }
+            self.dataModel.remove(at: indexPath.section)
             tableView.deleteSections([indexPath.section], with: .automatic)
         }
         return [deleteAction]

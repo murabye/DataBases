@@ -16,9 +16,30 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="XLh-e9-Kf0">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="lWa-b6-xwG">
+                                    <rect key="frame" x="72" y="8" width="231" height="29"/>
+                                    <segments>
+                                        <segment title="Пользователь"/>
+                                        <segment title="Администратор"/>
+                                    </segments>
+                                    <connections>
+                                        <action selector="adminChange:" destination="AgS-5v-SI8" eventType="valueChanged" id="K7i-aG-qHt"/>
+                                    </connections>
+                                </segmentedControl>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="lWa-b6-xwG" firstAttribute="centerY" secondItem="XLh-e9-Kf0" secondAttribute="centerY" id="0Tt-cf-EUw"/>
+                                <constraint firstItem="lWa-b6-xwG" firstAttribute="centerX" secondItem="XLh-e9-Kf0" secondAttribute="centerX" id="g3D-1O-yoO"/>
+                            </constraints>
+                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="standart" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="buttonCell" id="4l8-8l-EWA">
-                                <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="99.5" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4l8-8l-EWA" id="cpS-cD-tF4">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -55,6 +76,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="addButton" destination="cAd-du-CLb" id="Ag2-af-9e9"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B1h-dT-uYq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

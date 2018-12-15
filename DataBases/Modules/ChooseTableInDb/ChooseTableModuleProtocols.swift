@@ -22,6 +22,7 @@ protocol ChooseTablePresenterProtocol: BasePresenterProtocol {
     func SelectTable(index: Int)
     
     func openTable(atIndex: Int)
+    func deleteTable(index: Int)
 }
 
 //MARK: - ChooseTableInteractor Protocol
@@ -29,4 +30,5 @@ protocol ChooseTableInteractorProtocol: BaseInteractorProtocol {
     func getTableList() -> [(Int32, String)]
     func open(table: Int)
     func selectTable(index: Int)
+    func deleteTable(index: Int)
 }

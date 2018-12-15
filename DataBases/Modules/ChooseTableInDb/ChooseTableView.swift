@@ -10,6 +10,20 @@ import UIKit
 
 //MARK: ChooseTableView Class
 final class ChooseTableView: BaseTableView {
+    
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        let deleteAction = UITableViewRowAction(style: .destructive, title: "Удалить таблицу") {
+            _, indexPath in
+            self.presenter.deleteTable(index: indexPath.row)
+            self.table.reloadSections([0], with: .automatic)
+        }
+        return [deleteAction]
+    }
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
 }
 
 //MARK: - ChooseTableView Protocol

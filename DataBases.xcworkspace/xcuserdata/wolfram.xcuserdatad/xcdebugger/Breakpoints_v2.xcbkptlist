@@ -6,15 +6,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DataBases/Modules/CreateTableStringViewController.swift"
-            timestampString = "566553555.558026"
+            filePath = "DataBases/Modules/CreateTableDetailViewController.swift"
+            timestampString = "566588106.4514"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "48"
-            endingLineNumber = "48"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
             landmarkName = "createAction(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -25,13 +25,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DataBases/Managers/SqlManager.swift"
-            timestampString = "566584410.6200221"
+            filePath = "DataBases/Modules/ChooseTableInDb/ChooseTableInteractor.swift"
+            timestampString = "566588158.997069"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "329"
-            endingLineNumber = "329"
-            landmarkName = "addData(toTable:withId:data:)"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "deleteTable(index:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DataBases/Managers/SqlManager.swift"
+            timestampString = "566588191.6188509"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "475"
+            endingLineNumber = "475"
+            landmarkName = "deleteTable(withId:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

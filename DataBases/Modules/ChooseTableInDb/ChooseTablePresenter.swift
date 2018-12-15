@@ -28,6 +28,11 @@ extension ChooseTablePresenter: ChooseTablePresenterProtocol {
         tableViewController.title = interactor.getTableList()[index].1
     }
     
+    func deleteTable(index: Int) {
+        interactor.deleteTable(index: index)
+        tableViewModel.tableList = interactor.getTableList()
+    }
+    
 }
 
 // MARK: - ChooseTable Viper Components

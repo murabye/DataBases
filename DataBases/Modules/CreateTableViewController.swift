@@ -82,6 +82,10 @@ class CreateTableViewController: UITableViewController {
                                  primary_key: keySwitch.isOn)
         
         columnArray.append(columnModel)
+        self.columnNameField.text = ""
+        self.keySwitch.isOn = false
+        self.uniqueSwitch.isOn = false
+        self.notNullSwitch.isOn = false
         tableView.reloadData()
     }
     

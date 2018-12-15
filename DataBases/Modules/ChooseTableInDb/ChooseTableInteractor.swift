@@ -27,6 +27,9 @@ extension ChooseTableInteractor: ChooseTableInteractorProtocol {
         return tableList
     }
     
+    func deleteTable(index: Int) {
+        SqlManager.shared.deleteTable(withId: tableList[index].0)
+    }
 }
 
 // MARK: - Interactor Viper Components Protocol

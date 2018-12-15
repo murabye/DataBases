@@ -3,18 +3,26 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "DetailCreateStringViewController.tableView(_:didSelectRowAt:):DetailCreateStringViewController.swift">
+         contextName = "closure #1 in CreateTableStringViewController.viewDidLoad():CreateTableStringViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "dataModel[indexPath.section]">
+               value = "modelsList">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "CreateTableStringViewController.createAction(_:):CreateTableStringViewController.swift">
+         contextName = "closure #1 in TableViewController.tableView(_:editActionsForRowAt:):TableViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "cellArray">
+               value = "dataModel">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "DetailCreateStringViewController.tableView(_:didSelectRowAt:):DetailCreateStringViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "dataModel[indexPath.section]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -30,18 +38,18 @@
          contextName = "CreateTableStringViewController.viewDidLoad():CreateTableStringViewController.swift">
       </ContextState>
       <ContextState
-         contextName = "SqlManager.getData(ofTable:withId:):SqlManager.swift">
+         contextName = "CreateTableStringViewController.createAction(_:):CreateTableStringViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "db">
+               value = "cellArray">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "closure #1 in CreateTableStringViewController.viewDidLoad():CreateTableStringViewController.swift">
+         contextName = "SqlManager.getData(ofTable:withId:):SqlManager.swift">
          <PersistentStrings>
             <PersistentString
-               value = "modelsList">
+               value = "db">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

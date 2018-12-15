@@ -35,7 +35,7 @@ class CreateTableDetailViewController: UITableViewController {
         }
         if let selectedTable = selectedTable {
             createTableViewController?.createColumnWithTableId(tableID: selectedTable.0, relationType: Int32(relationType))
-            self.dismiss(animated: true, completion: nil)
+            self.navigationController?.popViewController(animated: true)
         }
     }
     

@@ -10,6 +10,7 @@ import UIKit
 
 //MARK: ChooseDbScreenView Class
 final class ChooseDbScreenView: BaseTableView {
+    @IBOutlet weak var addButton: UIBarButtonItem!
     override func viewDidLoad() {
         let module = AppModules.ChooseDbScreen.build()
         self._module = module
@@ -17,6 +18,11 @@ final class ChooseDbScreenView: BaseTableView {
         module.change(view: self)
     }
     
+    @IBAction func adminChange(_ sender: Any) {
+      //  if let segmentControl = sender as //UISegmentedControl{
+          //  segmentControl.sele
+       // }
+    }
     @IBAction func addDbButtonAction(_ sender: Any) {
         let alert = UIAlertController(title: "Новое хранилище", message: "Введите название нового хранилища", preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "Отмена", style: .cancel) { (_) -> Void in

@@ -52,6 +52,7 @@ class CreateTableStringViewController: UITableViewController {
             dictionary[name] = Helper.getData(from: data, type: type)
         }
         SqlManager.shared.addData(toTable: SqlManager.shared.selectedTableName, withId: SqlManager.shared.selectedTableId, data: dictionary)
+        Helper.showAlert(withMessage: "Сохранение успешно!", viewController: self)
     }
     
     // MARK: - Table view data source
