@@ -55,8 +55,13 @@ class DetailCreateStringViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        cell?.id_table = dataModel[indexPath.section][]
+        for column in dataModel[indexPath.section]{
+            if (column.columnName == "id"){
+                if column.data! is Int32{
+                    cell?.id_table = Int32(((column.data! as? String)!))
+                }
+            }
+        }
     }
 }
 
-}
