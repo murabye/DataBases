@@ -11,7 +11,7 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "closure #1 in TableViewController.tableView(_:editActionsForRowAt:):TableViewController.swift">
+         contextName = "TableViewController.viewWillAppear(_:):TableViewController.swift">
          <PersistentStrings>
             <PersistentString
                value = "dataModel">
