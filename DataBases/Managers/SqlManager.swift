@@ -201,7 +201,7 @@ class SqlManager {
                     default:
                         var queryForRasprTable = "CREATE TABLE system_"
                         queryForRasprTable += name + "_" + table2name
-                        queryForRasprTable += "(id integer PRIMARY KEY, "
+                        queryForRasprTable += "(id integer PRIMARY KEY, table1_id integer, table2_id integer, "
                         queryForRasprTable += "FOREIGN KEY (table1_id) REFERENCES \(name + String(connectedDataBaseId)) (id) ON DELETE CASCADE ON UPDATE NO ACTION, "
                         queryForRasprTable += "FOREIGN KEY (table2_id) REFERENCES \(table2name + String(connectedDataBaseId)) (id) ON DELETE CASCADE ON UPDATE NO ACTION)"
                         if !db.executeUpdate(queryForRasprTable, withArgumentsIn: []) {
