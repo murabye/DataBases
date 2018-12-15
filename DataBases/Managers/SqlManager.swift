@@ -149,7 +149,7 @@ class SqlManager {
             for column in columnsForTable {
                 var maskId:Int64? = nil
                 if let mask = column.mask {                    
-                    query = "INSERT INTO masks (min_value, max_value, max_length) VALUES (\(convertOpt(mask.min_value)), \(convertOpt(mask.min_value)), \(convertOpt(mask.max_length))"
+                    query = "INSERT INTO masks (min_value, max_value, max_lenght) VALUES (\(convertOpt(mask.min_value)), \(convertOpt(mask.min_value)), \(convertOpt(mask.max_length)))"
                     if !db.executeUpdate(query, withArgumentsIn: []) {
                         print(db.lastError())
                         rollback.pointee = true
@@ -374,7 +374,7 @@ class SqlManager {
         while (resultSet!.next()) {
             let minValue = resultSet?.data(forColumn: "min_value")
             let maxValue = resultSet?.data(forColumn: "max_value")
-            let maxLength = resultSet?.data(forColumn: "max_length")
+            let maxLength = resultSet?.data(forColumn: "max_lenght")
             
             var minValueInt: Int32? = nil
             var maxValueInt: Int32? = nil
@@ -596,6 +596,9 @@ class SqlManager {
         }
         else if optional is Bool{
             data = (optional as! Bool) ? "true" : "false"
+        }
+        else if optional is Int64{
+            data = String(optional as! Int64)
         }
         
         return data
