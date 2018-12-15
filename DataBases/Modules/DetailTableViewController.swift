@@ -1,17 +1,17 @@
 //
-//  TableViewController.swift
+//  DetailTableViewController.swift
 //  DataBases
 //
-//  Created by Владимир on 09/12/2018.
+//  Created by Владимир on 16/12/2018.
 //  Copyright © 2018 варя. All rights reserved.
 //
 
 import UIKit
 
-class TableViewController: UITableViewController, UISearchResultsUpdating {
+class DetailTableViewController: UITableViewController, UISearchResultsUpdating {
 
     @IBOutlet weak var addButton: UIBarButtonItem!
-    var dataModel: [[(data: Any?, type: ColumnType, columnName: String)]]!
+    public var dataModel: [[(data: Any?, type: ColumnType, columnName: String)]]!
     var filteredDataModel: [[(data: Any?, type: ColumnType, columnName: String)]]!
     let searchController = UISearchController(searchResultsController: nil)
     
@@ -29,7 +29,6 @@ class TableViewController: UITableViewController, UISearchResultsUpdating {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        dataModel = SqlManager.shared.getData(withId: SqlManager.shared.selectedTableId)
         filteredDataModel = dataModel
         tableView.reloadData()
         searchController.isActive = true
@@ -95,14 +94,14 @@ class TableViewController: UITableViewController, UISearchResultsUpdating {
         })
         self.tableView.reloadData()
     }
-
+    
     // MARK: - Table view data source
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return filteredDataModel.count
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return filteredDataModel[section].count
@@ -114,11 +113,11 @@ class TableViewController: UITableViewController, UISearchResultsUpdating {
         }
         return 44
     }
-
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell.init(style: .value1, reuseIdentifier: nil)
-
+        
         cell.textLabel?.text = filteredDataModel[indexPath.section][indexPath.row].columnName
         
         if filteredDataModel[indexPath.section][indexPath.row].data! is String{
@@ -134,22 +133,8 @@ class TableViewController: UITableViewController, UISearchResultsUpdating {
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let dataModel = self.dataModel[indexPath.section][indexPath.row]
-        guard dataModel.type == .id else {
-            return
-        }
-        let sb = UIStoryboard.init(name: "ChooseTable", bundle: .main)
-        let vc = sb.instantiateViewController(withIdentifier: "tableDetail") as! DetailTableViewController
-        let relatedData = SqlManager.shared.getRelateTable(ofTableWithTableId: dataModel.data as! Int32, forColumnName: dataModel.columnName)
-        vc.dataModel = SqlManager.shared.getData(withId: relatedData.id)
-        vc.title = self.title! + " : " + relatedData.name
-        
-        self.show(vc, sender: nil)
-    }
-    
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-
+        
         let deleteAction = UITableViewRowAction(style: .destructive, title: "Удалить секцию") {
             _, indexPath in
             for column in self.filteredDataModel[indexPath.section]{
@@ -162,5 +147,4 @@ class TableViewController: UITableViewController, UISearchResultsUpdating {
         }
         return [deleteAction]
     }
-    
 }
