@@ -524,25 +524,25 @@ class SqlManager {
         
         let query = "SELECT * FROM relations WHERE id_table2 = ?"
         let resultSet: FMResultSet? = db!.executeQuery(query, withArgumentsIn: [tableId])
-        var counter = 0
         
         while (resultSet!.next()) {
             return false
         }
         
         queue?.inTransaction { db, rollback in
-            let queryTableName = "SELECT name FROM tables WHERE id_table = ?"
-            let resultSetTabName: FMResultSet? = db.executeQuery(queryTableName, withArgumentsIn: [tableId])
-            resultSetTabName?.next()
-            let tableName = resultSetTabName?.string(forColumn: "name")
+            //let queryTableName = "SELECT name FROM tables WHERE id_table = ?"
+            //let resultSetTabName: FMResultSet? = db.executeQuery(queryTableName, withArgumentsIn: [tableId])
+            //resultSetTabName?.next()
+            //let tableName = resultSetTabName?.string(forColumn: "name")
             //let tableFullName = tableName! + String(connectedDataBaseId)
 
-            let queryDeleteFromTables = "DELETE FROM tables WHERE id_table = ?"
-            if !db.executeUpdate(queryDeleteFromTables, withArgumentsIn: [tableId]) {
+            let queryDeleteFromRelations = "DELETE FROM relations WHERE id_table1 = ? OR id_table2 = ?"
+            if !db.executeUpdate(queryDeleteFromRelations, withArgumentsIn: [tableId, tableId]) {
                 print(db.lastError())
                 rollback.pointee = true
                 return
             }
+            
             
             let queryDeleteFromColums = "DELETE FROM colums WHERE id_table = ?"
             if !db.executeUpdate(queryDeleteFromColums, withArgumentsIn: [tableId]) {
@@ -551,8 +551,8 @@ class SqlManager {
                 return
             }
             
-            let queryDeleteFromRelations = "DELETE FROM relations WHERE id_table1 = ? OR id_table2 = ?"
-            if !db.executeUpdate(queryDeleteFromRelations, withArgumentsIn: [tableId, tableId]) {
+            let queryDeleteFromTables = "DELETE FROM tables WHERE id_table = ?"
+            if !db.executeUpdate(queryDeleteFromTables, withArgumentsIn: [tableId]) {
                 print(db.lastError())
                 rollback.pointee = true
                 return
