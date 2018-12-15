@@ -30,7 +30,7 @@ class SqlManager {
     }
     
     func initializeDb() -> Bool {
-        let documentFolderPath = "/Users/wolfram/Documents/DataBases/DataBases/Managers"// NSSearchPathForDirectoriesInDomains(.developerApplicationDirectory, .userDomainMask, true)[0] as String
+        let documentFolderPath = "/Users/varya/Documents/DataBases/DataBases/Managers"// NSSearchPathForDirectoriesInDomains(.developerApplicationDirectory, .userDomainMask, true)[0] as String
         
         let dbfile = "/" + DATABASE_FILE_NAME;
         
@@ -488,18 +488,48 @@ class SqlManager {
                 rollback.pointee = true
                 return
             }
+            
+            let queryDeleteFromColums = "DELETE FROM colums WHERE id_table = ?"
+            if !db.executeUpdate(queryDeleteFromColums, withArgumentsIn: [tableId]) {
+                print(db.lastError())
+                rollback.pointee = true
+                return
+            }
+            
+            let queryDeleteFromRelations = "DELETE FROM relations WHERE id_table1 = ? OR id_table2 = ?"
+            if !db.executeUpdate(queryDeleteFromRelations, withArgumentsIn: [tableId, tableId]) {
+                print(db.lastError())
+                rollback.pointee = true
+                return
+            }
+            
 
-            let queryDelete = "DROP TABLE IF EXISTS \(tableFullName)"
+            /*let queryDelete = "DROP TABLE IF EXISTS \(tableFullName)"
             if !db.executeUpdate(queryDelete, withArgumentsIn: []) {
+                print(db.lastError())
+                rollback.pointee = true
+                return
+            }*/
+        }
+    }
+    
+    func deleteDataBase(withId dbId: Int32) {
+        let tableList = getTableList(forDbId: dbId)
+        
+        for table in tableList {
+            deleteTable(withId: table.0)
+        }
+        
+        let queue:FMDatabaseQueue? = FMDatabaseQueue(path: self.dbFilePath)
+
+        queue?.inTransaction { db, rollback in
+            let query = "DELETE FROM databases WHERE id_database = ?"
+            if !db.executeUpdate(query, withArgumentsIn: [dbId]) {
                 print(db.lastError())
                 rollback.pointee = true
                 return
             }
         }
-    }
-    
-    func deleteDataBase(withId dbId: Int32) {
-        
     }
     
     //MARK:- help
