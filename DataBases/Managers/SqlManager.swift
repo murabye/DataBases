@@ -456,7 +456,7 @@ class SqlManager {
         let table2fullName = table2name! + String(connectedDataBaseId)
         
         let queryDeleteData = "DELETE FROM \(table2fullName) WHERE id = ?"
-        let deleteSuccessful = db!.executeUpdate(queryDeleteData, withArgumentsIn: [table2fullName, dataId])
+        let deleteSuccessful = db!.executeUpdate(queryDeleteData, withArgumentsIn: [dataId])
         if !deleteSuccessful {
             print("delete failed: \(String(describing: db?.lastErrorMessage()))")
         }
