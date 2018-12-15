@@ -564,10 +564,6 @@ class SqlManager {
     func deleteDataBase(withId dbId: Int32) {
         let tableList = getTableList(forDbId: dbId)
         
-        for table in tableList {
-            deleteTable(withId: table.0)
-        }
-        
         let queue:FMDatabaseQueue? = FMDatabaseQueue(path: self.dbFilePath)
 
         queue?.inTransaction { db, rollback in
@@ -577,6 +573,10 @@ class SqlManager {
                 rollback.pointee = true
                 return
             }
+        }
+        
+        for table in tableList {
+            deleteTable(withId: table.0)
         }
     }
     
