@@ -499,11 +499,6 @@ class SqlManager {
             
             id1 = curId1
             id2 = curId2
-            
-            if id2 == Int32(id) {
-                id2 = id1
-                id1 = Int32(id)
-            }
         }
         
         let queryTableName = "SELECT name FROM tables WHERE id_table = ?"
