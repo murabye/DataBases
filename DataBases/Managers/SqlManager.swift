@@ -32,7 +32,7 @@ class SqlManager {
     func initializeDb() -> Bool {
         let documentFolderPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] 
         
-        let dbfile = DATABASE_FILE_NAME;
+        let dbfile = "/" + DATABASE_FILE_NAME;
         
         self.dbFilePath = documentFolderPath.appendingFormat(dbfile)
         
